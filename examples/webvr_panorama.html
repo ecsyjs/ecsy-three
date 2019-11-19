@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webvr - panorama</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link type="text/css" rel="stylesheet" href="main.css">
+		<!-- WebXR Device API (For Chrome M76+), expires 09/09/2019 -->
+		<meta http-equiv="origin-trial" content="Ai1/G787sugfmWtk1xQExa8N6OqwDsJyNn+OwpA1J4PozR1lixRYIQ4Tmp00vrGWS8FQQ2iDyqjwaewrOfYvPAUAAABTeyJvcmlnaW4iOiJodHRwczovL3RocmVlanMub3JnOjQ0MyIsImZlYXR1cmUiOiJXZWJYUkRldmljZU03NiIsImV4cGlyeSI6MTU2ODAyMzQ3OH0=">
+	</head>
+	<body>
+		<script type="module">
+
+			import * as THREE from '../three.module.js';
+			import * as ECSY from '../ecsy.module.js';
+      import { RenderableGroup, Scene, Camera, Parent, SkyBox, Object3D, WebGLRenderer } from '../src/components/index.js';
+      import { CameraSystem, SkyBoxSystem, WebGLRendererSystem, TransformSystem } from '../src/systems/index.js';
+
+			var camera;
+			var renderer;
+      var scene;
+			var world;
+			var lastTime;
+
+			init();
+			animate();
+
+			function init() {
+
+        world = new ECSY.World();
+        world
+          .registerComponent(SkyBox)
+          .registerSystem(SkyBoxSystem)
+          .registerSystem(TransformSystem)
+          .registerSystem(CameraSystem)
+          .registerSystem(WebGLRendererSystem);
+
+				//
+
+				renderer = world.createEntity().addComponent(WebGLRenderer);
+
+        scene = world.createEntity().addComponent(Object3D /* Scene */, {object: new THREE.Scene()});
+
+        camera = world.createEntity().addComponent(Camera, {
+          fov: 90,
+          aspect: window.innerWidth / window.innerHeight,
+          near: 1,
+          far: 1000,
+          layers: 1,
+          handleResize: true
+        });
+
+				var renderables = world.createEntity().addComponent(RenderableGroup, {
+					scene: scene,
+					camera: camera
+				});
+
+        var skybox = world.createEntity().addComponent(SkyBox, {
+          textureUrl: "textures/cube/sun_temple_stripe_stereo.jpg",
+          type: "cubemap-stereo"
+        }).addComponent(Parent, {parent: scene});
+			}
+
+			// @todo Replace this with something simpler / ~auto scheduler
+			function animate() {
+        var time = performance.now();
+        var delta = time - lastTime;
+        world.execute(delta, time);
+        lastTime = time;
+        requestAnimationFrame(animate);
+      }
+		</script>
+	</body>
+</html>
