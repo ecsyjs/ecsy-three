@@ -9,11 +9,17 @@
 	<body>
 
 		<script type="module">
-			import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.module.js';
-			var camera, scene, renderer;
-			var mesh;
+			import * as THREE from '../three.module.js';
+			import * as ECSY from '../ecsy.module.js';
+      import { Parent, SkyBox } from '../src/components/index.js';
+      import { CameraSystem, SkyBoxSystem, WebGLRendererSystem, TransformSystem } from '../src/systems/index.js';
+      import { initializeDefault } from '../src/index.js';
+
+			var world;
+
 			init();
 			animate();
+
 			function init() {
 				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
 				camera.position.z = 400;

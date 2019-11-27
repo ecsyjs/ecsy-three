@@ -1,7 +1,7 @@
-import { System, Not } from "../../ecsy.module.js";
+import { System, Not } from "ecsy";
 import { RenderableGroup, WebGLRenderer, Object3D } from "../components/index.js";
-import * as THREE from "../../three.module.js";
-import { WEBVR } from '../../examples/jsm/vr/WebVR.js';
+import * as THREE from "three";
+import { WEBVR } from 'three/examples/jsm/vr/WebVR.js';
 
 class WebGLRendererContext {
   constructor() {
@@ -16,7 +16,6 @@ export class WebGLRendererSystem extends System {
       () => {
         this.queries.renderers.results.forEach(entity => {
           var component = entity.getMutableComponent(WebGLRenderer);
-          console.log(window.innerWidth, window.innerHeight);
           component.width = window.innerWidth;
           component.height = window.innerHeight;
         })
@@ -49,10 +48,10 @@ export class WebGLRendererSystem extends System {
 
     this.queries.renderers.changed.forEach(entity => {
       var component = entity.getComponent(WebGLRenderer);
-      var context = entity.getComponent(WebGLRendererContext).renderer;
-      if (component.width !== context.width || component.height !== context.height) {
-        context.width = component.width;
-        context.height = component.height;
+      var renderer = entity.getComponent(WebGLRendererContext).renderer;
+      if (component.width !== renderer.width || component.height !== renderer.height) {
+        renderer.setSize( component.width, component.height );
+        // innerWidth/innerHeight
       }
     });
 
@@ -61,8 +60,8 @@ export class WebGLRendererSystem extends System {
       var renderer = rendererEntity.getComponent(WebGLRendererContext).renderer;
       this.queries.renderables.results.forEach(entity => {
         var group = entity.getComponent(RenderableGroup);
-        var scene = group.scene.getComponent(Object3D).object;
-        var camera = group.camera.getComponent(Object3D).object;
+        var scene = group.scene.getComponent(Object3D).value;
+        var camera = group.camera.getComponent(Object3D).value;
         renderer.render(scene, camera);
       });
     });

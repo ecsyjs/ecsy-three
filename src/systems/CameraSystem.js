@@ -1,6 +1,6 @@
-import { System, Not } from "../../ecsy.module.js";
+import { System, Not } from "ecsy";
 import { Camera, Object3D } from "../components/index.js";
-import * as THREE from "../../three.module.js";
+import * as THREE from "three";
 
 export class CameraSystem extends System {
   init() {
@@ -9,6 +9,7 @@ export class CameraSystem extends System {
         var component = camera.getComponent(Camera);
         if (component.handleResize) {
           camera.getMutableComponent(Camera).aspect = window.innerWidth / window.innerHeight;
+          console.log('Aspect updated');
         }
       });
     }, false );
@@ -20,9 +21,11 @@ export class CameraSystem extends System {
       var entity = changed[i];
 
       var component = entity.getComponent(Camera);
-      var camera3d = entity.getMutableComponent(Object3D).object;
+      var camera3d = entity.getMutableComponent(Object3D).value;
 
       if (camera3d.aspect !== component.aspect) {
+        console.log('Camera Updated');
+
         camera3d.aspect = component.aspect;
         camera3d.updateProjectionMatrix();
       }
@@ -44,7 +47,7 @@ export class CameraSystem extends System {
 
       camera.layers.enable( component.layers );
 
-      entity.addComponent(Object3D, { object: camera });
+      entity.addComponent(Object3D, { value: camera });
     }
   }
 }

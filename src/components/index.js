@@ -1,4 +1,4 @@
-import { createComponentClass } from "../../ecsy.module.js";
+import { createComponentClass } from "ecsy";
 export { SkyBox } from "./Skybox.js";
 export { Object3D } from "./Object3D.js";
 export { Scene } from "./Scene.js";

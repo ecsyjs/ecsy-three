@@ -1,6 +1,6 @@
-import { System, Not } from "../../ecsy.module.js";
+import { System, Not } from "ecsy";
 import { Parent, Object3D } from "../components/index.js";
-import * as THREE from "../../three.module.js";
+import * as THREE from "three";
 
 export class TransformSystem extends System {
   execute(delta) {
@@ -9,7 +9,7 @@ export class TransformSystem extends System {
     for (var i = 0; i < added.length; i++) {
       var entity = added[i];
       var parentEntity = entity.getComponent(Parent).parent;
-      parentEntity.getComponent(Object3D).object.add(entity.getComponent(Object3D).object);
+      parentEntity.getComponent(Object3D).value.add(entity.getComponent(Object3D).value);
     }
   }
 }

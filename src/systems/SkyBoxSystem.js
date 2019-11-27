@@ -1,6 +1,6 @@
-import { System, Not } from "../../ecsy.module.js";
+import { System, Not } from "ecsy";
 import { SkyBox, Object3D } from "../components/index.js";
-import * as THREE from "../../three.module.js";
+import * as THREE from "three";
 
 export class SkyBoxSystem extends System {
   execute() {
@@ -41,7 +41,7 @@ export class SkyBoxSystem extends System {
         skyBoxR.layers.set( 2 );
         group.add(skyBoxR);
 
-        entity.addComponent(Object3D, { object: group });
+        entity.addComponent(Object3D, { value: group });
       } else {
         console.warn('Unknown skybox type: ', skybox.type);
       }

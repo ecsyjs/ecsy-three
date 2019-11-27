@@ -1,5 +1,9 @@
 export class Object3D {
   constructor() {
-    this.object = null;
+    this.value = null;
+  }
+
+  reset() {
+    this.value = null;
   }
 }
