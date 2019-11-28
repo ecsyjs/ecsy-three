@@ -1,12 +1,11 @@
-/* global THREE */
 import * as THREE from "three";
 import { System } from "ecsy";
 import {
   Geometry,
   Object3D,
   Transform,
-//  Element,
-//  Draggable,
+  //  Element,
+  //  Draggable,
   Parent
 } from "../components/index.js";
 
@@ -16,7 +15,7 @@ import {
 export class GeometrySystem extends System {
   execute() {
     // Removed
-    this.queries.entities.removed.forEach(entity => {
+    this.queries.entities.removed.forEach((/*entity*/) => {
       /*
       let object = entity.getRemovedComponent(Object3D).value;
       let parent = entity.getComponent(Parent, true).value;
@@ -82,15 +81,18 @@ export class GeometrySystem extends System {
         }
       }
 
-//      if (entity.hasComponent(Element) && !entity.hasComponent(Draggable)) {
-//        object.material.color.set(0x333333);
-//      }
+      //      if (entity.hasComponent(Element) && !entity.hasComponent(Draggable)) {
+      //        object.material.color.set(0x333333);
+      //      }
 
       entity.addComponent(Object3D, { value: object });
 
       // @todo Remove it! hierarchy system will take care of it
       if (entity.hasComponent(Parent)) {
-        entity.getComponent(Parent).value.getComponent(Object3D).value.add(object);
+        entity
+          .getComponent(Parent)
+          .value.getComponent(Object3D)
+          .value.add(object);
       }
     });
   }

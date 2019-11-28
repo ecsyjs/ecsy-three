@@ -7,4 +7,3 @@ export class Draggable {
     this.value = false;
   }
 }
-

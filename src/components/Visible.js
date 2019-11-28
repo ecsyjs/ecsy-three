@@ -7,4 +7,3 @@ export class Visible {
     this.value = false;
   }
 }
-

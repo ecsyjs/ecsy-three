@@ -7,4 +7,3 @@ export class Active {
     this.value = false;
   }
 }
-

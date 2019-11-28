@@ -3,23 +3,26 @@ import * as THREE from "three";
 
 // components
 export {
-  SkyBox,
-  Object3D,
-  Visible,
+  Active,
+  Camera,
   CameraRig,
   Draggable,
   Dragging,
-  Active,
-  Transform,
   Geometry,
-  Scene,
-  Camera,
-  Parent,
   GLTFModel,
-  TextGeometry,
-  VRController,
   Material,
-  Sky } from "./components/index.js";
+  Object3D,
+  Parent,
+  Position,
+  Rotation,
+  Scene,
+  Sky,
+  SkyBox,
+  TextGeometry,
+  Transform,
+  Visible,
+  VRController
+} from "./components/index.js";
 
 // systems
 export { GeometrySystem } from "./systems/GeometrySystem.js";
@@ -41,13 +44,15 @@ export function init(world) {
   world
     .registerSystem(TransformSystem)
     .registerSystem(CameraSystem)
-    .registerSystem(WebGLRendererSystem, {priority: 1});
+    .registerSystem(WebGLRendererSystem, { priority: 1 });
 }
 
 export function initializeDefault(world = new ECSY.World()) {
   init(world);
 
-  let scene = world.createEntity().addComponent(Object3D /* Scene */, {value: new THREE.Scene()});
+  let scene = world
+    .createEntity()
+    .addComponent(Object3D /* Scene */, { value: new THREE.Scene() });
   let renderer = world.createEntity().addComponent(WebGLRenderer);
   let camera = world.createEntity().addComponent(Camera, {
     fov: 90,
