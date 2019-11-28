@@ -5,10 +5,11 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default [
   {
+    external: ['three', 'ecsy'],
     input: "src/index.js",
     plugins: [
       json({ exclude: ["node_modules/**"] }),
-      resolve()
+      // resolve()
     ],
     output: [
       {

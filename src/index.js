@@ -1,19 +1,35 @@
 import * as ECSY from "ecsy";
 import * as THREE from "three";
 
-export * as ECSY from "ecsy";
-export * as THREE from "three";
-
 // components
-export { SkyBox } from "./components/Skybox.js";
-export { Object3D } from "./components/Object3D.js";
-export { Scene, Camera, Parent } from "./components/index.js";
+export {
+  SkyBox,
+  Object3D,
+  Visible,
+  CameraRig,
+  Draggable,
+  Dragging,
+  Active,
+  Transform,
+  Geometry,
+  Scene,
+  Camera,
+  Parent,
+  GLTFModel,
+  TextGeometry,
+  VRController,
+  Material,
+  Sky } from "./components/index.js";
 
 // systems
+export { GeometrySystem } from "./systems/GeometrySystem.js";
+export { GLTFLoaderSystem } from "./systems/GLTFLoaderSystem.js";
 export { SkyBoxSystem } from "./systems/SkyBoxSystem.js";
+export { VisibilitySystem } from "./systems/VisibilitySystem.js";
 export { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
 export { TransformSystem } from "./systems/TransformSystem.js";
 export { CameraSystem } from "./systems/CameraSystem.js";
+export { TextGeometrySystem } from "./systems/TextGeometrySystem.js";
 
 import { TransformSystem } from "./systems/TransformSystem.js";
 import { CameraSystem } from "./systems/CameraSystem.js";

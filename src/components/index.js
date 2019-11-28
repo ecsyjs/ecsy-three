@@ -1,17 +1,21 @@
 import { createComponentClass } from "ecsy";
+
+export { Scene } from "./Scene.js";
+export { Parent } from "./Parent.js";
 export { SkyBox } from "./Skybox.js";
 export { Object3D } from "./Object3D.js";
-export { Scene } from "./Scene.js";
-
-export class Parent {
-  constructor() {
-    this.parent = null;
-  }
-
-  reset() {
-    this.parent = null;
-  }
-}
+export { Visible } from "./Visible.js";
+export { CameraRig } from "./CameraRig.js";
+export { Draggable } from "./Draggable.js";
+export { Dragging } from "./Dragging.js";
+export { Active } from "./Active.js";
+export { Transform } from "./Transform.js";
+export { Geometry } from "./Geometry.js";
+export { GLTFModel } from "./GLTFModel.js";
+export { TextGeometry } from "./TextGeometry.js";
+export { VRController } from "./VRController.js";
+export { Material } from "./Material.js";
+export { Sky } from "./Sky.js";
 
 export const Camera = createComponentClass({
   fov: { default: 45 },

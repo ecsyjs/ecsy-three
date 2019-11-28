@@ -35,7 +35,7 @@
 			var skybox = world.createEntity().addComponent(SkyBox, {
 				textureUrl: "textures/cube/sun_temple_stripe_stereo.jpg",
 				type: "cubemap-stereo"
-			}).addComponent(Parent, { parent: scene });
+			}).addComponent(Parent, { value: scene });
 		}
 		
 		// @todo Replace this with something simpler / ~auto scheduler

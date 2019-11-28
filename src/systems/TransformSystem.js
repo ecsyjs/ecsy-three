@@ -8,7 +8,8 @@ export class TransformSystem extends System {
     let added = this.queries.parent.added;
     for (var i = 0; i < added.length; i++) {
       var entity = added[i];
-      var parentEntity = entity.getComponent(Parent).parent;
+      console.log('Adding', i);
+      var parentEntity = entity.getComponent(Parent).value;
       parentEntity.getComponent(Object3D).value.add(entity.getComponent(Object3D).value);
     }
   }
