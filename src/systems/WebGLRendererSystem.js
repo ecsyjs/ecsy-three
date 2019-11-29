@@ -1,15 +1,17 @@
 import { System, Not } from "ecsy";
 import {
-  RenderableGroup,
+  RenderPass,
+  Camera,
+  Active,
   WebGLRenderer,
   Object3D
 } from "../components/index.js";
 import * as THREE from "three";
 import { WEBVR } from "three/examples/jsm/vr/WebVR.js";
 
-class WebGLRendererContext {
+export class WebGLRendererContext {
   constructor() {
-    this.renderer = null;
+    this.value = null;
   }
 }
 
@@ -29,6 +31,20 @@ export class WebGLRendererSystem extends System {
   }
 
   execute() {
+    let renderers = this.queries.renderers.results;
+    renderers.forEach(rendererEntity => {
+      var renderer = rendererEntity.getComponent(WebGLRendererContext).value;
+      this.queries.renderPasses.results.forEach(entity => {
+        var pass = entity.getComponent(RenderPass);
+        var scene = pass.scene.getComponent(Object3D).value;
+
+        this.queries.activeCameras.results.forEach(cameraEntity => {
+          var camera = cameraEntity.getComponent(Object3D).value;
+          renderer.render(scene, camera);
+        });
+      });
+    });
+
     // Uninitialized renderers
     this.queries.uninitializedRenderers.results.forEach(entity => {
       var component = entity.getComponent(WebGLRenderer);
@@ -37,10 +53,18 @@ export class WebGLRendererSystem extends System {
         antialias: component.antialias
       });
 
+      if (component.animationLoop) {
+        renderer.setAnimationLoop(component.animationLoop);
+      }
+
       renderer.setPixelRatio(window.devicePixelRatio);
       if (component.handleResize) {
         renderer.setSize(window.innerWidth, window.innerHeight);
       }
+
+      renderer.gammaInput = component.gammaInput;
+      renderer.gammaOutput = component.gammaOutput;
+      renderer.shadowMap.enabled = component.shadowMap;
 
       document.body.appendChild(renderer.domElement);
 
@@ -51,12 +75,12 @@ export class WebGLRendererSystem extends System {
         );
       }
 
-      entity.addComponent(WebGLRendererContext, { renderer: renderer });
+      entity.addComponent(WebGLRendererContext, { value: renderer });
     });
 
     this.queries.renderers.changed.forEach(entity => {
       var component = entity.getComponent(WebGLRenderer);
-      var renderer = entity.getComponent(WebGLRendererContext).renderer;
+      var renderer = entity.getComponent(WebGLRendererContext).value;
       if (
         component.width !== renderer.width ||
         component.height !== renderer.height
@@ -64,17 +88,6 @@ export class WebGLRendererSystem extends System {
         renderer.setSize(component.width, component.height);
         // innerWidth/innerHeight
       }
-    });
-
-    let renderers = this.queries.renderers.results;
-    renderers.forEach(rendererEntity => {
-      var renderer = rendererEntity.getComponent(WebGLRendererContext).renderer;
-      this.queries.renderables.results.forEach(entity => {
-        var group = entity.getComponent(RenderableGroup);
-        var scene = group.scene.getComponent(Object3D).value;
-        var camera = group.camera.getComponent(Object3D).value;
-        renderer.render(scene, camera);
-      });
     });
   }
 }
@@ -89,7 +102,13 @@ WebGLRendererSystem.queries = {
       changed: [WebGLRenderer]
     }
   },
-  renderables: {
-    components: [RenderableGroup]
+  renderPasses: {
+    components: [RenderPass]
+  },
+  activeCameras: {
+    components: [Camera, Active],
+    listen: {
+      added: true
+    }
   }
 };

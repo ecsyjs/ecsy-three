@@ -17,17 +17,17 @@ export class GeometrySystem extends System {
     // Removed
     this.queries.entities.removed.forEach((/*entity*/) => {
       /*
-      let object = entity.getRemovedComponent(Object3D).value;
-      let parent = entity.getComponent(Parent, true).value;
+      var object = entity.getRemovedComponent(Object3D).value;
+      var parent = entity.getComponent(Parent, true).value;
       parent.getComponent(Object3D).value.remove(object);
       */
     });
 
     // Added
     this.queries.entities.added.forEach(entity => {
-      let component = entity.getComponent(Geometry);
+      var component = entity.getComponent(Geometry);
 
-      let geometry;
+      var geometry;
       switch (component.primitive) {
         case "torus":
           {
@@ -55,22 +55,29 @@ export class GeometrySystem extends System {
           break;
       }
 
-      let color =
+      var color =
         component.primitive === "torus" ? 0x999900 : Math.random() * 0xffffff;
 
-      let material = new THREE.MeshStandardMaterial({
+      var material = new THREE.MeshLambertMaterial({
+        color: color,
+        flatShading: true
+      });
+
+      /*
+      var material = new THREE.MeshStandardMaterial({
         color: color,
         roughness: 0.7,
         metalness: 0.0,
         flatShading: true
       });
+*/
 
-      let object = new THREE.Mesh(geometry, material);
+      var object = new THREE.Mesh(geometry, material);
       object.castShadow = true;
       object.receiveShadow = true;
 
       if (entity.hasComponent(Transform)) {
-        let transform = entity.getComponent(Transform);
+        var transform = entity.getComponent(Transform);
         object.position.copy(transform.position);
         if (transform.rotation) {
           object.rotation.set(

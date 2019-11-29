@@ -37,9 +37,8 @@ export class CameraSystem extends System {
       // @todo Do it for the rest of the values
     }
 
-    let camerasUninitialized = this.queries.camerasUninitialized.results;
-    for (let i = 0; i < camerasUninitialized.length; i++) {
-      let entity = camerasUninitialized[i];
+    this.queries.camerasUninitialized.results.forEach(entity => {
+      console.log(entity);
 
       let component = entity.getComponent(Camera);
 
@@ -53,7 +52,7 @@ export class CameraSystem extends System {
       camera.layers.enable(component.layers);
 
       entity.addComponent(Object3D, { value: camera });
-    }
+    });
   }
 }
 
