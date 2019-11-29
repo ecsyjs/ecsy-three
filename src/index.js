@@ -43,6 +43,7 @@ import { CameraSystem } from "./systems/CameraSystem.js";
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
 import { Object3D } from "./components/Object3D.js";
 import { CameraRig } from "./components/CameraRig.js";
+import { Parent } from "./components/Parent.js";
 import {
   WebGLRenderer,
   Scene,
@@ -68,9 +69,9 @@ export function initializeDefault(world = new ECSY.World(), options) {
     .addComponent(Object3D, { value: new THREE.Scene() });
 
   let renderer = world.createEntity().addComponent(WebGLRenderer, {
-    animationLoop: () => {
+    /*animationLoop: () => {
       world.execute(clock.getDelta(), clock.elapsedTime);
-    }
+    }*/
   });
 
   // camera rig & controllers
@@ -78,7 +79,10 @@ export function initializeDefault(world = new ECSY.World(), options) {
     cameraRig = null;
 
   if (options.vr) {
-    cameraRig = world.createEntity().addComponent(CameraRig);
+    cameraRig = world
+      .createEntity()
+      .addComponent(CameraRig)
+      .addComponent(Parent, { value: scene });
   } else {
     camera = world.createEntity().addComponent(Camera, {
       fov: 90,

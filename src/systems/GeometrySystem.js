@@ -95,12 +95,14 @@ export class GeometrySystem extends System {
       entity.addComponent(Object3D, { value: object });
 
       // @todo Remove it! hierarchy system will take care of it
+      /*
       if (entity.hasComponent(Parent)) {
         entity
           .getComponent(Parent)
           .value.getComponent(Object3D)
           .value.add(object);
       }
+      */
     });
   }
 }

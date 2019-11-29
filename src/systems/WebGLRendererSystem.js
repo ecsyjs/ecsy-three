@@ -21,9 +21,11 @@ export class WebGLRendererSystem extends System {
       "resize",
       () => {
         this.queries.renderers.results.forEach(entity => {
+          /*
           var component = entity.getMutableComponent(WebGLRenderer);
           component.width = window.innerWidth;
           component.height = window.innerHeight;
+          */
         });
       },
       false
@@ -97,7 +99,8 @@ WebGLRendererSystem.queries = {
     components: [WebGLRenderer, Not(WebGLRendererContext)]
   },
   renderers: {
-    components: [WebGLRenderer, WebGLRendererContext],
+    components: [WebGLRendererContext],
+//    components: [WebGLRenderer, WebGLRendererContext],
     listen: {
       changed: [WebGLRenderer]
     }

@@ -24,20 +24,20 @@
 		function init() {
 
 			world = new ECSY.World();
-			
+
 			let data = initializeDefault(world);
-			
+
 			let {scene} = data.entities;
-			
+
 			world.registerSystem(SkyBoxSystem);
-			
+
 			///
 			var skybox = world.createEntity().addComponent(SkyBox, {
 				textureUrl: "textures/cube/sun_temple_stripe_stereo.jpg",
 				type: "cubemap-stereo"
 			}).addComponent(Parent, { value: scene });
 		}
-		
+
 		// @todo Replace this with something simpler / ~auto scheduler
 		function animate() {
 			world.execute();
