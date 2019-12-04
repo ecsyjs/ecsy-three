@@ -9,11 +9,7 @@ var loader = new GLTFLoader().setPath("/assets/");
 
 export class GLTFLoaderSystem extends System {
   execute() {
-    var entities = this.queries.entities.added;
-
-    //Queries
-    for (let i = 0; i < entities.length; i++) {
-      var entity = entities[i];
+    this.queries.entities.added.forEach(entity => {
       var component = entity.getComponent(GLTFModel);
 
       loader.load(component.url, gltf => {
@@ -24,13 +20,9 @@ export class GLTFLoaderSystem extends System {
           }
         });
 */
-        // @todo Remove, hierarchy will take care of it
-        if (entity.hasComponent(Parent)) {
-          entity.getComponent(Parent).value.add(gltf.scene);
-        }
         entity.addComponent(Object3D, { value: gltf.scene });
       });
-    }
+    });
   }
 }
 

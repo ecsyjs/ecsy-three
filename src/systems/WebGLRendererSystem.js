@@ -7,7 +7,8 @@ import {
   Object3D
 } from "../components/index.js";
 import * as THREE from "three";
-import { WEBVR } from "three/examples/jsm/vr/WebVR.js";
+import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
+import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
 
 export class WebGLRendererContext {
   constructor() {
@@ -21,11 +22,9 @@ export class WebGLRendererSystem extends System {
       "resize",
       () => {
         this.queries.renderers.results.forEach(entity => {
-          /*
           var component = entity.getMutableComponent(WebGLRenderer);
           component.width = window.innerWidth;
           component.height = window.innerHeight;
-          */
         });
       },
       false
@@ -70,11 +69,16 @@ export class WebGLRendererSystem extends System {
 
       document.body.appendChild(renderer.domElement);
 
-      if (component.vr) {
-        renderer.vr.enabled = true;
-        document.body.appendChild(
-          WEBVR.createButton(renderer, { referenceSpaceType: "local" })
-        );
+      if (component.vr || component.ar) {
+        renderer.xr.enabled = true;
+
+        if (component.vr) {
+          document.body.appendChild(VRButton.createButton(renderer));
+        }
+
+        if (component.ar) {
+          document.body.appendChild(ARButton.createButton(renderer));
+        }
       }
 
       entity.addComponent(WebGLRendererContext, { value: renderer });
@@ -99,8 +103,7 @@ WebGLRendererSystem.queries = {
     components: [WebGLRenderer, Not(WebGLRendererContext)]
   },
   renderers: {
-    components: [WebGLRendererContext],
-//    components: [WebGLRenderer, WebGLRendererContext],
+    components: [WebGLRenderer, WebGLRendererContext],
     listen: {
       changed: [WebGLRenderer]
     }

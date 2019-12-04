@@ -12,7 +12,6 @@ export class CameraSystem extends System {
           if (component.handleResize) {
             camera.getMutableComponent(Camera).aspect =
               window.innerWidth / window.innerHeight;
-            console.log("Aspect updated");
           }
         });
       },
@@ -29,8 +28,6 @@ export class CameraSystem extends System {
       let camera3d = entity.getMutableComponent(Object3D).value;
 
       if (camera3d.aspect !== component.aspect) {
-        console.log("Camera Updated");
-
         camera3d.aspect = component.aspect;
         camera3d.updateProjectionMatrix();
       }
@@ -38,8 +35,6 @@ export class CameraSystem extends System {
     }
 
     this.queries.camerasUninitialized.results.forEach(entity => {
-      console.log(entity);
-
       let component = entity.getComponent(Camera);
 
       let camera = new THREE.PerspectiveCamera(

@@ -15,12 +15,10 @@ import {
 export class GeometrySystem extends System {
   execute() {
     // Removed
-    this.queries.entities.removed.forEach((/*entity*/) => {
-      /*
+    this.queries.entities.removed.forEach(entity => {
       var object = entity.getRemovedComponent(Object3D).value;
       var parent = entity.getComponent(Parent, true).value;
       parent.getComponent(Object3D).value.remove(object);
-      */
     });
 
     // Added
@@ -58,19 +56,18 @@ export class GeometrySystem extends System {
       var color =
         component.primitive === "torus" ? 0x999900 : Math.random() * 0xffffff;
 
+        /*
+        if (entity.hasComponent(Material)) {
+
+        } else {
+
+        }
+*/
+
       var material = new THREE.MeshLambertMaterial({
         color: color,
         flatShading: true
       });
-
-      /*
-      var material = new THREE.MeshStandardMaterial({
-        color: color,
-        roughness: 0.7,
-        metalness: 0.0,
-        flatShading: true
-      });
-*/
 
       var object = new THREE.Mesh(geometry, material);
       object.castShadow = true;
@@ -93,16 +90,6 @@ export class GeometrySystem extends System {
       //      }
 
       entity.addComponent(Object3D, { value: object });
-
-      // @todo Remove it! hierarchy system will take care of it
-      /*
-      if (entity.hasComponent(Parent)) {
-        entity
-          .getComponent(Parent)
-          .value.getComponent(Object3D)
-          .value.add(object);
-      }
-      */
     });
   }
 }

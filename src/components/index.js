@@ -1,6 +1,5 @@
-import { createComponentClass } from "ecsy";
-
 export { Active } from "./Active.js";
+export { Camera } from "./Camera.js";
 export { CameraRig } from "./CameraRig.js";
 export { Draggable } from "./Draggable.js";
 export { Dragging } from "./Dragging.js";
@@ -19,40 +18,4 @@ export { TextGeometry } from "./TextGeometry.js";
 export { Transform } from "./Transform.js";
 export { Visible } from "./Visible.js";
 export { VRController } from "./VRController.js";
-
-export class Camera {
-  constructor() {
-    this.fov = 45;
-    this.aspect = 1;
-    this.near = 1;
-    this.far = 1000;
-    this.layers = 0;
-    this.handleResize = true;
-  }
-}
-
-export class WebGLRenderer {
-  constructor() {
-    this.vr = true;
-    this.antialias = true;
-    this.handleResize = true;
-    this.gammaInput = true;
-    this.gammaOutput = true;
-    this.shadowMap = false;
-  }
-}
-
-
-/*
-export const WebGLRenderer = createComponentClass(
-  {
-    vr: { default: true },
-    antialias: { default: true },
-    handleResize: { default: true },
-    gammaInput: { default: true },
-    gammaOutput: { default: true },
-    shadowMap: { default: false }
-  },
-  "WebGLRenderer"
-);
-*/
+export { WebGLRenderer } from "./WebGLRenderer.js";
