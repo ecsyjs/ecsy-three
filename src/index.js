@@ -5,6 +5,7 @@ export {
   CameraRig,
   Draggable,
   Dragging,
+  Environment,
   Geometry,
   GLTFModel,
   Material,
@@ -34,6 +35,7 @@ export {
 export { TransformSystem } from "./systems/TransformSystem.js";
 export { CameraSystem } from "./systems/CameraSystem.js";
 export { TextGeometrySystem } from "./systems/TextGeometrySystem.js";
+export { EnvironmentSystem } from "./systems/EnvironmentSystem.js";
 
 // Initialize
 export { init, initializeDefault } from "./initialize.js";

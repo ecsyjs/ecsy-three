@@ -3,6 +3,7 @@ export { Camera } from "./Camera.js";
 export { CameraRig } from "./CameraRig.js";
 export { Draggable } from "./Draggable.js";
 export { Dragging } from "./Dragging.js";
+export { Environment } from "./Environment.js";
 export { Geometry } from "./Geometry.js";
 export { GLTFModel } from "./GLTFModel.js";
 export { Material } from "./Material.js";

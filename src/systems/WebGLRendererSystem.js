@@ -63,7 +63,6 @@ export class WebGLRendererSystem extends System {
         renderer.setSize(window.innerWidth, window.innerHeight);
       }
 
-      renderer.gammaInput = component.gammaInput;
       renderer.gammaOutput = component.gammaOutput;
       renderer.shadowMap.enabled = component.shadowMap;
 
