@@ -24,6 +24,7 @@ export {
 } from "./components/index.js";
 
 // systems
+export { MaterialSystem } from "./systems/MaterialSystem.js";
 export { GeometrySystem } from "./systems/GeometrySystem.js";
 export { GLTFLoaderSystem } from "./systems/GLTFLoaderSystem.js";
 export { SkyBoxSystem } from "./systems/SkyBoxSystem.js";

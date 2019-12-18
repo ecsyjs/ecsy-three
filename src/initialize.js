@@ -18,6 +18,7 @@ export function init(world) {
   world
     .registerSystem(TransformSystem)
     .registerSystem(CameraSystem)
+    .registerSystem(MaterialSystem)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
 }
 

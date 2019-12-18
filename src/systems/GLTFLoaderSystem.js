@@ -1,4 +1,4 @@
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+//import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { System } from "ecsy";
 import { Parent } from "../components/Parent.js";
 import { Object3D } from "../components/Object3D.js";
