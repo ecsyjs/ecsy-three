@@ -3,6 +3,8 @@ import * as THREE from "three";
 
 import { TransformSystem } from "./systems/TransformSystem.js";
 import { CameraSystem } from "./systems/CameraSystem.js";
+import { MaterialSystem } from "./systems/MaterialSystem.js";
+
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
 import { Object3D } from "./components/Object3D.js";
 import { CameraRig } from "./components/CameraRig.js";
@@ -10,6 +12,7 @@ import { Parent } from "./components/Parent.js";
 import {
   WebGLRenderer,
   Scene,
+  Active,
   RenderPass,
   Camera
 } from "./components/index.js";
@@ -24,6 +27,10 @@ export function init(world) {
 
 export function initializeDefault(world = new ECSY.World(), options) {
   init(world);
+
+  const DEFAULT_OPTIONS = {};
+
+  options = Object.assign({}, DEFAULT_OPTIONS, options);
 
   let animationLoop = options.animationLoop;
   if (!animationLoop) {
@@ -53,15 +60,20 @@ export function initializeDefault(world = new ECSY.World(), options) {
       .createEntity()
       .addComponent(CameraRig)
       .addComponent(Parent, { value: scene });
-  } else {
-    camera = world.createEntity().addComponent(Camera, {
-      fov: 90,
-      aspect: window.innerWidth / window.innerHeight,
-      near: 1,
-      far: 1000,
-      layers: 1,
-      handleResize: true
-    });
+  }
+
+  {
+    camera = world
+      .createEntity()
+      .addComponent(Camera, {
+        fov: 90,
+        aspect: window.innerWidth / window.innerHeight,
+        near: 1,
+        far: 1000,
+        layers: 1,
+        handleResize: true
+      })
+      .addComponent(Active);
   }
 
   let renderPass = world.createEntity().addComponent(RenderPass, {

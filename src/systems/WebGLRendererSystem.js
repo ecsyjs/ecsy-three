@@ -7,8 +7,8 @@ import {
   Object3D
 } from "../components/index.js";
 import * as THREE from "three";
-// import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
-// import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
+import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
+import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
 
 export class WebGLRendererContext {
   constructor() {
@@ -69,7 +69,7 @@ export class WebGLRendererSystem extends System {
       document.body.appendChild(renderer.domElement);
 
       if (component.vr || component.ar) {
-        renderer.xr.enabled = true;
+        renderer.vr.enabled = true;
 
         if (component.vr) {
           document.body.appendChild(VRButton.createButton(renderer));

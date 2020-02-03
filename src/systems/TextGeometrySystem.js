@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { System } from "ecsy";
-import { TextGeometry, Object3D } from "../index.js";
+import { Object3D } from "../components/Object3D";
+import { TextGeometry } from "../components/TextGeometry";
 
 export class TextGeometrySystem extends System {
   init() {
