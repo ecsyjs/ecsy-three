@@ -14,6 +14,7 @@ import {
   Scene,
   Active,
   RenderPass,
+  Transform,
   Camera
 } from "./components/index.js";
 
@@ -73,6 +74,7 @@ export function initializeDefault(world = new ECSY.World(), options) {
         layers: 1,
         handleResize: true
       })
+      .addComponent(Transform)
       .addComponent(Active);
   }
 

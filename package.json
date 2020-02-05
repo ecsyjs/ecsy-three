@@ -40,8 +40,8 @@
     "webpack-dev-server": "^3.9.0"
   },
   "dependencies": {
-    "ecsy": "^0.1.4",
-    "three": "^0.111.0"
+    "ecsy": "^0.2.2",
+    "three": "^0.113.2"
   },
   "repository": {
     "type": "git",
