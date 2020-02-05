@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - geometry - cube</title>
+		<title>ecsy-three webgl - geometry - cube</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<link type="text/css" rel="stylesheet" href="main.css">
@@ -9,13 +9,22 @@
 	<body>
 
 		<script type="module">
-			import * as THREE from '../three.module.js';
-			import * as ECSY from '../ecsy.module.js';
-      import { Parent, SkyBox } from '../src/components/index.js';
-      import { CameraSystem, SkyBoxSystem, WebGLRendererSystem, TransformSystem } from '../src/systems/index.js';
-      import { initializeDefault } from '../src/index.js';
+			import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+			import * as ECSY from 'https://unpkg.com/ecsy/build/ecsy.module.js';
 
-			var world;
+			import {
+				initializeDefault,
+				// Components
+				Parent,
+				SkyBox,
+				// Systems
+				CameraSystem,
+				SkyBoxSystem,
+				WebGLRendererSystem,
+				TransformSystem
+			} from '../build/ecsy-three.module-unpkg.js';
+
+			var world, scene, camera, mesh, renderer;
 
 			init();
 			animate();

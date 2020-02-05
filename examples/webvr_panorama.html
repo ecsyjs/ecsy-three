@@ -12,8 +12,12 @@
 			initializeDefault,
 			SkyBoxSystem,
 			Parent,
-			SkyBox
-		} from '../build/ecsy-three.module.js';
+			WebGLRendererContext,
+			SkyBox,
+			Object3D
+		} from '../build/ecsy-three.module-unpkg.js';
+
+		import { World } from 'https://unpkg.com/ecsy/build/ecsy.module.js';
 
 		var world;
 
@@ -22,11 +26,11 @@
 
 		function init() {
 
-			world = new ECSY.World();
+			world = new World();
 
-			let data = initializeDefault(world);
+			let data = initializeDefault(world, {vr: true});
 
-			let {scene} = data.entities;
+			let {scene, renderer} = data.entities;
 
 			world.registerSystem(SkyBoxSystem);
 
@@ -35,6 +39,8 @@
 				textureUrl: "textures/cube/sun_temple_stripe_stereo.jpg",
 				type: "cubemap-stereo"
 			}).addComponent(Parent, { value: scene });
+
+			world.execute();
 		}
 
 		// @todo Replace this with something simpler / ~auto scheduler
