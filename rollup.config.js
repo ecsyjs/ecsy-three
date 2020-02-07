@@ -1,6 +1,14 @@
 import json from "@rollup/plugin-json";
 import alias from "@rollup/plugin-alias";
 import * as pkg from "./package.json";
+const { execSync } = require("child_process");
+
+var deps = {};
+Object.keys(pkg.dependencies).forEach(dep => {
+  deps[dep] = execSync(`npm info ${dep} version`)
+    .toString()
+    .trim();
+});
 
 export default [
   // Module unpkg
@@ -11,15 +19,15 @@ export default [
         entries: [
           {
             find: /three$/,
-            replacement: `https://unpkg.com/three@${pkg.dependencies.three}/build/three.module.js`
+            replacement: `https://unpkg.com/three@${deps["three"]}/build/three.module.js`
           },
           {
             find: /three\/(.*)/,
-            replacement: `https://unpkg.com/three@${pkg.dependencies.three}/$1`
+            replacement: `https://unpkg.com/three@${deps["three"]}/$1`
           },
           {
             find: "ecsy",
-            replacement: `https://unpkg.com/ecsy@${pkg.dependencies.ecsy}/build/ecsy.module.js`
+            replacement: `https://unpkg.com/ecsy@${deps["ecsy"]}/build/ecsy.module.js`
           }
         ]
       })
@@ -50,8 +58,8 @@ export default [
         indent: "\t"
       }
     ]
-  },
-/*
+  }
+  /*
   {
     input: "src/index.js",
     plugins: [json({ exclude: ["node_modules/**"] })],

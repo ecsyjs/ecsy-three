@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js vr - ball shooter</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<link type="text/css" rel="stylesheet" href="main.css">
+	</head>
+	<body>
+
+		<div id="info">
+			<a href="https://threejs.org" target="_blank" rel="noopener">three.js</a> vr - ball shooter
+		</div>
+
+		<script type="module">
+      import {
+        initializeDefault,
+        // Components
+        Parent,
+        WebGLRendererContext,
+        SkyBox,
+        Camera,
+        Position,
+				Transform,
+        Object3D,
+        // Systems
+        SkyBoxSystem,
+        VRControllerSystem,
+        VRController,
+      } from '../build/ecsy-three.module-unpkg.js';
+
+      import { World, TagComponent, System } from 'https://unpkg.com/ecsy@^0.2.2/build/ecsy.module.js';
+      import * as THREE from 'https://unpkg.com/three@^0.113.2/build/three.module.js';
+
+			import { VRButton } from 'https://unpkg.com/three@^0.113.2/examples/jsm/webxr/VRButton.js';
+			import { BoxLineGeometry } from 'https://unpkg.com/three@^0.113.2/examples/jsm/geometries/BoxLineGeometry.js';
+
+      class Collidable extends TagComponent {}
+
+      class Velocity {
+        constructor() {
+          this.value = new THREE.Vector3();
+        }
+
+        reset() {
+          this.value.set(0,0,0);
+        }
+      }
+
+      export class CollisionSystem extends System {
+        execute(delta, time) {
+          const entities = this.queries.entities.results;
+
+          var range = 3 - radius;
+
+          delta /= 8;
+
+          for (let i = 0; i < entities.length; i++) {
+            const entity = entities[i];
+            const position = entity.getMutableComponent(Position).value;
+            const velocity = entity.getMutableComponent(Velocity).value;
+
+            for ( var j = i + 1; j < entities.length; j ++ ) {
+
+              var entity2 = entities[ j ];
+              const position2 = entity2.getMutableComponent(Position).value;
+              const velocity2 = entity2.getMutableComponent(Velocity).value;
+
+              normal.copy( position ).sub( position2 );
+
+              var distance = normal.length();
+
+              if ( distance < 2 * radius ) {
+
+                normal.multiplyScalar( 0.5 * distance - radius );
+
+                position.sub( normal );
+                position2.add( normal );
+
+                normal.normalize();
+
+                relativeVelocity.copy( velocity ).sub( velocity2 );
+
+                normal = normal.multiplyScalar( relativeVelocity.dot( normal ) );
+
+                velocity.sub( normal );
+                velocity2.add( normal );
+
+              }
+
+            }
+          }
+        }
+      }
+
+      CollisionSystem.queries = {
+        entities: {
+          components: [Velocity, Position, Collidable]
+        }
+      }
+
+
+      export class MovingSystem extends System {
+        execute(delta, time) {
+          const entities = this.queries.entities.results;
+
+          var range = 3 - radius;
+
+          delta /= 8;
+
+          for (let i = 0; i < entities.length; i++) {
+            const entity = entities[i];
+            const position = entity.getMutableComponent(Position).value;
+            const velocity = entity.getMutableComponent(Velocity).value;
+
+            position.x += velocity.x * delta;
+            position.y += velocity.y * delta;
+            position.z += velocity.z * delta;
+
+            // keep objects inside room
+
+            if ( position.x < - range || position.x > range ) {
+
+              position.x = THREE.MathUtils.clamp( position.x, - range, range );
+              velocity.x = - velocity.x;
+
+            }
+
+            if ( position.y < radius || position.y > 6 ) {
+
+              position.y = Math.max( position.y, radius );
+
+              velocity.x *= 0.98;
+              velocity.y = - velocity.y * 0.8;
+              velocity.z *= 0.98;
+
+            }
+
+            if ( position.z < - range || position.z > range ) {
+
+              position.z = THREE.MathUtils.clamp( position.z, - range, range );
+              velocity.z = - velocity.z;
+
+            }
+
+            velocity.y -= 9.8 * delta;
+
+          }
+
+        }
+      }
+
+      MovingSystem.queries = {
+        entities: {
+          components: [Velocity, Position]
+        }
+      }
+
+			var controller1, controller2;
+			var controllerGrip1, controllerGrip2;
+
+      var room;
+
+      var world;
+
+			var count = 0;
+			var radius = 0.08;
+			var normal = new THREE.Vector3();
+			var relativeVelocity = new THREE.Vector3();
+
+      init();
+			var clock = new THREE.Clock();
+
+			function init() {
+
+        world = new World();
+        world.registerSystem(MovingSystem)
+          .registerSystem(VRControllerSystem)
+          .registerSystem(CollisionSystem);
+
+        let data = initializeDefault(world, {vr: true});
+
+        let {scene, renderer, camera} = data.entities;
+
+        //
+
+        // Controllers
+        world
+          .createEntity()
+          .addComponent(VRController, { id: 0 })
+          .addComponent(Parent, { value: scene });
+        world
+          .createEntity()
+          .addComponent(VRController, { id: 1 })
+          .addComponent(Parent, { value: scene });
+
+
+				let transform = camera.getMutableComponent(Transform);
+				transform.position.set(0, 1.6, 3);
+
+        room = new THREE.LineSegments(
+					new BoxLineGeometry( 6, 6, 6, 10, 10, 10 ),
+          new THREE.LineBasicMaterial( { color: 0x808080 } )
+        );
+
+
+				var geometry = new THREE.BoxBufferGeometry( 10, 10, 10 );
+				var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+
+        var scene3 = scene.getComponent(Object3D).value;
+        scene3.background = new THREE.Color( 0x505050 );
+
+        room.geometry.translate( 0, 3, 0 );
+				var roomEntity = world.createEntity()
+					.addComponent(Object3D, {value: room})
+          .addComponent(Parent, { value: scene });
+
+        let hemis = new THREE.HemisphereLight( 0x606060, 0x404040 );
+        scene3.add(hemis);
+
+        /*
+        world.createEntity()
+					.addComponent(Object3D, {value: hemis})
+					.addComponent(Parent, { value: scene });
+*/
+        var light = new THREE.DirectionalLight( 0xffffff );
+        light.position.set( 1, 1, 1 ).normalize();
+        scene3.add(light);
+        /*
+        world.createEntity()
+					.addComponent(Object3D, {value: light})
+					.addComponent(Parent, { value: scene });
+*/
+				var geometry = new THREE.IcosahedronBufferGeometry( radius, 2 );
+
+        for ( var i = 0; i < 200; i ++ ) {
+
+					var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+
+          world.createEntity()
+            .addComponent(Object3D, {value: object})
+            .addComponent(Velocity, { value: new THREE.Vector3(
+              Math.random() * 0.01 - 0.005,
+					    Math.random() * 0.01 - 0.005,
+              Math.random() * 0.01 - 0.005
+            )})
+            .addComponent(Position, {value: new THREE.Vector3(
+              Math.random() * 4 - 2,
+					    Math.random() * 4,
+					    Math.random() * 4 - 2
+            )})
+            .addComponent(Parent, { value: roomEntity })
+            .addComponent(Collidable);
+        }
+
+				// controllers
+
+				function onSelectStart() {
+
+					this.userData.isSelecting = true;
+
+				}
+
+				function onSelectEnd() {
+
+					this.userData.isSelecting = false;
+
+				}
+/*
+        let renderer3 = renderer.getComponent(WebGLRendererContext);
+
+				controller1 = renderer.xr.getController( 0 );
+				controller1.addEventListener( 'selectstart', onSelectStart );
+				controller1.addEventListener( 'selectend', onSelectEnd );
+				controller1.addEventListener( 'connected', function ( event ) {
+
+					this.add( buildController( event.data ) );
+
+				} );
+				controller1.addEventListener( 'disconnected', function () {
+
+					this.remove( this.children[ 0 ] );
+
+				} );
+				scene.add( controller1 );
+
+				controller2 = renderer.xr.getController( 1 );
+				controller2.addEventListener( 'selectstart', onSelectStart );
+				controller2.addEventListener( 'selectend', onSelectEnd );
+				controller2.addEventListener( 'connected', function ( event ) {
+
+					this.add( buildController( event.data ) );
+
+				} );
+				controller2.addEventListener( 'disconnected', function () {
+
+					this.remove( this.children[ 0 ] );
+
+				} );
+				scene.add( controller2 );
+
+				// The XRControllerModelFactory will automatically fetch controller models
+				// that match what the user is holding as closely as possible. The models
+				// should be attached to the object returned from getControllerGrip in
+				// order to match the orientation of the held device.
+
+				var controllerModelFactory = new XRControllerModelFactory();
+
+				controllerGrip1 = renderer.xr.getControllerGrip( 0 );
+				controllerGrip1.add( controllerModelFactory.createControllerModel( controllerGrip1 ) );
+				scene.add( controllerGrip1 );
+
+				controllerGrip2 = renderer.xr.getControllerGrip( 1 );
+				controllerGrip2.add( controllerModelFactory.createControllerModel( controllerGrip2 ) );
+				scene.add( controllerGrip2 );
+*/
+        //
+
+        world.execute(0.16, 0);
+			}
+
+			function buildController( data ) {
+
+				switch ( data.targetRayMode ) {
+
+					case 'tracked-pointer':
+
+						var geometry = new THREE.BufferGeometry();
+						geometry.setAttribute( 'position', new THREE.Float32BufferAttribute( [ 0, 0, 0, 0, 0, - 1 ], 3 ) );
+						geometry.setAttribute( 'color', new THREE.Float32BufferAttribute( [ 0.5, 0.5, 0.5, 0, 0, 0 ], 3 ) );
+
+						var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors, blending: THREE.AdditiveBlending } );
+
+						return new THREE.Line( geometry, material );
+
+					case 'gaze':
+
+						var geometry = new THREE.RingBufferGeometry( 0.02, 0.04, 32 ).translate( 0, 0, - 1 );
+						var material = new THREE.MeshBasicMaterial( { opacity: 0.5, transparent: true } );
+						return new THREE.Mesh( geometry, material );
+
+				}
+
+			}
+
+			function handleController( controller ) {
+
+				if ( controller.userData.isSelecting ) {
+
+					var object = room.children[ count ++ ];
+
+					object.position.copy( controller.position );
+					object.userData.velocity.x = ( Math.random() - 0.5 ) * 3;
+					object.userData.velocity.y = ( Math.random() - 0.5 ) * 3;
+					object.userData.velocity.z = ( Math.random() - 9 );
+					object.userData.velocity.applyQuaternion( controller.quaternion );
+
+					if ( count === room.children.length ) count = 0;
+
+				}
+
+			}
+
+			//
+		</script>
+	</body>
+</html>

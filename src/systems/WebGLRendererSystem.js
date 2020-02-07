@@ -14,6 +14,9 @@ export class WebGLRendererContext {
   constructor() {
     this.value = null;
   }
+  reset() {
+    this.value = null;
+  }
 }
 
 export class WebGLRendererSystem extends System {
@@ -63,13 +66,12 @@ export class WebGLRendererSystem extends System {
         renderer.setSize(window.innerWidth, window.innerHeight);
       }
 
-      renderer.gammaOutput = component.gammaOutput;
       renderer.shadowMap.enabled = component.shadowMap;
 
       document.body.appendChild(renderer.domElement);
 
       if (component.vr || component.ar) {
-        renderer.vr.enabled = true;
+        renderer.xr.enabled = true;
 
         if (component.vr) {
           document.body.appendChild(VRButton.createButton(renderer));

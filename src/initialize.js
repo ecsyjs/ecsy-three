@@ -37,7 +37,8 @@ export function initializeDefault(world = new ECSY.World(), options) {
   if (!animationLoop) {
     const clock = new THREE.Clock();
     animationLoop = () => {
-      world.execute(clock.getDelta(), clock.elapsedTime);
+      //world.execute(clock.getDelta(), clock.elapsedTime);
+      world.execute(0.16, clock.elapsedTime);
     };
   }
 
@@ -69,8 +70,8 @@ export function initializeDefault(world = new ECSY.World(), options) {
       .addComponent(Camera, {
         fov: 90,
         aspect: window.innerWidth / window.innerHeight,
-        near: 1,
-        far: 1000,
+        near: 0.1,
+        far: 100,
         layers: 1,
         handleResize: true
       })

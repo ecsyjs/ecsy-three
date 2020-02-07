@@ -37,6 +37,14 @@ export { TransformSystem } from "./systems/TransformSystem.js";
 export { CameraSystem } from "./systems/CameraSystem.js";
 export { TextGeometrySystem } from "./systems/TextGeometrySystem.js";
 export { EnvironmentSystem } from "./systems/EnvironmentSystem.js";
+export { VRControllerSystem } from "./systems/VRControllerSystem.js";
 
 // Initialize
 export { init, initializeDefault } from "./initialize.js";
+/*
+import * as THREE from "three";
+import * as ECSY from "ecsy";
+
+export { ECSY };
+export { THREE };
+*/

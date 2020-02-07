@@ -1,5 +1,5 @@
 import { System } from "ecsy";
-import { Transform, Parent, Object3D } from "../components/index.js";
+import { Transform, Position, Parent, Object3D } from "../components/index.js";
 
 export class TransformSystem extends System {
   execute() {
@@ -42,6 +42,25 @@ export class TransformSystem extends System {
         transform.rotation.z
       );
     }
+
+    // Transforms
+    let positions = this.queries.positions;
+    for (let i = 0; i < positions.added.length; i++) {
+      let entity = positions.added[i];
+      let position = entity.getComponent(Position).value;
+
+      let object = entity.getComponent(Object3D).value;
+
+      object.position.copy(position);
+    }
+
+    for (let i = 0; i < positions.changed.length; i++) {
+      let entity = positions.changed[i];
+      let position = entity.getComponent(Position).value;
+      let object = entity.getComponent(Object3D).value;
+
+      object.position.copy(position);
+    }
   }
 }
 
@@ -57,6 +76,13 @@ TransformSystem.queries = {
     listen: {
       added: true,
       changed: [Transform]
+    }
+  },
+  positions: {
+    components: [Object3D, Position],
+    listen: {
+      added: true,
+      changed: [Position]
     }
   }
 };

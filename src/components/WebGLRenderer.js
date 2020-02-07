@@ -4,9 +4,10 @@ export class WebGLRenderer {
     this.ar = false;
     this.antialias = true;
     this.handleResize = true;
-    this.gammaOutput = true;
     this.shadowMap = true;
   }
+
+  reset() {}
 }
 
 /*
@@ -15,7 +16,6 @@ export const WebGLRenderer = createComponentClass(
     vr: { default: true },
     antialias: { default: true },
     handleResize: { default: true },
-    gammaOutput: { default: true },
     shadowMap: { default: false }
   },
   "WebGLRenderer"
