@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { System } from "ecsy";
-import { WebGLRendererContext, VRController, Object3D } from "../index.js";
+import { WebGLRendererContext, VRControllerBasicBehaviour, VRController, Object3D } from "../index.js";
 import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
 
 var controllerModelFactory = new XRControllerModelFactory();
@@ -14,21 +14,25 @@ export class VRControllerSystem extends System {
     this.queries.controllers.added.forEach(entity => {
       let controllerId = entity.getComponent(VRController).id;
       var controller = renderer.xr.getController(controllerId);
+      controller.name = "controller";
 
       var group = new THREE.Group();
       group.add(controller);
       entity.addComponent(Object3D, { value: group });
 
-      // controller.addEventListener("selectstart", this.onSelectStart.bind(this));
-      // controller.addEventListener("selectend", this.onSelectEnd.bind(this));
-      // controller.addEventListener("connected", this.onConnected.bind(this));
-      // controller.addEventListener("squeeze", this.onSqueeze.bind(this));
+      if (entity.hasComponent(VRControllerBasicBehaviour)) {
+        var behaviour = entity.getComponent(VRControllerBasicBehaviour);
+        Object.keys(behaviour).forEach(eventName => {
+          if (behaviour[eventName]) {
+            controller.addEventListener(eventName, behaviour[eventName]);
+          }
+        });
+      }
 
       // The XRControllerModelFactory will automatically fetch controller models
       // that match what the user is holding as closely as possible. The models
       // should be attached to the object returned from getControllerGrip in
       // order to match the orientation of the held device.
-
       let controllerGrip = renderer.xr.getControllerGrip(controllerId);
       controllerGrip.add(
         controllerModelFactory.createControllerModel(controllerGrip)

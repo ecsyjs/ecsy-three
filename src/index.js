@@ -20,7 +20,8 @@ export {
   TextGeometry,
   Transform,
   Visible,
-  VRController
+  VRController,
+  VRControllerBasicBehaviour
 } from "./components/index.js";
 
 // systems
