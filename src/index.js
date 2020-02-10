@@ -19,6 +19,7 @@ export {
   SkyBox,
   TextGeometry,
   Transform,
+  Text,
   Visible,
   VRController,
   VRControllerBasicBehaviour
@@ -30,6 +31,7 @@ export { GeometrySystem } from "./systems/GeometrySystem.js";
 export { GLTFLoaderSystem } from "./systems/GLTFLoaderSystem.js";
 export { SkyBoxSystem } from "./systems/SkyBoxSystem.js";
 export { VisibilitySystem } from "./systems/VisibilitySystem.js";
+export { SDFTextSystem } from "./systems/SDFTextSystem.js";
 export {
   WebGLRendererSystem,
   WebGLRendererContext
