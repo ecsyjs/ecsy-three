@@ -16,7 +16,6 @@ const baselineMapping = {
 
 export class SDFTextSystem extends System {
   updateText(textMesh, textComponent) {
-    debugger;
     textMesh.text = textComponent.text;
     textMesh.textAlign = textComponent.textAlign;
     textMesh.anchor[0] = anchorMapping[textComponent.anchor];
