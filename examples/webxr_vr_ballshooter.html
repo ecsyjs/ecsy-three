@@ -257,10 +257,10 @@
           .addComponent(VRController, { id: 1 })
           .addComponent(VRControllerBasicBehaviour, {
             selectstart: (evt) => {
-              controller1.addComponent(IsSelecting);
+              controller2.addComponent(IsSelecting);
             },
             selectend: () => {
-              controller1.removeComponent(IsSelecting);
+              controller2.removeComponent(IsSelecting);
             },
             connected: function ( event ) {
 	//				      this.add( buildController( event.data ) );
