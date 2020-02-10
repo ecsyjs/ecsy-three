@@ -1,6 +1,11 @@
 import * as THREE from "three";
 import { System } from "ecsy";
-import { WebGLRendererContext, VRControllerBasicBehaviour, VRController, Object3D } from "../index.js";
+import {
+  WebGLRendererContext,
+  VRControllerBasicBehaviour,
+  VRController,
+  Object3D
+} from "../index.js";
 import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
 
 var controllerModelFactory = new XRControllerModelFactory();
@@ -38,7 +43,7 @@ export class VRControllerSystem extends System {
         controllerModelFactory.createControllerModel(controllerGrip)
       );
       group.add(controllerGrip);
-/*
+      /*
       let geometry = new THREE.BufferGeometry();
       geometry.setAttribute(
         "position",

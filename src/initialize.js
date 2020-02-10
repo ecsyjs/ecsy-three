@@ -37,8 +37,7 @@ export function initializeDefault(world = new ECSY.World(), options) {
   if (!animationLoop) {
     const clock = new THREE.Clock();
     animationLoop = () => {
-      //world.execute(clock.getDelta(), clock.elapsedTime);
-      world.execute(0.16, clock.elapsedTime);
+      world.execute(clock.getDelta(), clock.elapsedTime);
     };
   }
 
