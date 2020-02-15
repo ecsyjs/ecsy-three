@@ -18,6 +18,10 @@ export default [
       alias({
         entries: [
           {
+            find: /troika-3d-text\/(.*)/,
+            replacement: `https://unpkg.com/troika-3d-text@${deps["troika-3d-text"]}/$1?module`
+          },
+          {
             find: /three$/,
             replacement: `https://unpkg.com/three@${deps["three"]}/build/three.module.js`
           },
