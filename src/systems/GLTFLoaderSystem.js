@@ -21,8 +21,18 @@ export class GLTFLoaderSystem extends System {
         });
 */
         entity.addComponent(Object3D, { value: gltf.scene });
+        if (component.onLoaded) {
+          component.onLoaded(gltf.scene);
+        }
       });
     });
+
+    this.queries.entities.removed.forEach(entity => {
+      var object = entity.getComponent(Object3D, true).value;
+      var parent = entity.getComponent(Parent, true).value;
+      parent.getComponent(Object3D).value.remove(object);
+    });
+
   }
 }
 
@@ -30,7 +40,8 @@ GLTFLoaderSystem.queries = {
   entities: {
     components: [GLTFModel],
     listen: {
-      added: true
+      added: true,
+      removed: true
     }
   }
 };

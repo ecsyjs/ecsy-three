@@ -44,6 +44,7 @@ export class WebGLRendererSystem extends System {
 
         this.queries.activeCameras.results.forEach(cameraEntity => {
           var camera = cameraEntity.getComponent(Object3D).value;
+
           renderer.render(scene, camera);
         });
       });
