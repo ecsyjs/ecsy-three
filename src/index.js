@@ -11,6 +11,7 @@ export {
   Material,
   Object3D,
   Parent,
+  ParentObject3D,
   Position,
   Rotation,
   RenderPass,

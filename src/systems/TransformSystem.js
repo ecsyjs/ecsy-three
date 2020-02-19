@@ -1,5 +1,11 @@
 import { System } from "ecsy";
-import { Transform, Position, Parent, Object3D } from "../components/index.js";
+import {
+  ParentObject3D,
+  Transform,
+  Position,
+  Parent,
+  Object3D
+} from "../components/index.js";
 
 export class TransformSystem extends System {
   execute() {
@@ -14,6 +20,13 @@ export class TransformSystem extends System {
         parentObject3D.add(childObject3D);
       }
     }
+
+    // Hierarchy
+    this.queries.parentObject3D.added.forEach(entity => {
+      var parentObject3D = entity.getComponent(ParentObject3D).value;
+      var childObject3D = entity.getComponent(Object3D).value;
+      parentObject3D.add(childObject3D);
+    });
 
     // Transforms
     var transforms = this.queries.transforms;
@@ -65,6 +78,12 @@ export class TransformSystem extends System {
 }
 
 TransformSystem.queries = {
+  parentObject3D: {
+    components: [ParentObject3D, Object3D],
+    listen: {
+      added: true
+    }
+  },
   parent: {
     components: [Parent, Object3D],
     listen: {

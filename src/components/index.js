@@ -9,6 +9,7 @@ export { GLTFModel } from "./GLTFModel.js";
 export { Material } from "./Material.js";
 export { Object3D } from "./Object3D.js";
 export { Parent } from "./Parent.js";
+export { ParentObject3D } from "./ParentObject3D.js";
 export { Position } from "./Position.js";
 export { RenderPass } from "./RenderPass.js";
 export { Rotation } from "./Rotation.js";
