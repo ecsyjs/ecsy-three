@@ -3,6 +3,7 @@ import {
   ParentObject3D,
   Transform,
   Position,
+  Scale,
   Parent,
   Object3D
 } from "../components/index.js";
@@ -56,7 +57,7 @@ export class TransformSystem extends System {
       );
     }
 
-    // Transforms
+    // Position
     let positions = this.queries.positions;
     for (let i = 0; i < positions.added.length; i++) {
       let entity = positions.added[i];
@@ -73,6 +74,25 @@ export class TransformSystem extends System {
       let object = entity.getComponent(Object3D).value;
 
       object.position.copy(position);
+    }
+
+    // Scale
+    let scales = this.queries.scales;
+    for (let i = 0; i < scales.added.length; i++) {
+      let entity = scales.added[i];
+      let scale = entity.getComponent(Scale).value;
+
+      let object = entity.getComponent(Object3D).value;
+
+      object.scale.copy(scale);
+    }
+
+    for (let i = 0; i < scales.changed.length; i++) {
+      let entity = scales.changed[i];
+      let scale = entity.getComponent(Scale).value;
+      let object = entity.getComponent(Object3D).value;
+
+      object.scale.copy(scale);
     }
   }
 }
@@ -102,6 +122,13 @@ TransformSystem.queries = {
     listen: {
       added: true,
       changed: [Position]
+    }
+  },
+  scales: {
+    components: [Object3D, Scale],
+    listen: {
+      added: true,
+      changed: [Scale]
     }
   }
 };

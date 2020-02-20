@@ -1,1 +1,7 @@
-export class GLTFModel {}
+export class GLTFModel {
+  constructor() {
+    this.reset();
+  }
+
+  reset() {}
+}

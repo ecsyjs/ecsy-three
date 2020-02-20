@@ -1,28 +1,33 @@
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader as GLTFLoaderThree } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { System } from "ecsy";
 import { Parent } from "../components/Parent.js";
 import { Object3D } from "../components/Object3D.js";
 import { GLTFModel } from "../components/GLTFModel.js";
+import { GLTFLoader } from "../components/GLTFLoader.js";
 
 // @todo Use parameter and loader manager
-var loader = new GLTFLoader().setPath("/assets/");
+var loader = new GLTFLoaderThree().setPath("/assets/");
 
 export class GLTFLoaderSystem extends System {
   execute() {
     this.queries.entities.added.forEach(entity => {
-      var component = entity.getComponent(GLTFModel);
+      var component = entity.getComponent(GLTFLoader);
 
       loader.load(component.url, gltf => {
-        /*
         gltf.scene.traverse(function(child) {
           if (child.isMesh) {
-            child.material.envMap = envMap;
+            child.receiveShadow = component.receiveShadow;
+            child.castShadow = component.castShadow;
+
+            if (component.envMapOverride) {
+              child.material.envMap = component.envMapOverride;
+            }
           }
         });
-*/
+        entity.addComponent(GLTFModel, { value: gltf });
         entity.addComponent(Object3D, { value: gltf.scene });
         if (component.onLoaded) {
-          component.onLoaded(gltf.scene);
+          component.onLoaded(gltf.scene, gltf);
         }
       });
     });
@@ -32,13 +37,12 @@ export class GLTFLoaderSystem extends System {
       var parent = entity.getComponent(Parent, true).value;
       parent.getComponent(Object3D).value.remove(object);
     });
-
   }
 }
 
 GLTFLoaderSystem.queries = {
   entities: {
-    components: [GLTFModel],
+    components: [GLTFLoader],
     listen: {
       added: true,
       removed: true
