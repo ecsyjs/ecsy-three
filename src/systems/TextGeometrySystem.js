@@ -8,10 +8,12 @@ export class TextGeometrySystem extends System {
     this.initialized = false;
     var loader = new THREE.FontLoader();
     this.font = null;
+    /*
     loader.load("/assets/fonts/helvetiker_regular.typeface.json", font => {
       this.font = font;
       this.initialized = true;
     });
+    */
   }
 
   execute() {

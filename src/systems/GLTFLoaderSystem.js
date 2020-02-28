@@ -6,7 +6,7 @@ import { GLTFModel } from "../components/GLTFModel.js";
 import { GLTFLoader } from "../components/GLTFLoader.js";
 
 // @todo Use parameter and loader manager
-var loader = new GLTFLoaderThree().setPath("/assets/");
+var loader = new GLTFLoaderThree(); //.setPath("/assets/models/");
 
 export class GLTFLoaderSystem extends System {
   execute() {
