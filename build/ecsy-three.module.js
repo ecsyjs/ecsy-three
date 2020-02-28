@@ -319,7 +319,7 @@ class Text {
     this.anchor = "center"; // ['left', 'right', 'center', 'align']
     this.baseline = "center"; // ['top', 'center', 'bottom']
     this.color = "#FFF";
-    this.font = "https://code.cdn.mozilla.net/fonts/ttf/ZillaSlab-SemiBold.ttf";
+    this.font = ""; //"https://code.cdn.mozilla.net/fonts/ttf/ZillaSlab-SemiBold.ttf";
     this.fontSize = 0.2;
     this.letterSpacing = 0;
     this.lineHeight = 0;
@@ -695,7 +695,7 @@ class SDFTextSystem extends System {
       const textMesh = new TextMesh();
       textMesh.name = "textMesh";
       textMesh.anchor = [0, 0];
-      textMesh.renderOrder = 1; //brute-force fix for ugly antialiasing, see issue #67
+      textMesh.renderOrder = 10; //brute-force fix for ugly antialiasing, see issue #67
       this.updateText(textMesh, textComponent);
       e.addComponent(Object3D, { value: textMesh });
     });

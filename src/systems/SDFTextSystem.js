@@ -41,7 +41,7 @@ export class SDFTextSystem extends System {
       const textMesh = new TextMesh();
       textMesh.name = "textMesh";
       textMesh.anchor = [0, 0];
-      textMesh.renderOrder = 1; //brute-force fix for ugly antialiasing, see issue #67
+      textMesh.renderOrder = 10; //brute-force fix for ugly antialiasing, see issue #67
       this.updateText(textMesh, textComponent);
       e.addComponent(Object3D, { value: textMesh });
     });
