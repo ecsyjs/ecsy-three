@@ -25,7 +25,12 @@ export class GLTFLoaderSystem extends System {
           }
         });
         entity.addComponent(GLTFModel, { value: gltf });
-        entity.addComponent(Object3D, { value: gltf.scene });
+
+        if (component.append) {
+          entity.getMutableComponent(Object3D).value.add(gltf.scene);
+        } else {
+          entity.addComponent(Object3D, { value: gltf.scene });
+        }
         if (component.onLoaded) {
           component.onLoaded(gltf.scene, gltf);
         }
