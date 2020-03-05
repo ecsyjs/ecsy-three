@@ -13,6 +13,9 @@ export {
   Object3D,
   Parent,
   ParentObject3D,
+  Play,
+  Stop,
+  Animation,
   Position,
   Scale,
   Rotation,
@@ -44,6 +47,7 @@ export { CameraSystem } from "./systems/CameraSystem.js";
 export { TextGeometrySystem } from "./systems/TextGeometrySystem.js";
 export { EnvironmentSystem } from "./systems/EnvironmentSystem.js";
 export { VRControllerSystem } from "./systems/VRControllerSystem.js";
+export { AnimationSystem } from "./systems/AnimationSystem.js";
 
 // Initialize
 export { init, initializeDefault } from "./initialize.js";
