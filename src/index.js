@@ -1,34 +1,40 @@
 // components
 export {
   Active,
+  Animation,
   Camera,
   CameraRig,
+  Colliding,
+  CollisionStart,
+  CollisionStop,
   Draggable,
   Dragging,
   Environment,
   Geometry,
-  GLTFModel,
   GLTFLoader,
+  GLTFModel,
+  InputState,
   Material,
   Object3D,
   Parent,
   ParentObject3D,
   Play,
-  Stop,
-  Animation,
   Position,
-  Scale,
-  Rotation,
   RenderPass,
+  RigidBody,
+  Rotation,
+  Scale,
   Scene,
+  Shape,
   Sky,
   SkyBox,
+  Stop,
+  Sound,
+  Text,
   TextGeometry,
   Transform,
-  Text,
   Visible,
   VRController,
-  InputState,
   VRControllerBasicBehaviour
 } from "./components/index.js";
 
@@ -50,6 +56,7 @@ export { EnvironmentSystem } from "./systems/EnvironmentSystem.js";
 export { VRControllerSystem } from "./systems/VRControllerSystem.js";
 export { AnimationSystem } from "./systems/AnimationSystem.js";
 export { InputSystem } from "./systems/InputSystem.js";
+export { SoundSystem } from "./systems/SoundSystem.js";
 
 // Initialize
 export { init, initializeDefault } from "./initialize.js";
