@@ -18,20 +18,23 @@ import {
   Camera
 } from "./components/index.js";
 
-export function init(world) {
+export function initialize(world = new ECSY.World(), options) {
   world
     .registerSystem(TransformSystem)
     .registerSystem(CameraSystem)
     .registerSystem(MaterialSystem)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
-}
 
-export function initializeDefault(world = new ECSY.World(), options) {
-  init(world);
-
-  const DEFAULT_OPTIONS = {};
+  const DEFAULT_OPTIONS = {
+    vr: false,
+    defaults: true
+  };
 
   options = Object.assign({}, DEFAULT_OPTIONS, options);
+
+  if (!options.defaults) {
+    return { world };
+  }
 
   let animationLoop = options.animationLoop;
   if (!animationLoop) {

@@ -28,8 +28,8 @@ export {
   Shape,
   Sky,
   SkyBox,
-  Stop,
   Sound,
+  Stop,
   Text,
   TextGeometry,
   Transform,
@@ -59,11 +59,4 @@ export { InputSystem } from "./systems/InputSystem.js";
 export { SoundSystem } from "./systems/SoundSystem.js";
 
 // Initialize
-export { init, initializeDefault } from "./initialize.js";
-/*
-import * as THREE from "three";
-import * as ECSY from "ecsy";
-
-export { ECSY };
-export { THREE };
-*/
+export { initialize } from "./initialize.js";

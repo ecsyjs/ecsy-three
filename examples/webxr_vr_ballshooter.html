@@ -14,7 +14,7 @@
 
 		<script type="module">
       import {
-        initializeDefault,
+        initialize,
         // Components
         Parent,
         WebGLRendererContext,
@@ -226,7 +226,7 @@
           .registerSystem(CollisionSystem)
           .registerSystem(InputSystem);
 
-        let data = initializeDefault(world, {vr: true});
+        let data = initialize(world, {vr: true});
 
         let {scene, renderer, camera} = data.entities;
 

@@ -9,7 +9,7 @@
 <body>
 	<script type="module">
 		import {
-			initializeDefault,
+			initialize,
 			// Components
 			Parent,
 			WebGLRendererContext,
@@ -30,7 +30,7 @@
 
 			world = new World();
 
-			let data = initializeDefault(world, {vr: true});
+			let data = initialize(world, {vr: true});
 
 			let {scene, renderer} = data.entities;
 
