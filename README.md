@@ -175,3 +175,6 @@ function init() {
 }
 ```
 
+# examples
+
+Find more info on the examples folder: https://github.com/MozillaReality/ecsy-three/tree/master/examples
