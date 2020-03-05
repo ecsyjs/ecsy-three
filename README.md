@@ -4,7 +4,7 @@ We created ecsy-three to facilitate developing applications using ECSY and three
 
 # example tutorial
 
-We are going to create a simple example of a textured cube rotating on the screen.
+We are going to create a simple example of a textured cube rotating on the screen [(see it in action)](https://mixedreality.mozilla.org/ecsy-three/examples/webgl_geometry_cube.html)
 
 We start by importing the required modules from three.js and ECSY
 ```javascript
