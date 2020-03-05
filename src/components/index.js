@@ -25,5 +25,6 @@ export { Text } from "./Text.js";
 export { TextGeometry } from "./TextGeometry.js";
 export { Transform } from "./Transform.js";
 export { Visible } from "./Visible.js";
+export { InputState } from "./InputState.js";
 export { VRController, VRControllerBasicBehaviour } from "./VRController.js";
 export { WebGLRenderer } from "./WebGLRenderer.js";
