@@ -12,7 +12,7 @@ export class SoundSystem extends System {
       const component = entity.getMutableComponent(Sound);
       const sound = new PositionalAudioPolyphonic(this.listener, 10);
       const audioLoader = new THREE.AudioLoader();
-      audioLoader.load("assets/sounds/" + component.url, buffer => {
+      audioLoader.load(component.url, buffer => {
         sound.setBuffer(buffer);
       });
       component.sound = sound;
