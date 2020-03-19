@@ -1,7 +1,7 @@
-import { TagComponent, System, Not, SystemStateComponent, World } from 'https://unpkg.com/ecsy@0.2.2/build/ecsy.module.js';
+import { TagComponent, System, Not, SystemStateComponent, World } from 'https://unpkg.com/ecsy@0.2.3/build/ecsy.module.js';
 import { Vector2, Vector3, MeshStandardMaterial, BoxBufferGeometry, IcosahedronBufferGeometry, TorusBufferGeometry, MeshLambertMaterial, Mesh, Group, MeshBasicMaterial, Texture, ImageLoader, WebGLRenderer as WebGLRenderer$1, PerspectiveCamera, FontLoader, TextGeometry as TextGeometry$1, RepeatWrapping, PlaneBufferGeometry, Fog, Color, AnimationMixer, LoopOnce, Object3D as Object3D$1, PositionalAudio, AudioListener, AudioLoader, Clock, Scene as Scene$1 } from 'https://unpkg.com/three@0.114.0/build/three.module.js';
 import { GLTFLoader as GLTFLoader$1 } from 'https://unpkg.com/three@0.114.0/examples/jsm/loaders/GLTFLoader.js';
-import { TextMesh } from 'https://unpkg.com/troika-3d-text@0.19.0/dist/textmesh-standalone.esm.js?module';
+import { TextMesh } from 'https://unpkg.com/troika-3d-text@0.20.0/dist/textmesh-standalone.esm.js?module';
 import { VRButton } from 'https://unpkg.com/three@0.114.0/examples/jsm/webxr/VRButton.js';
 import { ARButton } from 'https://unpkg.com/three@0.114.0/examples/jsm/webxr/ARButton.js';
 import { XRControllerModelFactory } from 'https://unpkg.com/three@0.114.0/examples/jsm/webxr/XRControllerModelFactory.js';
