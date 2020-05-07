@@ -1,89 +1,70 @@
-import * as ECSY from "ecsy";
-import * as THREE from "three";
-
-import { TransformSystem } from "./systems/TransformSystem.js";
-import { CameraSystem } from "./systems/CameraSystem.js";
-import { MaterialSystem } from "./systems/MaterialSystem.js";
-
+import { Clock, WebGLRenderer as ThreeWebGLRenderer } from "three";
+import { ThreeWorld } from "./ThreeWorld";
+import { SceneEntity, PerspectiveCameraEntity } from "./entities/index.js";
+import { WebGLRenderer } from "./components/WebGLRenderer.js";
+import { RenderPass } from "./components/RenderPass.js";
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
-import { Object3D } from "./components/Object3D.js";
-import { CameraRig } from "./components/CameraRig.js";
-import { Parent } from "./components/Parent.js";
-import {
-  WebGLRenderer,
-  Scene,
-  Active,
-  RenderPass,
-  Transform,
-  Camera
-} from "./components/index.js";
 
-export function initialize(world = new ECSY.World(), options) {
+export function initialize(world = new ThreeWorld(), options) {
+  options = Object.assign({}, options);
+
   world
-    .registerSystem(TransformSystem)
-    .registerSystem(CameraSystem)
-    .registerSystem(MaterialSystem)
+    .registerComponent(WebGLRenderer, false)
+    .registerEntityType(SceneEntity)
+    .registerEntityType(PerspectiveCameraEntity, false)
+    .registerComponent(RenderPass, false)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
 
-  const DEFAULT_OPTIONS = {
-    vr: false,
-    defaults: true
-  };
-
-  options = Object.assign({}, DEFAULT_OPTIONS, options);
-
-  if (!options.defaults) {
-    return { world };
-  }
-
   let animationLoop = options.animationLoop;
+
   if (!animationLoop) {
-    const clock = new THREE.Clock();
+    const clock = new Clock();
+
     animationLoop = () => {
       world.execute(clock.getDelta(), clock.elapsedTime);
     };
   }
 
-  let scene = world
-    .createEntity()
-    .addComponent(Scene)
-    .addComponent(Object3D, { value: new THREE.Scene() });
+  const rendererOptions = Object.assign(
+    {
+      antialias: true
+    },
+    options.renderer
+  );
 
-  let renderer = world.createEntity().addComponent(WebGLRenderer, {
-    ar: options.ar,
-    vr: options.vr,
-    animationLoop: animationLoop
-  });
+  const renderer = new ThreeWebGLRenderer(rendererOptions);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setAnimationLoop(animationLoop);
 
-  // camera rig & controllers
-  var camera = null,
-    cameraRig = null;
+  const canvas = options.renderer && options.renderer.canvas;
+  const width = canvas ? canvas.parentElement.offsetWidth : window.innerWidth;
+  const height = canvas
+    ? canvas.parentElement.offsetHeight
+    : window.innerHeight;
 
-  if (options.ar || options.vr) {
-    cameraRig = world
-      .createEntity()
-      .addComponent(CameraRig)
-      .addComponent(Parent, { value: scene });
+  renderer.setSize(width, height, !!canvas);
+
+  if (!canvas) {
+    document.body.appendChild(renderer.domElement);
   }
 
-  {
-    camera = world
-      .createEntity()
-      .addComponent(Camera, {
-        fov: 90,
-        aspect: window.innerWidth / window.innerHeight,
-        near: 0.1,
-        far: 100,
-        layers: 1,
-        handleResize: true
-      })
-      .addComponent(Transform)
-      .addComponent(Active);
-  }
+  let scene = world.addEntity(new SceneEntity(world));
 
-  let renderPass = world.createEntity().addComponent(RenderPass, {
-    scene: scene,
-    camera: camera
+  const camera = new PerspectiveCameraEntity(
+    world,
+    90,
+    width / height,
+    0.1,
+    100
+  );
+
+  scene.add(camera);
+
+  let rendererEntity = world.createEntity().addComponent(WebGLRenderer, {
+    renderer,
+    scene,
+    camera,
+    updateCanvasStyle: !!canvas
   });
 
   return {
@@ -91,9 +72,7 @@ export function initialize(world = new ECSY.World(), options) {
     entities: {
       scene,
       camera,
-      cameraRig,
-      renderer,
-      renderPass
+      renderer: rendererEntity
     }
   };
 }

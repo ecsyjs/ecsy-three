@@ -1,23 +1,10 @@
-export class WebGLRenderer {
-  constructor() {
-    this.vr = false;
-    this.ar = false;
-    this.antialias = true;
-    this.handleResize = true;
-    this.shadowMap = true;
-  }
+import { Component } from "ecsy";
 
-  reset() {}
-}
+export class WebGLRenderer extends Component {}
 
-/*
-export const WebGLRenderer = createComponentClass(
-  {
-    vr: { default: true },
-    antialias: { default: true },
-    handleResize: { default: true },
-    shadowMap: { default: false }
-  },
-  "WebGLRenderer"
-);
-*/
+WebGLRenderer.schema = {
+  renderer: { type: Object },
+  scene: { type: Object },
+  camera: { type: Object },
+  updateCanvasStyle: { type: Boolean }
+};

@@ -31,13 +31,16 @@ export default [
           },
           {
             find: "ecsy",
-            replacement: `https://unpkg.com/ecsy@${deps["ecsy"]}/build/ecsy.module.js`
+            replacement: `https://cdn.jsdelivr.net/gh/MozillaReality/ecsy@171f7ca28bb7b8e4ee4486ae2f645a9cf64f407c/build/ecsy.module.js`
           }
         ]
       })
     ],
     external: id => {
-      return id.startsWith("https://unpkg.com/");
+      return (
+        id.startsWith("https://unpkg.com/") ||
+        id.startsWith("https://cdn.jsdelivr.net")
+      );
     },
     output: [
       {

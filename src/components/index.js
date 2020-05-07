@@ -25,7 +25,7 @@ export { Scale } from "./Scale.js";
 export { Scene } from "./Scene.js";
 export { Shape } from "./Shape.js";
 export { Sky } from "./Sky.js";
-export { SkyBox } from "./Skybox.js";
+export { StereoPhotoSphere } from "./StereoPhotoSphere.js";
 export { Sound } from "./Sound.js";
 export { Stop } from "./Stop.js";
 export { Text } from "./Text.js";

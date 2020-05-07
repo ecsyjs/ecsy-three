@@ -9,47 +9,39 @@
 <body>
 	<script type="module">
 		import {
+			ThreeWorld,
 			initialize,
-			// Components
-			Parent,
-			WebGLRendererContext,
-			SkyBox,
-			Object3D,
-			// Systems
-			SkyBoxSystem
+			StereoPhotoSphere,
+			StereoPhotoSphereSystem,
+			WebGLRenderer
 		} from '../build/ecsy-three.module-unpkg.js';
 
-		import { World } from 'https://unpkg.com/ecsy/build/ecsy.module.js';
+		import { VRButton } from 'https://unpkg.com/three@0.116.1/examples/jsm/webxr/VRButton.js';
 
-		var world;
+		const world = new ThreeWorld();
 
-		init();
-		animate();
+		let data = initialize(world);
 
-		function init() {
+		let { scene, camera, renderer } = data.entities;
 
-			world = new World();
+		const threeRenderer = renderer.getComponent(WebGLRenderer).renderer;
 
-			let data = initialize(world, {vr: true});
+		threeRenderer.xr.enabled = true;
+		threeRenderer.xr.setReferenceSpaceType('local');
 
-			let {scene, renderer} = data.entities;
+		camera.layers.enable(1);
 
-			world.registerSystem(SkyBoxSystem);
+		document.body.appendChild(VRButton.createButton(threeRenderer));
 
-			///
-			var skybox = world.createEntity().addComponent(SkyBox, {
-				textureUrl: "textures/cube/sun_temple_stripe_stereo.jpg",
-				type: "cubemap-stereo"
-			}).addComponent(Parent, { value: scene });
+		world
+			.registerComponent(StereoPhotoSphere)
+			.registerSystem(StereoPhotoSphereSystem);
 
-			world.execute();
-		}
+		scene.addComponent(StereoPhotoSphere, {
+			src: "textures/cube/sun_temple_stripe_stereo.jpg"
+		});
 
-		// @todo Replace this with something simpler / ~auto scheduler
-		function animate() {
-			world.execute();
-			requestAnimationFrame(animate);
-		}
+		world.execute();
 	</script>
 </body>
 </html>
