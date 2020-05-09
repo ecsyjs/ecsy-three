@@ -4,7 +4,7 @@ import * as pkg from "./package.json";
 const { execSync } = require("child_process");
 
 var deps = {};
-Object.keys(pkg.dependencies).forEach(dep => {
+Object.keys(pkg.peerDependencies).forEach(dep => {
   deps[dep] = execSync(`npm info ${dep} version`)
     .toString()
     .trim();
