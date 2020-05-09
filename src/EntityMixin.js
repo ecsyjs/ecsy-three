@@ -10,6 +10,12 @@ export function EntityMixin(Object3DClass) {
     constructor(world, ...args) {
       super(...args);
 
+      if (!world.isThreeWorld) {
+        throw new Error(
+          "The first argument to an Object3D entity must be an instance of ThreeWorld"
+        );
+      }
+
       this.world = world;
 
       // List of components types the entity has

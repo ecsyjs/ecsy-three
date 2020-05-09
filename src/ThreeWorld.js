@@ -6,6 +6,8 @@ export class ThreeWorld extends World {
 
     this.entityTypes = {};
     this.entityPools = {};
+
+    this.isThreeWorld = true;
   }
 
   registerEntityType(EntityType, entityPool) {
