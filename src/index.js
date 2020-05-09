@@ -1,3 +1,5 @@
+export { PropTypes } from "./PropTypes.js";
+
 export { ThreeWorld } from "./ThreeWorld.js";
 
 export { StereoPhotoSphere } from "./components/StereoPhotoSphere.js";

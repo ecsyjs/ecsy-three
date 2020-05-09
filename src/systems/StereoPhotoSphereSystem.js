@@ -26,8 +26,6 @@ export class StereoPhotoSphereSystem extends System {
     for (let i = 0; i < entities.length; i++) {
       let entity = entities[i];
 
-      console.log(entity);
-
       let photoSphere = entity.getComponent(StereoPhotoSphere);
 
       let geometry = new BoxBufferGeometry(100, 100, 100);

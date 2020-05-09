@@ -2,7 +2,6 @@ import { Clock, WebGLRenderer as ThreeWebGLRenderer } from "three";
 import { ThreeWorld } from "./ThreeWorld";
 import { SceneEntity, PerspectiveCameraEntity } from "./entities/index.js";
 import { WebGLRenderer } from "./components/WebGLRenderer.js";
-import { RenderPass } from "./components/RenderPass.js";
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
 
 export function initialize(world = new ThreeWorld(), options) {
@@ -12,7 +11,6 @@ export function initialize(world = new ThreeWorld(), options) {
     .registerComponent(WebGLRenderer, false)
     .registerEntityType(SceneEntity)
     .registerEntityType(PerspectiveCameraEntity, false)
-    .registerComponent(RenderPass, false)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
 
   let animationLoop = options.animationLoop;
