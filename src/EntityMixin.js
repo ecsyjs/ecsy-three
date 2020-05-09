@@ -1,4 +1,4 @@
-import { Matrix4, MathUtils } from "three";
+import { Matrix4, Math as MathUtils } from "three";
 import { _wrapImmutableComponent } from "ecsy";
 
 const DEBUG = false;
