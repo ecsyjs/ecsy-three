@@ -37,6 +37,7 @@ export function EntityMixin(Object3DClass) {
       this._numSystemStateComponents = 0;
 
       this.isEntity = true;
+      this.isECSYThreeEntity = true;
     }
 
     // COMPONENTS
