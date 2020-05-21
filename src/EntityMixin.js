@@ -1,4 +1,4 @@
-import { Matrix4, Math as MathUtils } from "three";
+import { Matrix4 } from "three";
 import { _wrapImmutableComponent } from "ecsy";
 
 const DEBUG = false;
@@ -18,6 +18,9 @@ export function EntityMixin(Object3DClass) {
 
       this.world = world;
 
+      // Unique ID for this entity
+      this._id = this.world.nextEntityId++;
+
       // List of components types the entity has
       this.componentTypes = [];
 
@@ -32,12 +35,16 @@ export function EntityMixin(Object3DClass) {
       // Used for deferred removal
       this._componentTypesToRemove = [];
 
-      this.alive = false;
+      this._alive = false;
 
       this._numSystemStateComponents = 0;
 
       this.isEntity = true;
       this.isECSYThreeEntity = true;
+    }
+
+    get alive() {
+      return this._alive;
     }
 
     // COMPONENTS
@@ -71,11 +78,31 @@ export function EntityMixin(Object3DClass) {
     getMutableComponent(Component) {
       var component = this.components[Component.name];
 
-      if (this.alive) {
+      if (this._alive) {
         this.world.onComponentChanged(this, Component, component);
       }
 
       return component;
+    }
+
+    attachComponent(component) {
+      const Component = component.constructor;
+
+      if (~this.componentTypes.indexOf(Component)) return;
+
+      this.componentTypes.push(Component);
+
+      if (Component.isSystemStateComponent) {
+        this._numSystemStateComponents++;
+      }
+
+      this.components[Component.name] = component;
+
+      if (this._alive) {
+        this.world.onComponentAdded(this, Component);
+      }
+
+      return this;
     }
 
     addComponent(Component, props) {
@@ -100,7 +127,7 @@ export function EntityMixin(Object3DClass) {
 
       this.components[Component.name] = component;
 
-      if (this.alive) {
+      if (this._alive) {
         this.world.onComponentAdded(this, Component);
       }
 
@@ -142,7 +169,9 @@ export function EntityMixin(Object3DClass) {
         const index = this.componentTypes.indexOf(Component);
         this.componentTypes.splice(index, 1);
 
-        this.world.onRemoveComponent(this, Component);
+        if (this._alive) {
+          this.world.onRemoveComponent(this, Component);
+        }
       }
 
       if (immediately) {
@@ -158,7 +187,7 @@ export function EntityMixin(Object3DClass) {
             this._componentTypesToRemove.splice(index, 1);
           }
         }
-      } else {
+      } else if (this._alive) {
         this._componentTypesToRemove.push(Component);
         this._componentsToRemove[componentName] = component;
         this.world.queueComponentRemoval(this, Component);
@@ -168,7 +197,7 @@ export function EntityMixin(Object3DClass) {
         this._numSystemStateComponents--;
 
         // Check if the entity was a ghost waiting for the last system state component to be removed
-        if (this._numSystemStateComponents === 0 && !this.alive) {
+        if (this._numSystemStateComponents === 0 && !this._alive) {
           this.dispose();
         }
       }
@@ -183,6 +212,7 @@ export function EntityMixin(Object3DClass) {
       }
     }
 
+    // TODO: Optimize this
     removeAllComponents(immediately) {
       let Components = this.componentTypes;
 
@@ -198,7 +228,7 @@ export function EntityMixin(Object3DClass) {
         for (let i = 0; i < objects.length; i++) {
           const object = objects[i];
 
-          if (object.isEntity) {
+          if (object.isECSYThreeEntity) {
             this.world.addEntity(object);
           }
         }
@@ -213,7 +243,7 @@ export function EntityMixin(Object3DClass) {
       for (let i = 0; i < objects.length; i++) {
         const object = objects[i];
 
-        if (object.isEntity) {
+        if (object.isECSYThreeEntity) {
           object.dispose();
         }
       }
@@ -258,7 +288,7 @@ export function EntityMixin(Object3DClass) {
 
     traverseEntities(callback) {
       this.traverse(child => {
-        if (child.isEntity) {
+        if (child.isECSYThreeEntity) {
           callback(child);
         }
       });
@@ -283,39 +313,23 @@ export function EntityMixin(Object3DClass) {
 
     dispose(immediately) {
       this.traverseEntities(child => {
-        if (child.alive) {
-          child.world.onDisposeEntity(this);
+        if (child._alive) {
+          child.removeAllComponents(immediately);
+          child.queries.length = 0;
         }
 
+        child._alive = false;
+
         if (immediately) {
-          child.uuid = MathUtils.generateUUID();
-          child.alive = true;
+          child._id = child.world.nextEntityId++;
 
-          for (let i = 0; i < child.queries.length; i++) {
-            child.queries[i].removeEntity(this);
-          }
-
-          for (const componentName in child.components) {
-            child.components[componentName].dispose();
-            delete child.components[componentName];
-          }
-
-          for (const componentName in child._componentsToRemove) {
-            delete child._componentsToRemove[componentName];
-          }
-
-          child.queries.length = 0;
-          child.componentTypes.length = 0;
-          child._componentTypesToRemove.length = 0;
+          child.world.onEntityDisposed(child);
 
           if (child._pool) {
-            child._pool.release(this);
+            child._pool.release(child);
           }
-
-          child.world.onEntityDisposed(this);
         } else {
-          child.alive = false;
-          child.world.queueEntityDisposal(this);
+          child.world.queueEntityDisposal(child);
         }
       });
     }

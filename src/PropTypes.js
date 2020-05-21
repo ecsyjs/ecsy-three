@@ -13,41 +13,49 @@ import {
 export const PropTypes = {
   ...ECSYPropTypes,
   Vector2: {
+    name: "Vector2",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Vector2()
   },
   Vector3: {
+    name: "Vector3",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Vector3()
   },
   Vector4: {
+    name: "Vector4",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Vector4()
   },
   Quaternion: {
+    name: "Quaternion",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Quaternion()
   },
   Color: {
+    name: "Color",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Color()
   },
   Euler: {
+    name: "Euler",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Euler()
   },
   Matrix3: {
+    name: "Matrix3",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Matrix3()
   },
   Matrix4: {
+    name: "Matrix4",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Matrix4()

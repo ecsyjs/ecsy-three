@@ -57,13 +57,13 @@ export class ThreeWorld extends World {
   addEntity(entity) {
     if (entity.isObject3D) {
       entity.traverseEntities(child => {
-        if (this.entitiesByUUID[entity.uuid]) {
-          console.warn(`Entity ${entity.uuid} already added.`);
+        if (this.entitiesById[entity._id]) {
+          console.warn(`Entity ${entity._id} already added.`);
         }
 
-        this.entitiesByUUID[entity.uuid] = child;
+        this.entitiesById[entity._id] = child;
         this.entities.push(child);
-        child.alive = true;
+        child._alive = true;
 
         for (let i = 0; i < child.componentTypes.length; i++) {
           const Component = child.componentTypes[i];
@@ -71,14 +71,14 @@ export class ThreeWorld extends World {
         }
       });
     } else {
-      if (this.entitiesByUUID[entity.uuid]) {
-        console.warn(`Entity ${entity.uuid} already added.`);
+      if (this.entitiesById[entity._id]) {
+        console.warn(`Entity ${entity._id} already added.`);
         return entity;
       }
 
-      this.entitiesByUUID[entity.uuid] = entity;
+      this.entitiesById[entity._id] = entity;
       this.entities.push(entity);
-      entity.alive = true;
+      entity._alive = true;
 
       for (let i = 0; i < entity.componentTypes.length; i++) {
         const Component = entity.componentTypes[i];
