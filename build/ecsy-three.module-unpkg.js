@@ -1,44 +1,52 @@
 import { PropTypes as PropTypes$1, copyCopyable, cloneClonable, World, ObjectPool, Component, System, TagComponent, Not, SystemStateComponent } from 'https://cdn.jsdelivr.net/gh/MozillaReality/ecsy@171f7ca28bb7b8e4ee4486ae2f645a9cf64f407c/build/ecsy.module.js';
-import { Vector2, Vector3, Vector4, Quaternion, Color, Euler, Matrix3, Matrix4, Math, Object3D, Scene, Group, Mesh, SkinnedMesh, Bone, InstancedMesh, LOD, Line, LineLoop, LineSegments, Points, Sprite, Audio, AudioListener, PositionalAudio, Camera, PerspectiveCamera, OrthographicCamera, ArrayCamera, CubeCamera, Light, LightProbe, AmbientLight, DirectionalLight, HemisphereLight, HemisphereLightProbe, PointLight, RectAreaLight, SpotLight, ImmediateRenderObject, ArrowHelper, AxesHelper, Box3Helper, BoxHelper, CameraHelper, DirectionalLightHelper, GridHelper, HemisphereLightHelper, PlaneHelper, PointLightHelper, PolarGridHelper, SkeletonHelper, SpotLightHelper, BoxBufferGeometry, MeshBasicMaterial, Texture, ImageLoader, Clock, WebGLRenderer as WebGLRenderer$1 } from 'https://unpkg.com/three@0.116.1/build/three.module.js';
+import { Vector2, Vector3, Vector4, Quaternion, Color, Euler, Matrix3, Matrix4, Object3D, Scene, Group, Mesh, SkinnedMesh, Bone, InstancedMesh, LOD, Line, LineLoop, LineSegments, Points, Sprite, Audio, AudioListener, PositionalAudio, Camera, PerspectiveCamera, OrthographicCamera, ArrayCamera, CubeCamera, Light, LightProbe, AmbientLight, DirectionalLight, HemisphereLight, HemisphereLightProbe, PointLight, RectAreaLight, SpotLight, ImmediateRenderObject, ArrowHelper, AxesHelper, Box3Helper, BoxHelper, CameraHelper, DirectionalLightHelper, GridHelper, HemisphereLightHelper, PlaneHelper, PointLightHelper, PolarGridHelper, SkeletonHelper, SpotLightHelper, BoxBufferGeometry, MeshBasicMaterial, Texture, ImageLoader, Clock, WebGLRenderer as WebGLRenderer$1 } from 'https://unpkg.com/three@0.116.1/build/three.module.js';
 
 const PropTypes = {
   ...PropTypes$1,
   Vector2: {
+    name: "Vector2",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Vector2()
   },
   Vector3: {
+    name: "Vector3",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Vector3()
   },
   Vector4: {
+    name: "Vector4",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Vector4()
   },
   Quaternion: {
+    name: "Quaternion",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Quaternion()
   },
   Color: {
+    name: "Color",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Color()
   },
   Euler: {
+    name: "Euler",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Euler()
   },
   Matrix3: {
+    name: "Matrix3",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Matrix3()
   },
   Matrix4: {
+    name: "Matrix4",
     copy: copyCopyable,
     clone: cloneClonable,
     default: new Matrix4()
@@ -102,13 +110,13 @@ class ThreeWorld extends World {
   addEntity(entity) {
     if (entity.isObject3D) {
       entity.traverseEntities(child => {
-        if (this.entitiesByUUID[entity.uuid]) {
-          console.warn(`Entity ${entity.uuid} already added.`);
+        if (this.entitiesById[entity._id]) {
+          console.warn(`Entity ${entity._id} already added.`);
         }
 
-        this.entitiesByUUID[entity.uuid] = child;
+        this.entitiesById[entity._id] = child;
         this.entities.push(child);
-        child.alive = true;
+        child._alive = true;
 
         for (let i = 0; i < child.componentTypes.length; i++) {
           const Component = child.componentTypes[i];
@@ -116,14 +124,14 @@ class ThreeWorld extends World {
         }
       });
     } else {
-      if (this.entitiesByUUID[entity.uuid]) {
-        console.warn(`Entity ${entity.uuid} already added.`);
+      if (this.entitiesById[entity._id]) {
+        console.warn(`Entity ${entity._id} already added.`);
         return entity;
       }
 
-      this.entitiesByUUID[entity.uuid] = entity;
+      this.entitiesById[entity._id] = entity;
       this.entities.push(entity);
-      entity.alive = true;
+      entity._alive = true;
 
       for (let i = 0; i < entity.componentTypes.length; i++) {
         const Component = entity.componentTypes[i];
@@ -202,6 +210,9 @@ function EntityMixin(Object3DClass) {
 
       this.world = world;
 
+      // Unique ID for this entity
+      this._id = this.world.nextEntityId++;
+
       // List of components types the entity has
       this.componentTypes = [];
 
@@ -216,12 +227,16 @@ function EntityMixin(Object3DClass) {
       // Used for deferred removal
       this._componentTypesToRemove = [];
 
-      this.alive = false;
+      this._alive = false;
 
       this._numSystemStateComponents = 0;
 
       this.isEntity = true;
       this.isECSYThreeEntity = true;
+    }
+
+    get alive() {
+      return this._alive;
     }
 
     // COMPONENTS
@@ -255,11 +270,31 @@ function EntityMixin(Object3DClass) {
     getMutableComponent(Component) {
       var component = this.components[Component.name];
 
-      if (this.alive) {
+      if (this._alive) {
         this.world.onComponentChanged(this, Component, component);
       }
 
       return component;
+    }
+
+    attachComponent(component) {
+      const Component = component.constructor;
+
+      if (~this.componentTypes.indexOf(Component)) return;
+
+      this.componentTypes.push(Component);
+
+      if (Component.isSystemStateComponent) {
+        this._numSystemStateComponents++;
+      }
+
+      this.components[Component.name] = component;
+
+      if (this._alive) {
+        this.world.onComponentAdded(this, Component);
+      }
+
+      return this;
     }
 
     addComponent(Component, props) {
@@ -284,7 +319,7 @@ function EntityMixin(Object3DClass) {
 
       this.components[Component.name] = component;
 
-      if (this.alive) {
+      if (this._alive) {
         this.world.onComponentAdded(this, Component);
       }
 
@@ -326,7 +361,9 @@ function EntityMixin(Object3DClass) {
         const index = this.componentTypes.indexOf(Component);
         this.componentTypes.splice(index, 1);
 
-        this.world.onRemoveComponent(this, Component);
+        if (this._alive) {
+          this.world.onRemoveComponent(this, Component);
+        }
       }
 
       if (immediately) {
@@ -342,7 +379,7 @@ function EntityMixin(Object3DClass) {
             this._componentTypesToRemove.splice(index, 1);
           }
         }
-      } else {
+      } else if (this._alive) {
         this._componentTypesToRemove.push(Component);
         this._componentsToRemove[componentName] = component;
         this.world.queueComponentRemoval(this, Component);
@@ -352,7 +389,7 @@ function EntityMixin(Object3DClass) {
         this._numSystemStateComponents--;
 
         // Check if the entity was a ghost waiting for the last system state component to be removed
-        if (this._numSystemStateComponents === 0 && !this.alive) {
+        if (this._numSystemStateComponents === 0 && !this._alive) {
           this.dispose();
         }
       }
@@ -367,6 +404,7 @@ function EntityMixin(Object3DClass) {
       }
     }
 
+    // TODO: Optimize this
     removeAllComponents(immediately) {
       let Components = this.componentTypes;
 
@@ -382,7 +420,7 @@ function EntityMixin(Object3DClass) {
         for (let i = 0; i < objects.length; i++) {
           const object = objects[i];
 
-          if (object.isEntity) {
+          if (object.isECSYThreeEntity) {
             this.world.addEntity(object);
           }
         }
@@ -397,7 +435,7 @@ function EntityMixin(Object3DClass) {
       for (let i = 0; i < objects.length; i++) {
         const object = objects[i];
 
-        if (object.isEntity) {
+        if (object.isECSYThreeEntity) {
           object.dispose();
         }
       }
@@ -442,7 +480,7 @@ function EntityMixin(Object3DClass) {
 
     traverseEntities(callback) {
       this.traverse(child => {
-        if (child.isEntity) {
+        if (child.isECSYThreeEntity) {
           callback(child);
         }
       });
@@ -467,39 +505,23 @@ function EntityMixin(Object3DClass) {
 
     dispose(immediately) {
       this.traverseEntities(child => {
-        if (child.alive) {
-          child.world.onDisposeEntity(this);
+        if (child._alive) {
+          child.removeAllComponents(immediately);
+          child.queries.length = 0;
         }
 
+        child._alive = false;
+
         if (immediately) {
-          child.uuid = Math.generateUUID();
-          child.alive = true;
+          child._id = child.world.nextEntityId++;
 
-          for (let i = 0; i < child.queries.length; i++) {
-            child.queries[i].removeEntity(this);
-          }
-
-          for (const componentName in child.components) {
-            child.components[componentName].dispose();
-            delete child.components[componentName];
-          }
-
-          for (const componentName in child._componentsToRemove) {
-            delete child._componentsToRemove[componentName];
-          }
-
-          child.queries.length = 0;
-          child.componentTypes.length = 0;
-          child._componentTypesToRemove.length = 0;
+          child.world.onEntityDisposed(child);
 
           if (child._pool) {
-            child._pool.release(this);
+            child._pool.release(child);
           }
-
-          child.world.onEntityDisposed(this);
         } else {
-          child.alive = false;
-          child.world.queueEntityDisposal(this);
+          child.world.queueEntityDisposal(child);
         }
       });
     }
