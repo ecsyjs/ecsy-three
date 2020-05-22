@@ -24,7 +24,7 @@
     "babelify": "^10.0.0",
     "browserify": "^16.5.0",
     "concurrently": "^5.0.0",
-    "ecsy": "^0.2.3",
+    "ecsy": "git+https://github.com/MozillaReality/ecsy.git#new-api",
     "eslint": "^6.7.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",
