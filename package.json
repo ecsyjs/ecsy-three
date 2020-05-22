@@ -1,6 +1,6 @@
 {
   "name": "ecsy-three",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ECSY three.js bindings",
   "main": "build/ecsy-three.js",
   "jsnext:main": "build/ecsy-three.module.js",
