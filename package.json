@@ -39,11 +39,12 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.9.0"
   },
-  "dependencies": {
-    "ecsy": "^0.2.2",
-    "three": "^0.113.2",
+  "peerDependencies": {
+    "ecsy": "^0.2.3",
+    "three": "^0.116.1",
     "troika-3d-text": "^0.17.0"
   },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mozillareality/ecsy-three.git"
