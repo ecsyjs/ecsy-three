@@ -3,7 +3,8 @@ import { _wrapImmutableComponent } from "ecsy";
 
 const DEBUG = false;
 
-var _m1 = new Matrix4();
+const _m1 = new Matrix4();
+const _removedEvent = { type: "removed" };
 
 export function EntityMixin(Object3DClass) {
   const Mixin = class extends Object3DClass {
@@ -238,13 +239,13 @@ export function EntityMixin(Object3DClass) {
     }
 
     remove(...objects) {
-      super.remove(...objects);
-
       for (let i = 0; i < objects.length; i++) {
         const object = objects[i];
 
         if (object.isECSYThreeEntity) {
           object.dispose();
+        } else {
+          super.remove(object);
         }
       }
 
@@ -312,6 +313,18 @@ export function EntityMixin(Object3DClass) {
     }
 
     dispose(immediately) {
+      const parent = this.parent;
+
+      if (parent) {
+        const index = parent.children.indexOf(this);
+
+        if (index !== -1) {
+          this.parent = null;
+          parent.children.splice(index, 1);
+          this.dispatchEvent(_removedEvent);
+        }
+      }
+
       this.traverseEntities(child => {
         if (child._alive) {
           child.removeAllComponents(immediately);
