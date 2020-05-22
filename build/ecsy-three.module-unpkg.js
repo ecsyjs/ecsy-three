@@ -195,7 +195,8 @@ WebGLRendererSystem.queries = {
   }
 };
 
-var _m1 = new Matrix4();
+const _m1 = new Matrix4();
+const _removedEvent = { type: "removed" };
 
 function EntityMixin(Object3DClass) {
   const Mixin = class extends Object3DClass {
@@ -430,13 +431,13 @@ function EntityMixin(Object3DClass) {
     }
 
     remove(...objects) {
-      super.remove(...objects);
-
       for (let i = 0; i < objects.length; i++) {
         const object = objects[i];
 
         if (object.isECSYThreeEntity) {
           object.dispose();
+        } else {
+          super.remove(object);
         }
       }
 
@@ -504,6 +505,18 @@ function EntityMixin(Object3DClass) {
     }
 
     dispose(immediately) {
+      const parent = this.parent;
+
+      if (parent) {
+        const index = parent.children.indexOf(this);
+
+        if (index !== -1) {
+          this.parent = null;
+          parent.children.splice(index, 1);
+          this.dispatchEvent(_removedEvent);
+        }
+      }
+
       this.traverseEntities(child => {
         if (child._alive) {
           child.removeAllComponents(immediately);
