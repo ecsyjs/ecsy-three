@@ -61,3 +61,8 @@ export { SoundSystem } from "./systems/SoundSystem.js";
 
 // Initialize
 export { initialize } from "./initialize.js";
+export { ECSYThreeWorld } from "./world.js";
+export {
+  addObject3DComponents,
+  removeObject3DComponents
+} from "./entity-utils.js";
