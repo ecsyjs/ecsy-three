@@ -1,19 +1,27 @@
 import * as THREE from "three";
 
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
+<<<<<<< HEAD
 import { UpdateAspectOnResizeSystem } from "./systems/UpdateAspectOnResizeSystem.js";
+=======
+>>>>>>> Simplest possible example using proposed API
 import {
   WebGLRenderer,
   Scene,
   Active,
   RenderPass,
+<<<<<<< HEAD
   Camera,
   UpdateAspectOnResizeTag
+=======
+  Camera
+>>>>>>> Simplest possible example using proposed API
 } from "./components/index.js";
 
 import { ECSYThreeWorld } from "./world.js";
 
 export function initialize(world = new ECSYThreeWorld(), options) {
+<<<<<<< HEAD
   if (!(world instanceof ECSYThreeWorld)) {
     throw new Error(
       "The provided 'world' paremeter is not an instance of 'ECSYThreeWorld'"
@@ -22,6 +30,10 @@ export function initialize(world = new ECSYThreeWorld(), options) {
 
   world
     .registerSystem(UpdateAspectOnResizeSystem)
+=======
+  world
+    // .registerSystem(CameraSystem)
+>>>>>>> Simplest possible example using proposed API
     .registerSystem(WebGLRendererSystem, { priority: 1 });
 
   world
@@ -54,7 +66,11 @@ export function initialize(world = new ECSYThreeWorld(), options) {
   let scene = world
     .createEntity()
     .addComponent(Scene)
+<<<<<<< HEAD
     .addObject3DComponent(new THREE.Scene());
+=======
+    .addObject3DComponents(new THREE.Scene());
+>>>>>>> Simplest possible example using proposed API
 
   let renderer = world.createEntity().addComponent(WebGLRenderer, {
     ar: options.ar,
@@ -77,8 +93,12 @@ export function initialize(world = new ECSYThreeWorld(), options) {
     camera = world
       .createEntity()
       .addComponent(Camera)
+<<<<<<< HEAD
       .addComponent(UpdateAspectOnResizeTag)
       .addObject3DComponent(
+=======
+      .addObject3DComponents(
+>>>>>>> Simplest possible example using proposed API
         new THREE.PerspectiveCamera(
           90,
           window.innerWidth / window.innerHeight,
