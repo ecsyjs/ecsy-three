@@ -27,10 +27,9 @@
 			class RotationSystem extends System {
 				execute(delta) {
 					this.queries.entities.results.forEach(entity => {
-						const obj = entity.getMutableComponent(Object3DComponent).value;
-						const rotating = entity.getComponent(Rotating);
-						obj.rotation.x += 0.5 * rotating.speed * delta;
-						obj.rotation.y += 0.1 * rotating.speed * delta;
+						var rotation = entity.getMutableComponent(Object3DComponent).value.rotation;
+						rotation.x += 0.5 * delta;
+						rotation.y += 0.1 * delta;
 					});
 				}
 			}
@@ -62,13 +61,14 @@
 				// Initialize the default sets of entities and systems
 				let data = initialize(world);
 				console.log(data)
-
 				world.registerSystem(GLTFLoaderSystem);
 				// Register our custom sytem
 				world.registerSystem(RotationSystem);
 
 				// Grab the initialized entities
 				let {scene, renderer, camera} = data.entities;
+				let scene3d = scene.getMutableComponent(Object3D).value;
+				let camera3d = camera.getMutableComponent(Object3D).value;
 
 				// Modify the position for the default camera
 				let camera3d = camera.getMutableComponent(Object3DComponent).value;
@@ -80,7 +80,7 @@
 				var rotatingBox = world.createEntity()
 									   .addComponent(Rotating)
 									   .addObject3DComponents(new THREE.Mesh(
-										   new THREE.BoxBufferGeometry( 1, 1, 1 ),
+										   new THREE.BoxBufferGeometry( 20, 20, 20 ),
 										   new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
 									   ), scene);
 				world.removeEntity(rotatingBox)
