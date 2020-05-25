@@ -13,7 +13,7 @@ export { GLTFLoader } from "./GLTFLoader.js";
 export { GLTFModel } from "./GLTFModel.js";
 export { InputState } from "./InputState.js";
 export { Material } from "./Material.js";
-export { Object3D } from "./Object3D.js";
+export { Object3DComponent } from "./Object3DComponent.js";
 export { Parent } from "./Parent.js";
 export { ParentObject3D } from "./ParentObject3D.js";
 export { Play } from "./Play.js";

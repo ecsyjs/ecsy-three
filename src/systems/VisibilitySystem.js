@@ -1,10 +1,10 @@
 import { System } from "ecsy";
-import { Visible, Object3D } from "../components/index.js";
+import { Visible, Object3DComponent } from "../components/index.js";
 
 export class VisibilitySystem extends System {
   processVisibility(entities) {
     entities.forEach(entity => {
-      entity.getMutableComponent(Object3D).value.visible = entity.getComponent(
+      entity.getMutableComponent(Object3DComponent).value.visible = entity.getComponent(
         Visible
       ).value;
     });
@@ -18,7 +18,7 @@ export class VisibilitySystem extends System {
 
 VisibilitySystem.queries = {
   entities: {
-    components: [Visible, Object3D],
+    components: [Visible, Object3DComponent],
     listen: {
       added: true,
       changed: [Visible]

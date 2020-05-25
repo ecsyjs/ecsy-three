@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { System, Not, SystemStateComponent } from "ecsy";
 import {
   Material,
-  Object3D,
+  Object3DComponent,
   Transform,
   //  Element,
   //  Draggable,

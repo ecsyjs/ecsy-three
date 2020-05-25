@@ -2,7 +2,7 @@ import { System } from "ecsy";
 import {
   CameraTagComponent,
   UpdateAspectOnResizeTag,
-  Object3D
+  Object3DComponent
 } from "../components/index.js";
 
 export class UpdateAspectOnResizeSystem extends System {
@@ -21,7 +21,7 @@ export class UpdateAspectOnResizeSystem extends System {
   execute() {
     let cameras = this.queries.cameras.results;
     for (let i = 0; i < cameras.length; i++) {
-      let cameraObj = cameras[i].getMutableComponent(Object3D).value;
+      let cameraObj = cameras[i].getMutableComponent(Object3DComponent).value;
       if (cameraObj.aspect !== this.aspect) {
         cameraObj.aspect = this.aspect;
         cameraObj.updateProjectionMatrix();
@@ -32,6 +32,6 @@ export class UpdateAspectOnResizeSystem extends System {
 
 UpdateAspectOnResizeSystem.queries = {
   cameras: {
-    components: [CameraTagComponent, UpdateAspectOnResizeTag, Object3D]
+    components: [CameraTagComponent, UpdateAspectOnResizeTag, Object3DComponent]
   }
 };

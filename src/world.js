@@ -1,5 +1,5 @@
 import { World } from "ecsy";
-import { Object3D } from "./components/index.js";
+import { Object3DComponent } from "./components/index.js";
 import {
   addObject3DComponents,
   removeObject3DComponents
@@ -16,8 +16,8 @@ export class ECSYThreeWorld extends World {
 
   // TODO expose removeEntity on ECSY.World and change `this.entityManager` usage to `super``
   removeEntity(entity) {
-    if (entity.hasComponent(Object3D)) {
-      const obj = entity.getComponent(Object3D).value;
+    if (entity.hasComponent(Object3DComponent)) {
+      const obj = entity.getComponent(Object3DComponent).value;
       obj.traverse(o => {
         this.entityManager.removeEntity(o.entity);
         o.entity = null;
