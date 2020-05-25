@@ -14,6 +14,10 @@ export class TransformSystem extends System {
     let added = this.queries.parent.added;
     for (var i = 0; i < added.length; i++) {
       var entity = added[i];
+      if (!entity.alive) {
+        return;
+      }
+
       var parentEntity = entity.getComponent(Parent).value;
       if (parentEntity.hasComponent(Object3D)) {
         var parentObject3D = parentEntity.getComponent(Object3D).value;
@@ -46,6 +50,10 @@ export class TransformSystem extends System {
 
     for (let i = 0; i < transforms.changed.length; i++) {
       let entity = transforms.changed[i];
+      if (!entity.alive) {
+        continue;
+      }
+
       let transform = entity.getComponent(Transform);
       let object = entity.getComponent(Object3D).value;
 

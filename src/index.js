@@ -32,6 +32,7 @@ export {
   Stop,
   Text,
   TextGeometry,
+  ControllerConnected,
   Transform,
   Visible,
   VRController,
