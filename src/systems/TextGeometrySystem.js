@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { System } from "ecsy";
-import { Object3D } from "../components/Object3D";
+import { Object3DComponent } from "../components/Object3DComponent";
 import { TextGeometry } from "../components/TextGeometry";
 
 export class TextGeometrySystem extends System {
@@ -33,7 +33,7 @@ export class TextGeometrySystem extends System {
         bevelOffset: 0,
         bevelSegments: 3
       });
-      var object = entity.getMutableComponent(Object3D).value;
+      var object = entity.getMutableComponent(Object3DComponent).value;
       object.geometry = geometry;
     });
 
@@ -62,7 +62,7 @@ export class TextGeometrySystem extends System {
 
       var mesh = new THREE.Mesh(geometry, material);
 
-      entity.addComponent(Object3D, { value: mesh });
+      entity.addComponent(Object3DComponent, { value: mesh });
     });
   }
 }

@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { System } from "ecsy";
 import { TextMesh } from "troika-3d-text/dist/textmesh-standalone.esm.js";
-import { Object3D, Text } from "../index.js";
+import { Object3DComponent, Text } from "../index.js";
 
 const anchorMapping = {
   left: 0,
@@ -43,18 +43,18 @@ export class SDFTextSystem extends System {
       textMesh.anchor = [0, 0];
       textMesh.renderOrder = 10; //brute-force fix for ugly antialiasing, see issue #67
       this.updateText(textMesh, textComponent);
-      e.addComponent(Object3D, { value: textMesh });
+      e.addComponent(Object3DComponent, { value: textMesh });
     });
 
     entities.removed.forEach(e => {
-      var object3D = e.getComponent(Object3D).value;
+      var object3D = e.getComponent(Object3DComponent).value;
       var textMesh = object3D.getObjectByName("textMesh");
       textMesh.dispose();
       object3D.remove(textMesh);
     });
 
     entities.changed.forEach(e => {
-      var object3D = e.getComponent(Object3D).value;
+      var object3D = e.getComponent(Object3DComponent).value;
       if (object3D instanceof TextMesh) {
         var textComponent = e.getComponent(Text);
         this.updateText(object3D, textComponent);

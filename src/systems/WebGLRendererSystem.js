@@ -4,7 +4,7 @@ import {
   CameraTagComponent,
   Active,
   WebGLRenderer,
-  Object3D
+  Object3DComponent
 } from "../components/index.js";
 import * as THREE from "three";
 import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
@@ -40,10 +40,10 @@ export class WebGLRendererSystem extends System {
       var renderer = rendererEntity.getComponent(WebGLRendererContext).value;
       this.queries.renderPasses.results.forEach(entity => {
         var pass = entity.getComponent(RenderPass);
-        var scene = pass.scene.getComponent(Object3D).value;
+        var scene = pass.scene.getComponent(Object3DComponent).value;
 
         this.queries.activeCameras.results.forEach(cameraEntity => {
-          var camera = cameraEntity.getComponent(Object3D).value;
+          var camera = cameraEntity.getComponent(Object3DComponent).value;
 
           renderer.render(scene, camera);
         });

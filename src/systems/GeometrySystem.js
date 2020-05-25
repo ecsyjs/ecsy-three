@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { System } from "ecsy";
 import {
   Geometry,
-  Object3D,
+  Object3DComponent,
   Transform,
   //  Element,
   //  Draggable,
@@ -16,9 +16,9 @@ export class GeometrySystem extends System {
   execute() {
     // Removed
     this.queries.entities.removed.forEach(entity => {
-      var object = entity.getRemovedComponent(Object3D).value;
+      var object = entity.getRemovedComponent(Object3DComponent).value;
       var parent = entity.getComponent(Parent, true).value;
-      parent.getComponent(Object3D).value.remove(object);
+      parent.getComponent(Object3DComponent).value.remove(object);
     });
 
     // Added
@@ -89,7 +89,7 @@ export class GeometrySystem extends System {
       //        object.material.color.set(0x333333);
       //      }
 
-      entity.addComponent(Object3D, { value: object });
+      entity.addComponent(Object3DComponent, { value: object });
     });
   }
 }

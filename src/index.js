@@ -15,7 +15,7 @@ export {
   GLTFModel,
   InputState,
   Material,
-  Object3D,
+  Object3DComponent,
   Parent,
   ParentObject3D,
   Play,
