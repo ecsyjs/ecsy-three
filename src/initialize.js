@@ -1,19 +1,21 @@
 import * as THREE from "three";
 
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
+import { UpdateAspectOnResizeSystem } from "./systems/UpdateAspectOnResizeSystem.js";
 import {
   WebGLRenderer,
   Scene,
   Active,
   RenderPass,
-  Camera
+  Camera,
+  UpdateAspectOnResizeTag
 } from "./components/index.js";
 
 import { ECSYThreeWorld } from "./world.js";
 
 export function initialize(world = new ECSYThreeWorld(), options) {
   world
-    // .registerSystem(CameraSystem)
+    .registerSystem(UpdateAspectOnResizeSystem)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
 
   const DEFAULT_OPTIONS = {
@@ -61,6 +63,7 @@ export function initialize(world = new ECSYThreeWorld(), options) {
     camera = world
       .createEntity()
       .addComponent(Camera)
+      .addComponent(UpdateAspectOnResizeTag)
       .addObject3DComponents(
         new THREE.PerspectiveCamera(
           90,

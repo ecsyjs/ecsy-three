@@ -1,7 +1,7 @@
 import { System, Not } from "ecsy";
 import {
   RenderPass,
-  Camera,
+  CameraTagComponent,
   Active,
   WebGLRenderer,
   Object3D
@@ -114,7 +114,7 @@ WebGLRendererSystem.queries = {
     components: [RenderPass]
   },
   activeCameras: {
-    components: [Camera, Active],
+    components: [CameraTagComponent, Active],
     listen: {
       added: true
     }
