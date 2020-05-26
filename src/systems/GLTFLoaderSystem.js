@@ -24,13 +24,12 @@ export class GLTFLoaderSystem extends System {
             }
           }
         });
-        entity.addComponent(GLTFModel, { value: gltf });
 
-        if (component.append) {
-          entity.getMutableComponent(Object3D).value.add(gltf.scene);
-        } else {
-          entity.addComponent(Object3D, { value: gltf.scene });
-        }
+        this.world
+          .createEntity()
+          .addComponent(GLTFModel, { value: gltf })
+          .addObject3DComponents(gltf.scene, component.append && entity);
+
         if (component.onLoaded) {
           component.onLoaded(gltf.scene, gltf);
         }
@@ -38,9 +37,7 @@ export class GLTFLoaderSystem extends System {
     });
 
     this.queries.entities.removed.forEach(entity => {
-      var object = entity.getComponent(Object3D, true).value;
-      var parent = entity.getComponent(Parent, true).value;
-      parent.getComponent(Object3D).value.remove(object);
+      entity.removeObject3DComponents();
     });
   }
 }
