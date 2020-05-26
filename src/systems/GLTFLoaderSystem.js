@@ -9,35 +9,46 @@ var loader = new GLTFLoaderThree(); //.setPath("/assets/models/");
 class GLTFLoaderState extends SystemStateComponent {}
 
 export class GLTFLoaderSystem extends System {
+  init() {
+    this.loaded = [];
+  }
+
   execute() {
     const toLoad = this.queries.toLoad.results;
     while (toLoad.length) {
       const entity = toLoad[0];
       entity.addComponent(GLTFLoaderState);
+      loader.load(entity.getComponent(GLTFLoader).url, gltf =>
+        this.loaded.push([entity, gltf])
+      );
+    }
 
-      loader.load(component.url, gltf => {
-        gltf.scene.traverse(function(child) {
-          if (child.isMesh) {
-            child.receiveShadow = component.receiveShadow;
-            child.castShadow = component.castShadow;
+    // Do the actual entity creation inside the system tick not in the loader callback
+    for (let i = 0; i < this.loaded.length; i++) {
+      const [entity, gltf] = this.loaded[i];
+      const component = entity.getComponent(GLTFLoader);
+      gltf.scene.traverse(function(child) {
+        if (child.isMesh) {
+          child.receiveShadow = component.receiveShadow;
+          child.castShadow = component.castShadow;
 
-            if (component.envMapOverride) {
-              child.material.envMap = component.envMapOverride;
-            }
+          if (component.envMapOverride) {
+            child.material.envMap = component.envMapOverride;
           }
-        });
-
-        this.world
-          .createEntity()
-          .addComponent(GLTFModel, { value: gltf })
-          .addObject3DComponents(gltf.scene, component.append && entity);
-
-        if (component.onLoaded) {
-          component.onLoaded(gltf.scene, gltf);
         }
       });
 
+      this.world
+        .createEntity()
+        .addComponent(GLTFModel, { value: gltf })
+        .addObject3DComponents(gltf.scene, component.append && entity);
+
+      if (component.onLoaded) {
+        component.onLoaded(gltf.scene, gltf);
+      }
     }
+    this.loaded.length = 0;
+
     const toUnload = this.queries.toUnload.results;
     while (toUnload.length) {
       const entity = toUnload[0];
