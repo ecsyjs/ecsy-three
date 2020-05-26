@@ -14,14 +14,23 @@
 
 		 // ecsy-three API
 
-			class Rotating extends Component {}
+		 class Rotating extends Component {
+			 constructor() {
+				 super();
+				 this.reset()
+			 }
+			 reset() {
+				 this.speed = 1;
+			 }
+		 }
 
 			class RotationSystem extends System {
 				execute(delta) {
 					this.queries.entities.results.forEach(entity => {
-						var rotation = entity.getMutableComponent(Object3D).value.rotation;
-						rotation.x += 0.5 * delta;
-						rotation.y += 0.1 * delta;
+						const obj = entity.getMutableComponent(Object3D).value;
+						const rotating = entity.getComponent(Rotating);
+						obj.rotation.x += 0.5 * rotating.speed * delta;
+						obj.rotation.y += 0.1 * rotating.speed * delta;
 					});
 				}
 			}
@@ -38,8 +47,8 @@
 				Object3D,
 				WebGLRendererSystem,
 				ECSYThreeWorld,
-				addObject3DComponents,
-				removeObject3DComponents
+				GLTFLoader,
+				GLTFLoaderSystem
 			} from '../build/ecsy-three.module-unpkg.js';
 
 			var world, scene, camera, mesh, renderer;
@@ -50,37 +59,45 @@
 				// Create a new world to hold all our entities and systems
 				world = new ECSYThreeWorld();
 
-				// Register our custom sytem
-				world.registerSystem(RotationSystem);
-
 				// Initialize the default sets of entities and systems
 				let data = initialize(world);
 				console.log(data)
 
+				world.registerSystem(GLTFLoaderSystem);
+				// Register our custom sytem
+				world.registerSystem(RotationSystem);
+
 				// Grab the initialized entities
 				let {scene, renderer, camera} = data.entities;
-				let scene3d = scene.getMutableComponent(Object3D).value;
-				let camera3d = camera.getMutableComponent(Object3D).value;
 
 				// Modify the position for the default camera
-				camera3d.position.z = 40;
+				let camera3d = camera.getMutableComponent(Object3D).value;
+				camera3d.position.z = 5;
+
+				world.createEntity().addObject3DComponents(new THREE.AmbientLight(), scene);
 
 				// Create an entity to handle our rotating box
 				var rotatingBox = world.createEntity()
 									   .addComponent(Rotating)
 									   .addObject3DComponents(new THREE.Mesh(
-										   new THREE.BoxBufferGeometry( 20, 20, 20 ),
+										   new THREE.BoxBufferGeometry( 1, 1, 1 ),
 										   new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
 									   ), scene);
 				world.removeEntity(rotatingBox)
 				// rotatingBox should no longer be in the world or the threejs sceen
 
 				var rotatingBox2 = world.createEntity()
-									   .addComponent(Rotating)
-									   .addObject3DComponents(new THREE.Mesh(
-										   new THREE.BoxBufferGeometry( 20, 20, 20 ),
-										   new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
-									   ), scene);
+				 						.addComponent(Rotating)
+				 						.addObject3DComponents(new THREE.Mesh(
+											new THREE.BoxBufferGeometry( 1, 1, 1 ),
+											new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
+										), scene);
+
+
+				var gltfEntity = world.createEntity()
+									  .addComponent(Rotating, {speed: -2})
+									  .addObject3DComponents(new THREE.Group(), scene)
+									  .addComponent(GLTFLoader, {url: "Duck.glb"})
 
 				// Let's begin
 				world.execute();
