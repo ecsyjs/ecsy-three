@@ -1,17 +1,19 @@
 import { GLTFLoader as GLTFLoaderThree } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { System } from "ecsy";
-import { Parent } from "../components/Parent.js";
-import { Object3D } from "../components/Object3D.js";
+import { System, SystemStateComponent, Not } from "ecsy";
 import { GLTFModel } from "../components/GLTFModel.js";
 import { GLTFLoader } from "../components/GLTFLoader.js";
 
 // @todo Use parameter and loader manager
 var loader = new GLTFLoaderThree(); //.setPath("/assets/models/");
 
+class GLTFLoaderState extends SystemStateComponent {}
+
 export class GLTFLoaderSystem extends System {
   execute() {
-    this.queries.entities.added.forEach(entity => {
-      var component = entity.getComponent(GLTFLoader);
+    const toLoad = this.queries.toLoad.results;
+    while (toLoad.length) {
+      const entity = toLoad[0];
+      entity.addComponent(GLTFLoaderState);
 
       loader.load(component.url, gltf => {
         gltf.scene.traverse(function(child) {
@@ -34,20 +36,22 @@ export class GLTFLoaderSystem extends System {
           component.onLoaded(gltf.scene, gltf);
         }
       });
-    });
 
-    this.queries.entities.removed.forEach(entity => {
+    }
+    const toUnload = this.queries.toUnload.results;
+    while (toUnload.length) {
+      const entity = toUnload[0];
+      entity.removeComponent(GLTFLoaderState);
       entity.removeObject3DComponents();
-    });
+    }
   }
 }
 
 GLTFLoaderSystem.queries = {
-  entities: {
-    components: [GLTFLoader],
-    listen: {
-      added: true,
-      removed: true
-    }
+  toLoad: {
+    components: [GLTFLoader, Not(GLTFLoaderState)]
+  },
+  toUnload: {
+    components: [GLTFLoaderState, Not(GLTFLoader)]
   }
 };
