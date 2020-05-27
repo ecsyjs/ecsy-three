@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import { System } from "ecsy";
-import { Parent, Scene, Object3DComponent, Environment } from "../components/index.js";
+import { Scene, Object3DComponent, Environment } from "../components/index.js";
 
 export class EnvironmentSystem extends System {
   execute() {
@@ -54,7 +54,9 @@ export class EnvironmentSystem extends System {
         map: groundTexture
       });
 
-      let scene = entity.getComponent(Scene).value.getComponent(Object3DComponent).value;
+      let scene = entity
+        .getComponent(Scene)
+        .value.getComponent(Object3DComponent).value;
       //scene.add(mesh);
       var geometry = new THREE.PlaneBufferGeometry(
         STAGE_SIZE + 2,
@@ -67,8 +69,7 @@ export class EnvironmentSystem extends System {
       object.rotation.x = -Math.PI / 2;
       object.receiveShadow = true;
 
-      entity.addComponent(Object3DComponent, { value: object });
-      entity.addComponent(Parent, { value: window.entityScene });
+      entity.addObject3DComponents(object);
 
       const color = 0x333333;
       const near = 20;
