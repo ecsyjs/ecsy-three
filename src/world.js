@@ -7,7 +7,9 @@ import {
 
 export class ECSYThreeWorld extends World {
   createEntity() {
-    const e = super.createEntity();
+    // We can pass arguments to createEntity as "name"
+    const e = super.createEntity.apply(this, arguments);
+
     // TODO do this on the Entity prototype elsewhere instead
     e.addObject3DComponents = addObject3DComponents.bind(null, e);
     e.removeObject3DComponents = removeObject3DComponents.bind(null, e);
