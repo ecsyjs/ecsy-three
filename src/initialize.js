@@ -14,6 +14,12 @@ import {
 import { ECSYThreeWorld } from "./world.js";
 
 export function initialize(world = new ECSYThreeWorld(), options) {
+  if (!(world instanceof ECSYThreeWorld)) {
+    throw new Error(
+      "The provided 'world' paremeter is not an instance of 'ECSYThreeWorld'"
+    );
+  }
+
   world
     .registerSystem(UpdateAspectOnResizeSystem)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
