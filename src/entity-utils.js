@@ -26,7 +26,7 @@ export function addObject3DComponents(entity, obj, parentEntity) {
     entity.addComponent(Tag);
   }
 
-  if (parentEntity === null) {
+  if (parentEntity === undefined) {
     // warn
     console.warn(
       "addObject3DComponents: `parentEntity` must be explicitly set to an Entity or null"
@@ -35,12 +35,15 @@ export function addObject3DComponents(entity, obj, parentEntity) {
 
   // @todo which one should have preference? or parentEntity?
   if (parentEntity) {
-    parentEntity.getComponent(Object3DComponent).value.add(obj);
+    parentEntity.getObject3D().add(obj);
     if (entity.hasComponent(ParentOnAdd)) {
       // warn
     }
   } else if (entity.hasComponent(ParentOnAdd)) {
-    entity.getComponent(ParentOnAdd).value.add(obj);
+    entity
+      .getComponent(ParentOnAdd)
+      .value.getObject3D()
+      .add(obj);
     entity.removeComponent(ParentOnAdd); // @todo ,true ?
   }
 
