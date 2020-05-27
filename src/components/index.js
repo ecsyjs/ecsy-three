@@ -15,6 +15,7 @@ export { InputState } from "./InputState.js";
 export { Material } from "./Material.js";
 export { Object3DComponent } from "./Object3DComponent.js";
 export { Parent } from "./Parent.js";
+export { ParentOnAdd } from "./ParentOnAdd.js";
 export { ParentObject3D } from "./ParentObject3D.js";
 export { Play } from "./Play.js";
 export { Position } from "./Position.js";
