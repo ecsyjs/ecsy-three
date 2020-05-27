@@ -9,9 +9,10 @@
 <body>
 	<script type="module">
 		import {
+			ECSYThreeWorld,
 			initialize,
 			// Components
-			Parent,
+			ParentOnAdd,
 			WebGLRendererContext,
 			SkyBox,
 			Object3DComponent,
@@ -28,7 +29,7 @@
 
 		function init() {
 
-			world = new World();
+			world = new ECSYThreeWorld();
 
 			let data = initialize(world, {vr: true});
 
@@ -40,7 +41,7 @@
 			var skybox = world.createEntity().addComponent(SkyBox, {
 				textureUrl: "textures/cube/sun_temple_stripe_stereo.jpg",
 				type: "cubemap-stereo"
-			}).addComponent(Parent, { value: scene });
+			}).addComponent(ParentOnAdd, { value: scene });
 
 			world.execute();
 		}

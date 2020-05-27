@@ -67,8 +67,6 @@
 
 				// Grab the initialized entities
 				let {scene, renderer, camera} = data.entities;
-				let scene3d = scene.getMutableComponent(Object3D).value;
-				let camera3d = camera.getMutableComponent(Object3D).value;
 
 				// Modify the position for the default camera
 				let camera3d = camera.getMutableComponent(Object3DComponent).value;
