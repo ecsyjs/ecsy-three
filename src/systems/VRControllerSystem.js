@@ -26,6 +26,14 @@ export class VRControllerSystem extends System {
       group.add(controller);
       entity.addComponent(Object3DComponent, { value: group });
 
+      controller.addEventListener("connected", () => {
+        entity.addComponent(ControllerConnected);
+      });
+
+      controller.addEventListener("disconnected", () => {
+        entity.removeComponent(ControllerConnected);
+      });
+
       if (entity.hasComponent(VRControllerBasicBehaviour)) {
         var behaviour = entity.getComponent(VRControllerBasicBehaviour);
         Object.keys(behaviour).forEach(eventName => {
