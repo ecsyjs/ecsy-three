@@ -2,8 +2,10 @@ import {
   Object3DComponent,
   MeshTagComponent,
   SceneTagComponent,
-  CameraTagComponent
+  CameraTagComponent,
+  ParentOnAdd
 } from "./components/index.js";
+import { ECSYThreeWorld } from "./world.js";
 
 function tagClassForObject3D(obj) {
   // TODO support more tags and probably a way to add user defined ones
@@ -23,15 +25,32 @@ export function addObject3DComponents(entity, obj, parentEntity) {
   if (Tag) {
     entity.addComponent(Tag);
   }
+
+  if (parentEntity === null) {
+    // warn
+    console.warn(
+      "addObject3DComponents: `parentEntity` must be explicitly set to an Entity or null"
+    );
+  }
+
+  // @todo which one should have preference? or parentEntity?
   if (parentEntity) {
     parentEntity.getComponent(Object3DComponent).value.add(obj);
+    if (entity.hasComponent(ParentOnAdd)) {
+      // warn
+    }
+  } else if (entity.hasComponent(ParentOnAdd)) {
+    entity.getComponent(ParentOnAdd).value.add(obj);
+    entity.removeComponent(ParentOnAdd); // @todo ,true ?
   }
+
   return entity;
 }
+
 export function removeObject3DComponents(entity, unparent = true) {
+  const obj = entity.getComponent(Object3DComponent, true).value;
   if (unparent) {
     // Using "true" as the entity could be removed somewhere else
-    const obj = entity.getComponent(Object3DComponent, true).value;
     obj.parent && obj.parent.remove(obj);
   }
   entity.removeComponent(Object3DComponent);
@@ -41,3 +60,4 @@ export function removeObject3DComponents(entity, unparent = true) {
   }
   obj.entity = null;
 }
+

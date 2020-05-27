@@ -16,8 +16,6 @@ export {
   InputState,
   Material,
   Object3DComponent,
-  Parent,
-  ParentObject3D,
   Play,
   Position,
   RenderPass,
