@@ -30,7 +30,8 @@ export function addObject3DComponents(entity, obj, parentEntity) {
 }
 export function removeObject3DComponents(entity, unparent = true) {
   if (unparent) {
-    const obj = entity.getComponent(Object3DComponent).value;
+    // Using "true" as the entity could be removed somewhere else
+    const obj = entity.getComponent(Object3DComponent, true).value;
     obj.parent && obj.parent.remove(obj);
   }
   entity.removeComponent(Object3DComponent);
