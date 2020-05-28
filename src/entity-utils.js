@@ -3,7 +3,10 @@ import {
   MeshTagComponent,
   SceneTagComponent,
   CameraTagComponent,
-  ParentOnAdd
+  ParentOnAdd,
+  Position,
+  Rotation,
+  Scale
 } from "./components/index.js";
 import { ECSYThreeWorld } from "./world.js";
 
@@ -18,14 +21,43 @@ function tagClassForObject3D(obj) {
   }
 }
 
-export function addObject3DComponents(entity, obj, parentEntity) {
-  obj.entity = entity;
-  entity.addComponent(Object3DComponent, { value: obj });
-  const Tag = tagClassForObject3D(obj);
+export function addObject3DComponents(entity, object3D, parentEntity) {
+  object3D.entity = entity;
+  entity.addComponent(Object3DComponent, { value: object3D });
+  const Tag = tagClassForObject3D(object3D);
   if (Tag) {
     entity.addComponent(Tag);
   }
 
+  // Transforms
+  let position;
+  if (entity.hasComponent(Position)) {
+    position = entity.getMutableComponent(Position);
+    object3D.position.copy(position.value);
+    position.value = object3D.position;
+  } else {
+    entity.addComponent(Position, object3D.position);
+  }
+
+  let rotation;
+  if (entity.hasComponent(Rotation)) {
+    rotation = entity.getMutableComponent(Rotation);
+    object3D.rotation.copy(rotation.value);
+    rotation.value = object3D.rotation;
+  } else {
+    entity.addComponent(Rotation, object3D.rotation);
+  }
+
+  let scale;
+  if (entity.hasComponent(Scale)) {
+    scale = entity.getMutableComponent(Scale);
+    object3D.scale.copy(scale.value);
+    scale.value = object3D.scale;
+  } else {
+    entity.addComponent(Scale, object3D.scale);
+  }
+
+  // Hierarchy
   if (parentEntity === undefined) {
     // warn
     console.warn(
@@ -35,7 +67,7 @@ export function addObject3DComponents(entity, obj, parentEntity) {
 
   // @todo which one should have preference? or parentEntity?
   if (parentEntity) {
-    parentEntity.getObject3D().add(obj);
+    parentEntity.getObject3D().add(object3D);
     if (entity.hasComponent(ParentOnAdd)) {
       // warn
     }
@@ -43,7 +75,7 @@ export function addObject3DComponents(entity, obj, parentEntity) {
     entity
       .getComponent(ParentOnAdd)
       .value.getObject3D()
-      .add(obj);
+      .add(object3D);
     entity.removeComponent(ParentOnAdd); // @todo ,true ?
   }
 
