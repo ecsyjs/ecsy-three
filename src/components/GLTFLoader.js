@@ -8,7 +8,7 @@ export class GLTFLoader {
     this.receiveShadow = false;
     this.castShadow = false;
     this.envMapOverride = null;
-    this.append = true;
+    this.append = false;
     this.onLoaded = null;
   }
 }
