@@ -43,18 +43,18 @@ export class SDFTextSystem extends System {
       textMesh.anchor = [0, 0];
       textMesh.renderOrder = 10; //brute-force fix for ugly antialiasing, see issue #67
       this.updateText(textMesh, textComponent);
-      e.addComponent(Object3DComponent, { value: textMesh });
+      e.addObject3DComponents(textMesh);
     });
 
     entities.removed.forEach(e => {
-      var object3D = e.getComponent(Object3DComponent).value;
+      var object3D = e.getObject3D();
       var textMesh = object3D.getObjectByName("textMesh");
       textMesh.dispose();
       object3D.remove(textMesh);
     });
 
     entities.changed.forEach(e => {
-      var object3D = e.getComponent(Object3DComponent).value;
+      var object3D = e.getObject3D();
       if (object3D instanceof TextMesh) {
         var textComponent = e.getComponent(Text);
         this.updateText(object3D, textComponent);
