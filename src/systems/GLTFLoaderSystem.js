@@ -38,10 +38,15 @@ export class GLTFLoaderSystem extends System {
         }
       });
 
-      this.world
-        .createEntity()
-        .addComponent(GLTFModel, { value: gltf })
-        .addObject3DComponents(gltf.scene, component.append && entity);
+      entity.addComponent(GLTFModel, { value: gltf });
+
+      if (component.append) {
+        // @todo Check if object3D does not  already exist ?
+        entity.getObject3D().add(gltf.scene);
+      } else {
+        // @todo Check if object3D already exist ?
+        entity.addObject3DComponents(gltf.scene, component.parent);
+      }
 
       if (component.onLoaded) {
         component.onLoaded(gltf.scene, gltf);
