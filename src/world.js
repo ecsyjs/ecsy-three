@@ -2,7 +2,8 @@ import { World } from "ecsy";
 import { Object3DComponent } from "./components/index.js";
 import {
   addObject3DComponents,
-  removeObject3DComponents
+  removeObject3DComponents,
+  getObject3D
 } from "./entity-utils.js";
 
 export class ECSYThreeWorld extends World {
@@ -13,6 +14,7 @@ export class ECSYThreeWorld extends World {
     // TODO do this on the Entity prototype elsewhere instead
     e.addObject3DComponents = addObject3DComponents.bind(null, e);
     e.removeObject3DComponents = removeObject3DComponents.bind(null, e);
+    e.getObject3D = getObject3D.bind(null, e);
     return e;
   }
 

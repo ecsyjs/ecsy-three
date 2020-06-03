@@ -41,3 +41,7 @@ export function removeObject3DComponents(entity, unparent = true) {
   }
   obj.entity = null;
 }
+
+export function getObject3D(entity) {
+  return entity.getComponent(Object3DComponent).value;
+}
