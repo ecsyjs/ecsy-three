@@ -37,7 +37,7 @@ export class SkyBoxSystem extends System {
         skyBoxR.layers.set(2);
         group.add(skyBoxR);
 
-        entity.addObject3DComponent(group, false);
+        entity.addObject3DComponents(group, false);
       } else {
         console.warn("Unknown skybox type: ", skybox.type);
       }
