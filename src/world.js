@@ -1,21 +1,10 @@
 import { World } from "ecsy";
+import { ECSYThreeEntity } from "./entity.js";
 import { Object3DComponent } from "./components/index.js";
-import {
-  addObject3DComponents,
-  removeObject3DComponents,
-  getObject3D
-} from "./entity-utils.js";
 
 export class ECSYThreeWorld extends World {
-  createEntity() {
-    // We can pass arguments to createEntity as "name"
-    const e = super.createEntity.apply(this, arguments);
-
-    // TODO do this on the Entity prototype elsewhere instead
-    e.addObject3DComponents = addObject3DComponents.bind(null, e);
-    e.removeObject3DComponents = removeObject3DComponents.bind(null, e);
-    e.getObject3D = getObject3D.bind(null, e);
-    return e;
+  constructor(options) {
+    super(Object.assign({}, { entityClass: ECSYThreeEntity }, options));
   }
 
   // TODO expose removeEntity on ECSY.World and change `this.entityManager` usage to `super``

@@ -41,7 +41,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "peerDependencies": {
-    "ecsy": "^0.2.3",
+    "ecsy": "^0.2.6",
     "three": "^0.116.1",
     "troika-3d-text": "^0.17.0"
   },

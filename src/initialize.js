@@ -46,7 +46,7 @@ export function initialize(world = new ECSYThreeWorld(), options) {
   let scene = world
     .createEntity()
     .addComponent(Scene)
-    .addObject3DComponents(new THREE.Scene());
+    .addObject3DComponent(new THREE.Scene());
 
   let renderer = world.createEntity().addComponent(WebGLRenderer, {
     ar: options.ar,
@@ -70,7 +70,7 @@ export function initialize(world = new ECSYThreeWorld(), options) {
       .createEntity()
       .addComponent(Camera)
       .addComponent(UpdateAspectOnResizeTag)
-      .addObject3DComponents(
+      .addObject3DComponent(
         new THREE.PerspectiveCamera(
           90,
           window.innerWidth / window.innerHeight,

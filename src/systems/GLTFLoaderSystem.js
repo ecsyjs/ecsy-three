@@ -41,7 +41,7 @@ export class GLTFLoaderSystem extends System {
       this.world
         .createEntity()
         .addComponent(GLTFModel, { value: gltf })
-        .addObject3DComponents(gltf.scene, component.append && entity);
+        .addObject3DComponent(gltf.scene, component.append && entity);
 
       if (component.onLoaded) {
         component.onLoaded(gltf.scene, gltf);
@@ -53,7 +53,7 @@ export class GLTFLoaderSystem extends System {
     while (toUnload.length) {
       const entity = toUnload[0];
       entity.removeComponent(GLTFLoaderState);
-      entity.removeObject3DComponents();
+      entity.removeObject3DComponent();
     }
   }
 }

@@ -10,7 +10,7 @@
 
 		<script type="module">
 			import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-			import { Component, System } from 'https://unpkg.com/ecsy/build/ecsy.module.js';
+			import { Component, System } from 'https://unpkg.com/ecsy@0.2.6/build/ecsy.module.js';
 
 		 // ecsy-three API
 
@@ -73,12 +73,12 @@
 				let camera3d = camera.getMutableComponent(Object3DComponent).value;
 				camera3d.position.z = 5;
 
-				world.createEntity().addObject3DComponents(new THREE.AmbientLight(), scene);
+				world.createEntity().addObject3DComponent(new THREE.AmbientLight(), scene);
 
 				// Create an entity to handle our rotating box
 				var rotatingBox = world.createEntity()
 									   .addComponent(Rotating)
-									   .addObject3DComponents(new THREE.Mesh(
+									   .addObject3DComponent(new THREE.Mesh(
 										   new THREE.BoxBufferGeometry( 20, 20, 20 ),
 										   new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
 									   ), scene);
@@ -87,7 +87,7 @@
 
 				var rotatingBox2 = world.createEntity()
 				 						.addComponent(Rotating)
-				 						.addObject3DComponents(new THREE.Mesh(
+				 						.addObject3DComponent(new THREE.Mesh(
 											new THREE.BoxBufferGeometry( 1, 1, 1 ),
 											new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
 										), scene);
@@ -95,7 +95,7 @@
 
 				var gltfEntity = world.createEntity()
 									  .addComponent(Rotating, {speed: -2})
-									  .addObject3DComponents(new THREE.Group(), scene)
+									  .addObject3DComponent(new THREE.Group(), scene)
 									  .addComponent(GLTFLoader, {url: "Duck.glb"})
 
 				// Let's begin
