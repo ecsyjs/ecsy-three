@@ -27,7 +27,7 @@
 			class RotationSystem extends System {
 				execute(delta) {
 					this.queries.entities.results.forEach(entity => {
-						var rotation = entity.getMutableComponent(Object3DComponent).value.rotation;
+						var rotation = entity.getObject3D().rotation;
 						rotation.x += 0.5 * delta;
 						rotation.y += 0.1 * delta;
 					});
@@ -67,10 +67,10 @@
 
 				// Grab the initialized entities
 				let {scene, renderer, camera} = data.entities;
-				let scene3d = scene.getMutableComponent(Object3DComponent).value;
+				let scene3d = scene.getObject3D();
 
 				// Modify the position for the default camera
-				let camera3d = camera.getMutableComponent(Object3DComponent).value;
+				let camera3d = camera.getObject3D();
 				camera3d.position.z = 5;
 
 				world.createEntity().addObject3DComponent(new THREE.AmbientLight(), scene);

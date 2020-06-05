@@ -26,7 +26,7 @@ export class ECSYThreeEntity extends _Entity {
       this.addComponent(Tag);
     }
     if (parentEntity) {
-      parentEntity.getComponent(Object3DComponent).value.add(obj);
+      parentEntity.getObject3D().add(obj);
     }
     return this;
   }

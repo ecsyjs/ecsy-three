@@ -40,10 +40,10 @@ export class WebGLRendererSystem extends System {
       var renderer = rendererEntity.getComponent(WebGLRendererContext).value;
       this.queries.renderPasses.results.forEach(entity => {
         var pass = entity.getComponent(RenderPass);
-        var scene = pass.scene.getComponent(Object3DComponent).value;
+        var scene = pass.scene.getObject3D();
 
         this.queries.activeCameras.results.forEach(cameraEntity => {
-          var camera = cameraEntity.getComponent(Object3DComponent).value;
+          var camera = cameraEntity.getObject3D();
 
           renderer.render(scene, camera);
         });

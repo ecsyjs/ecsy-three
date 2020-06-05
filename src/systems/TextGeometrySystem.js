@@ -33,8 +33,7 @@ export class TextGeometrySystem extends System {
         bevelOffset: 0,
         bevelSegments: 3
       });
-      var object = entity.getMutableComponent(Object3DComponent).value;
-      object.geometry = geometry;
+      entity.getObject3D().geometry = geometry;
     });
 
     var added = this.queries.entities.added;

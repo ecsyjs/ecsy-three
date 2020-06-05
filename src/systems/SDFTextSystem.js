@@ -47,14 +47,14 @@ export class SDFTextSystem extends System {
     });
 
     entities.removed.forEach(e => {
-      var object3D = e.getComponent(Object3DComponent).value;
+      var object3D = e.getObject3D();
       var textMesh = object3D.getObjectByName("textMesh");
       textMesh.dispose();
       object3D.remove(textMesh);
     });
 
     entities.changed.forEach(e => {
-      var object3D = e.getComponent(Object3DComponent).value;
+      var object3D = e.getObject3D();
       if (object3D instanceof TextMesh) {
         var textComponent = e.getComponent(Text);
         this.updateText(object3D, textComponent);

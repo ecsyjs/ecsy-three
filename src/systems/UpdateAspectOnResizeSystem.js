@@ -21,7 +21,7 @@ export class UpdateAspectOnResizeSystem extends System {
   execute() {
     let cameras = this.queries.cameras.results;
     for (let i = 0; i < cameras.length; i++) {
-      let cameraObj = cameras[i].getMutableComponent(Object3DComponent).value;
+      let cameraObj = cameras[i].getObject3D();
       if (cameraObj.aspect !== this.aspect) {
         cameraObj.aspect = this.aspect;
         cameraObj.updateProjectionMatrix();

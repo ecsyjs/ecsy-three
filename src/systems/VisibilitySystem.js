@@ -4,9 +4,7 @@ import { Visible, Object3DComponent } from "../components/index.js";
 export class VisibilitySystem extends System {
   processVisibility(entities) {
     entities.forEach(entity => {
-      entity.getMutableComponent(Object3DComponent).value.visible = entity.getComponent(
-        Visible
-      ).value;
+      entity.getObject3D().visible = entity.getComponent(Visible).value;
     });
   }
 

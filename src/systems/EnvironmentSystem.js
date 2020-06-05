@@ -54,7 +54,7 @@ export class EnvironmentSystem extends System {
         map: groundTexture
       });
 
-      let scene = entity.getComponent(Scene).value.getComponent(Object3DComponent).value;
+      let scene = entity.getObject3D();
       //scene.add(mesh);
       var geometry = new THREE.PlaneBufferGeometry(
         STAGE_SIZE + 2,

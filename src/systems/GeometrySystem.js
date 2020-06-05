@@ -18,7 +18,7 @@ export class GeometrySystem extends System {
     this.queries.entities.removed.forEach(entity => {
       var object = entity.getRemovedComponent(Object3DComponent).value;
       var parent = entity.getComponent(Parent, true).value;
-      parent.getComponent(Object3DComponent).value.remove(object);
+      parent.getObject3D().remove(object);
     });
 
     // Added
