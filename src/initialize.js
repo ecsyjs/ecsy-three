@@ -13,12 +13,17 @@ import {
 
 import { ECSYThreeWorld } from "./world.js";
 
+import { inflatorManager } from "./Object3DTagInflator.js";
+import { defaultObject3DInflator } from "./defaultObject3DInflator.js";
+
 export function initialize(world = new ECSYThreeWorld(), options) {
   if (!(world instanceof ECSYThreeWorld)) {
     throw new Error(
       "The provided 'world' paremeter is not an instance of 'ECSYThreeWorld'"
     );
   }
+
+  inflatorManager.addInflator(defaultObject3DInflator);
 
   world
     .registerSystem(UpdateAspectOnResizeSystem)

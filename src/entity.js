@@ -1,30 +1,12 @@
 import { _Entity } from "ecsy";
-import {
-  Object3DComponent,
-  MeshTagComponent,
-  SceneTagComponent,
-  CameraTagComponent
-} from "./components/index.js";
-
-function tagClassForObject3D(obj) {
-  // TODO support more tags and probably a way to add user defined ones
-  if (obj.isMesh) {
-    return MeshTagComponent;
-  } else if (obj.isScene) {
-    return SceneTagComponent;
-  } else if (obj.isCamera) {
-    return CameraTagComponent;
-  }
-}
+import { Object3DComponent } from "./components/index.js";
+import { inflatorManager } from "./Object3DTagInflator.js";
 
 export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {
     obj.entity = this;
     this.addComponent(Object3DComponent, { value: obj });
-    const Tag = tagClassForObject3D(obj);
-    if (Tag) {
-      this.addComponent(Tag);
-    }
+    inflatorManager.addTagClassesForObject3D(this, obj);
     if (parentEntity) {
       parentEntity.getObject3D().add(obj);
     }
@@ -38,10 +20,7 @@ export class ECSYThreeEntity extends _Entity {
       obj.parent && obj.parent.remove(obj);
     }
     this.removeComponent(Object3DComponent);
-    const Tag = tagClassForObject3D(obj);
-    if (Tag) {
-      this.removeComponent(Tag);
-    }
+    inflatorManager.removeTagClassesForObject3D(this, obj);
     obj.entity = null;
   }
 
@@ -49,12 +28,12 @@ export class ECSYThreeEntity extends _Entity {
     if (this.hasComponent(Object3DComponent)) {
       const obj = this.getObject3D();
       obj.traverse(o => {
-        this.entityManager.removeEntity(o.entity, forceImmediate);
+        this._world.removeEntity(o.entity, forceImmediate);
         o.entity = null;
       });
       obj.parent && obj.parent.remove(obj);
     } else {
-      this.entityManager.removeEntity(this, forceImmediate);
+      this._world.removeEntity(this, forceImmediate);
     }
   }
 
