@@ -45,6 +45,19 @@ export class ECSYThreeEntity extends _Entity {
     obj.entity = null;
   }
 
+  remove(forceImmediate) {
+    if (this.hasComponent(Object3DComponent)) {
+      const obj = this.getObject3D();
+      obj.traverse(o => {
+        this.entityManager.removeEntity(o.entity, forceImmediate);
+        o.entity = null;
+      });
+      obj.parent && obj.parent.remove(obj);
+    } else {
+      this.entityManager.removeEntity(this, forceImmediate);
+    }
+  }
+
   getObject3D() {
     return this.getComponent(Object3DComponent).value;
   }
