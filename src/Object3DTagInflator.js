@@ -15,11 +15,11 @@ class Object3DTagInflator {
   }
 
   addTagClassesForObject3D(entity, obj3D) {
-    this._inflators.forEach(inflator => inflator(entity, obj3D));
+    this._inflators.forEach(inflator => inflator.add(entity, obj3D));
   }
 
   removeTagClassesForObject3D(entity, obj3D) {
-    this._inflators.forEach(inflator => {});
+    this._inflators.forEach(inflator => inflator.remove(entity, obj3D));
   }
 }
 

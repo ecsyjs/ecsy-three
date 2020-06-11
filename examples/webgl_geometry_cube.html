@@ -82,7 +82,7 @@
 										   new THREE.BoxBufferGeometry( 20, 20, 20 ),
 										   new THREE.MeshBasicMaterial( { map: new THREE.TextureLoader().load( 'textures/crate.gif' ) } )
 									   ), scene);
-				world.removeEntity(rotatingBox)
+				rotatingBox.remove();
 				// rotatingBox should no longer be in the world or the threejs sceen
 
 				var rotatingBox2 = world.createEntity()
