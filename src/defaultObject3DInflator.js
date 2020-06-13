@@ -5,7 +5,7 @@ import {
 } from "./components/index.js";
 
 export const defaultObject3DInflator = {
-  add: (entity, obj) => {
+  addTagClassesForObject3D: (entity, obj) => {
     // TODO support more tags and probably a way to add user defined ones
     if (obj.isMesh) {
       entity.addComponent(MeshTagComponent);
@@ -15,7 +15,7 @@ export const defaultObject3DInflator = {
       entity.addComponent(CameraTagComponent);
     }
   },
-  remove: (entity, obj) => {
+  removeTagClassesFromObject3D: (entity, obj) => {
     // TODO support more tags and probably a way to add user defined ones
     if (obj.isMesh) {
       entity.removeComponent(MeshTagComponent);

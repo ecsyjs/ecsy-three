@@ -1,12 +1,11 @@
 import { _Entity } from "ecsy";
 import { Object3DComponent } from "./components/index.js";
-import { inflatorManager } from "./Object3DTagInflator.js";
 
 export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {
     obj.entity = this;
     this.addComponent(Object3DComponent, { value: obj });
-    inflatorManager.addTagClassesForObject3D(this, obj);
+    this._world.world.object3DInflator.addTagClassesForObject3D(this, obj);
     if (parentEntity) {
       parentEntity.getObject3D().add(obj);
     }
@@ -20,7 +19,7 @@ export class ECSYThreeEntity extends _Entity {
       obj.parent && obj.parent.remove(obj);
     }
     this.removeComponent(Object3DComponent);
-    inflatorManager.removeTagClassesForObject3D(this, obj);
+    this._world.world.object3DInflator.removeTagClassesForObject3D(this, obj);
     obj.entity = null;
   }
 
