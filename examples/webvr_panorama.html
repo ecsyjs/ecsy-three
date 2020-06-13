@@ -9,17 +9,16 @@
 <body>
 	<script type="module">
 		import {
+			ECSYThreeWorld,
 			initialize,
 			// Components
 			Parent,
 			WebGLRendererContext,
 			SkyBox,
-			Object3D,
+			Object3DComponent,
 			// Systems
 			SkyBoxSystem
 		} from '../build/ecsy-three.module-unpkg.js';
-
-		import { World } from 'https://unpkg.com/ecsy/build/ecsy.module.js';
 
 		var world;
 
@@ -28,7 +27,7 @@
 
 		function init() {
 
-			world = new World();
+			world = new ECSYThreeWorld();
 
 			let data = initialize(world, {vr: true});
 

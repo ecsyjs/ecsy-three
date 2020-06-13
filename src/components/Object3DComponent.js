@@ -1,4 +1,4 @@
-export class Object3D {
+export class Object3DComponent {
   constructor() {
     this.value = null;
   }

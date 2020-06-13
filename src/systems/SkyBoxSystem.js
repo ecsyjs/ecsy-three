@@ -1,5 +1,5 @@
 import { System, Not } from "ecsy";
-import { SkyBox, Object3D } from "../components/index.js";
+import { SkyBox, Object3DComponent } from "../components/index.js";
 import * as THREE from "three";
 
 export class SkyBoxSystem extends System {
@@ -37,7 +37,7 @@ export class SkyBoxSystem extends System {
         skyBoxR.layers.set(2);
         group.add(skyBoxR);
 
-        entity.addComponent(Object3D, { value: group });
+        entity.addObject3DComponent(group, false);
       } else {
         console.warn("Unknown skybox type: ", skybox.type);
       }
@@ -83,6 +83,6 @@ function getTexturesFromAtlasFile(atlasImgUrl, tilesNum) {
 
 SkyBoxSystem.queries = {
   entities: {
-    components: [SkyBox, Not(Object3D)]
+    components: [SkyBox, Not(Object3DComponent)]
   }
 };

@@ -15,7 +15,7 @@ export {
   GLTFModel,
   InputState,
   Material,
-  Object3D,
+  Object3DComponent,
   Parent,
   ParentObject3D,
   Play,
@@ -51,7 +51,7 @@ export {
   WebGLRendererContext
 } from "./systems/WebGLRendererSystem.js";
 export { TransformSystem } from "./systems/TransformSystem.js";
-export { CameraSystem } from "./systems/CameraSystem.js";
+export { UpdateAspectOnResizeSystem } from "./systems/UpdateAspectOnResizeSystem.js";
 export { TextGeometrySystem } from "./systems/TextGeometrySystem.js";
 export { EnvironmentSystem } from "./systems/EnvironmentSystem.js";
 export { VRControllerSystem } from "./systems/VRControllerSystem.js";
@@ -61,3 +61,4 @@ export { SoundSystem } from "./systems/SoundSystem.js";
 
 // Initialize
 export { initialize } from "./initialize.js";
+export { ECSYThreeWorld } from "./world.js";

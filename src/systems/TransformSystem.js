@@ -5,7 +5,7 @@ import {
   Position,
   Scale,
   Parent,
-  Object3D
+  Object3DComponent
 } from "../components/index.js";
 
 export class TransformSystem extends System {
@@ -19,9 +19,9 @@ export class TransformSystem extends System {
       }
 
       var parentEntity = entity.getComponent(Parent).value;
-      if (parentEntity.hasComponent(Object3D)) {
-        var parentObject3D = parentEntity.getComponent(Object3D).value;
-        var childObject3D = entity.getComponent(Object3D).value;
+      if (parentEntity.hasComponent(Object3DComponent)) {
+        var parentObject3D = parentEntity.getObject3D();
+        var childObject3D = entity.getObject3D();
         parentObject3D.add(childObject3D);
       }
     }
@@ -29,7 +29,7 @@ export class TransformSystem extends System {
     // Hierarchy
     this.queries.parentObject3D.added.forEach(entity => {
       var parentObject3D = entity.getComponent(ParentObject3D).value;
-      var childObject3D = entity.getComponent(Object3D).value;
+      var childObject3D = entity.getObject3D();
       parentObject3D.add(childObject3D);
     });
 
@@ -38,7 +38,7 @@ export class TransformSystem extends System {
     for (let i = 0; i < transforms.added.length; i++) {
       let entity = transforms.added[i];
       let transform = entity.getComponent(Transform);
-      let object = entity.getComponent(Object3D).value;
+      let object = entity.getObject3D();
 
       object.position.copy(transform.position);
       object.rotation.set(
@@ -55,7 +55,7 @@ export class TransformSystem extends System {
       }
 
       let transform = entity.getComponent(Transform);
-      let object = entity.getComponent(Object3D).value;
+      let object = entity.getObject3D();
 
       object.position.copy(transform.position);
       object.rotation.set(
@@ -71,7 +71,7 @@ export class TransformSystem extends System {
       let entity = positions.added[i];
       let position = entity.getComponent(Position).value;
 
-      let object = entity.getComponent(Object3D).value;
+      let object = entity.getObject3D();
 
       object.position.copy(position);
     }
@@ -79,7 +79,7 @@ export class TransformSystem extends System {
     for (let i = 0; i < positions.changed.length; i++) {
       let entity = positions.changed[i];
       let position = entity.getComponent(Position).value;
-      let object = entity.getComponent(Object3D).value;
+      let object = entity.getObject3D();
 
       object.position.copy(position);
     }
@@ -90,7 +90,7 @@ export class TransformSystem extends System {
       let entity = scales.added[i];
       let scale = entity.getComponent(Scale).value;
 
-      let object = entity.getComponent(Object3D).value;
+      let object = entity.getObject3D();
 
       object.scale.copy(scale);
     }
@@ -98,7 +98,7 @@ export class TransformSystem extends System {
     for (let i = 0; i < scales.changed.length; i++) {
       let entity = scales.changed[i];
       let scale = entity.getComponent(Scale).value;
-      let object = entity.getComponent(Object3D).value;
+      let object = entity.getObject3D();
 
       object.scale.copy(scale);
     }
@@ -107,33 +107,33 @@ export class TransformSystem extends System {
 
 TransformSystem.queries = {
   parentObject3D: {
-    components: [ParentObject3D, Object3D],
+    components: [ParentObject3D, Object3DComponent],
     listen: {
       added: true
     }
   },
   parent: {
-    components: [Parent, Object3D],
+    components: [Parent, Object3DComponent],
     listen: {
       added: true
     }
   },
   transforms: {
-    components: [Object3D, Transform],
+    components: [Object3DComponent, Transform],
     listen: {
       added: true,
       changed: [Transform]
     }
   },
   positions: {
-    components: [Object3D, Position],
+    components: [Object3DComponent, Position],
     listen: {
       added: true,
       changed: [Position]
     }
   },
   scales: {
-    components: [Object3D, Scale],
+    components: [Object3DComponent, Scale],
     listen: {
       added: true,
       changed: [Scale]

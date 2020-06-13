@@ -5,7 +5,7 @@ import {
   VRControllerBasicBehaviour,
   VRController,
   ControllerConnected,
-  Object3D
+  Object3DComponent
 } from "../index.js";
 import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
 
@@ -24,7 +24,7 @@ export class VRControllerSystem extends System {
 
       var group = new THREE.Group();
       group.add(controller);
-      entity.addComponent(Object3D, { value: group });
+      entity.addComponent(Object3DComponent, { value: group });
 
       controller.addEventListener("connected", () => {
         entity.addComponent(ControllerConnected);
