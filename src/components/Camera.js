@@ -1,12 +1,12 @@
-export class Camera {
-  constructor() {
-    this.fov = 45;
-    this.aspect = 1;
-    this.near = 0.1;
-    this.far = 1000;
-    this.layers = 0;
-    this.handleResize = true;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {}
-}
+export class Camera extends Component {}
+
+Camera.schema = {
+  fov: { default: 45, type: Types.Number },
+  aspect: { default: 1, type: Types.Number },
+  near: { default: 0.1, type: Types.Number },
+  far: { default: 1000, type: Types.Number },
+  layers: { default: 0, type: Types.Number },
+  handleResize: { default: true, type: Types.Boolean }
+};

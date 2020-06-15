@@ -1,9 +1,2 @@
-export class Active {
-  constructor() {
-    this.reset();
-  }
-
-  reset() {
-    this.value = false;
-  }
-}
+import { TagComponent } from "ecsy";
+export class Active extends TagComponent {}

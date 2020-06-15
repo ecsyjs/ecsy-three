@@ -24,6 +24,14 @@ export function initialize(world = new ECSYThreeWorld(), options) {
     .registerSystem(UpdateAspectOnResizeSystem)
     .registerSystem(WebGLRendererSystem, { priority: 1 });
 
+  world
+    .registerComponent(WebGLRenderer)
+    .registerComponent(Scene)
+    .registerComponent(Active)
+    .registerComponent(RenderPass)
+    .registerComponent(Transform)
+    .registerComponent(Camera);
+
   const DEFAULT_OPTIONS = {
     vr: false,
     defaults: true

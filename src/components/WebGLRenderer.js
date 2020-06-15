@@ -1,23 +1,11 @@
-export class WebGLRenderer {
-  constructor() {
-    this.vr = false;
-    this.ar = false;
-    this.antialias = true;
-    this.handleResize = true;
-    this.shadowMap = true;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {}
-}
+export class WebGLRenderer extends Component {}
 
-/*
-export const WebGLRenderer = createComponentClass(
-  {
-    vr: { default: true },
-    antialias: { default: true },
-    handleResize: { default: true },
-    shadowMap: { default: false }
-  },
-  "WebGLRenderer"
-);
-*/
+WebGLRenderer.schema = {
+  vr: { default: false, type: Types.Boolean },
+  ar: { default: false, type: Types.Boolean },
+  antialias: { default: true, type: Types.Boolean },
+  handleResize: { default: true, type: Types.Boolean },
+  shadowMap: { default: true, type: Types.Boolean }
+};

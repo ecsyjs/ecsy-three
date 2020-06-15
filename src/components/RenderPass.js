@@ -1,11 +1,8 @@
-export class RenderPass {
-  constructor() {
-    this.scene = null;
-    this.camera = null;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.scene = null;
-    this.camera = null;
-  }
-}
+export class RenderPass extends Component {}
+
+RenderPass.schema = {
+  scene: { default: null, type: Types.Object },
+  camera: { default: null, type: Types.Object }
+};

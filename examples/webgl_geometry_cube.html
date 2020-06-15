@@ -9,8 +9,20 @@
 	<body>
 
 		<script type="module">
-			import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-			import { Component, System } from 'https://unpkg.com/ecsy@0.2.6/build/ecsy.module.js';
+			//import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+
+			import MODULE from '../build/ecsy-three.module.all.js';
+
+			const { ECSY, ECSYTHREE, THREE } = MODULE;
+			const { Component, System, World } = ECSY;
+			const {initialize,
+				// Components
+				Parent,
+				Camera,
+				Transform,
+				Object3D,
+				// Systems
+				WebGLRendererSystem} = ECSYTHREE;
 
 		 // ecsy-three API
 
@@ -39,16 +51,6 @@
 					components: [Rotating, Object3DComponent]
 				}
 			};
-
-			import {
-				initialize,
-				Camera,
-				Object3DComponent,
-				WebGLRendererSystem,
-				ECSYThreeWorld,
-				GLTFLoader,
-				GLTFLoaderSystem
-			} from '../build/ecsy-three.module-unpkg.js';
 
 			var world, scene, camera, mesh, renderer;
 

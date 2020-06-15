@@ -1,9 +1,2 @@
-export class Scene {
-  constructor() {
-    this.scene = null;
-  }
-
-  reset() {
-    this.scene = null;
-  }
-}
+import { TagComponent } from "ecsy";
+export class Scene extends TagComponent {}
