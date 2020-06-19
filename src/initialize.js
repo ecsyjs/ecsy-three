@@ -26,7 +26,7 @@ export function initialize(world = new ECSYThreeWorld(), options) {
 
   world
     .registerSystem(UpdateAspectOnResizeSystem)
-    // .registerSystem(CameraSystem)
+    .registerSystem(WebGLRendererSystem)
 
   world
     .registerComponent(WebGLRenderer)
