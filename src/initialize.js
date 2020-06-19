@@ -7,7 +7,11 @@ import {
   Scene,
   Active,
   RenderPass,
+  Object3DComponent,
   Camera,
+  SceneTagComponent,
+  CameraTagComponent,
+  MeshTagComponent,
   UpdateAspectOnResizeTag
 } from "./components/index.js";
 
@@ -28,9 +32,17 @@ export function initialize(world = new ECSYThreeWorld(), options) {
     .registerComponent(WebGLRenderer)
     .registerComponent(Scene)
     .registerComponent(Active)
+    .registerComponent(Object3DComponent)
     .registerComponent(RenderPass)
-    .registerComponent(Transform)
-    .registerComponent(Camera);
+//    .registerComponent(Transform)
+    .registerComponent(Camera)
+    // Tags
+    .registerComponent(SceneTagComponent)
+    .registerComponent(CameraTagComponent)
+    .registerComponent(MeshTagComponent)
+
+    .registerComponent(UpdateAspectOnResizeTag)
+
 
   const DEFAULT_OPTIONS = {
     vr: false,

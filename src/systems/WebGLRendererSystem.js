@@ -1,26 +1,23 @@
-import { System, Not } from "ecsy";
+import { Component, Types, System, Not } from "ecsy";
 import {
   RenderPass,
   CameraTagComponent,
   Active,
-  WebGLRenderer,
-  Object3DComponent
+  WebGLRenderer
 } from "../components/index.js";
 import * as THREE from "three";
 import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
 import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
 
-export class WebGLRendererContext {
-  constructor() {
-    this.value = null;
-  }
-  reset() {
-    this.value = null;
-  }
-}
+export class WebGLRendererContext extends Component {}
+WebGLRendererContext.schema = {
+  value: { default: null, type: Types.Object }
+};
 
 export class WebGLRendererSystem extends System {
   init() {
+    this.world.registerComponent(WebGLRendererContext);
+
     window.addEventListener(
       "resize",
       () => {

@@ -1,10 +1,8 @@
-export class Sound {
-  constructor() {
-    this.reset();
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.sound = null;
-    this.url = "";
-  }
-}
+export class Sound extends Component {}
+
+Sound.schema = {
+  sound: { default: null, type: Types.Object },
+  url: { default: "", type: Types.String }
+};

@@ -9,32 +9,28 @@
 	<body>
 
 		<script type="module">
-			//import * as THREE from 'https://unpkg.com/three/build/three.module.js';
+			import { ECSY, ECSYTHREE, THREE } from '../build/ecsy-three.module.all.js';
 
-			import MODULE from '../build/ecsy-three.module.all.js';
-
-			const { ECSY, ECSYTHREE, THREE } = MODULE;
-			const { Component, System, World } = ECSY;
-			const {initialize,
+			const { Component, System } = ECSY;
+			const {
+				initialize,
+				Types,
 				// Components
 				Parent,
 				Camera,
+				ECSYThreeWorld,
 				Transform,
-				Object3D,
+				GLTFLoader,
+				Object3DComponent,
 				// Systems
-				WebGLRendererSystem} = ECSYTHREE;
+				WebGLRendererSystem,
+				GLTFLoaderSystem
+			} = ECSYTHREE;
 
-		 // ecsy-three API
-
-		 class Rotating extends Component {
-			 constructor() {
-				 super();
-				 this.reset()
-			 }
-			 reset() {
-				 this.speed = 1;
-			 }
-		 }
+			class Rotating extends Component {}
+			Rotating.schema = {
+				speed: {default: 1, type: Types.Number}
+			};
 
 			class RotationSystem extends System {
 				execute(delta) {
@@ -64,6 +60,7 @@
 				let data = initialize(world);
 				console.log(data)
 
+				world.registerComponent(Rotating).registerComponent(GLTFLoader);
 				world.registerSystem(GLTFLoaderSystem);
 				// Register our custom sytem
 				world.registerSystem(RotationSystem);
@@ -98,8 +95,7 @@
 
 				var gltfEntity = world.createEntity()
 									  .addComponent(Rotating, {speed: -2})
-									  .addObject3DComponent(new THREE.Group(), scene)
-									  .addComponent(GLTFLoader, {url: "Duck.glb"})
+									  .addComponent(GLTFLoader, {url: "Duck.glb", parent: scene})
 
 				// Let's begin
 				world.execute();

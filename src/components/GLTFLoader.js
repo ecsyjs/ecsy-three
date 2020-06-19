@@ -1,14 +1,13 @@
-export class GLTFLoader {
-  constructor() {
-    this.reset();
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.url = "";
-    this.receiveShadow = false;
-    this.castShadow = false;
-    this.envMapOverride = null;
-    this.append = true;
-    this.onLoaded = null;
-  }
-}
+export class GLTFLoader extends Component {}
+
+GLTFLoader.schema = {
+  url: { default: "", type: Types.String },
+  receiveShadow: { default: false, type: Types.Boolean },
+  castShadow: { default: false, type: Types.Boolean },
+  envMapOverride: { default: null, type: Types.Object },
+  append: { default: true, type: Types.Boolean },
+  onLoaded: { default: null, type: Types.Object },
+  parent: { default: null, type: Types.Object }
+};

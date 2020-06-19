@@ -1,11 +1,9 @@
+import { Component } from "ecsy";
+import * as ThreeTypes from "../Types.js";
 import * as THREE from "three";
 
-export class Position {
-  constructor() {
-    this.value = new THREE.Vector3();
-  }
+export class Position extends Component {}
 
-  reset() {
-    this.value.set(0, 0, 0);
-  }
-}
+Position.schema = {
+  value: { default: new THREE.Vector3(), type: ThreeTypes.Vector3Type }
+};

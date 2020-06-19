@@ -1,7 +1,7 @@
-export class GLTFModel {
-  constructor() {
-    this.reset();
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {}
-}
+export class GLTFModel extends Component {}
+
+GLTFModel.schema = {
+  value: { default: null, type: Types.Object }
+};

@@ -1,9 +1,7 @@
-export class Object3DComponent {
-  constructor() {
-    this.value = null;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.value = null;
-  }
-}
+export class Object3DComponent extends Component {}
+
+Object3DComponent.schema = {
+  value: { default: null, type: Types.Object }
+};

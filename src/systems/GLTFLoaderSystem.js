@@ -10,6 +10,7 @@ class GLTFLoaderState extends SystemStateComponent {}
 
 export class GLTFLoaderSystem extends System {
   init() {
+    this.world.registerComponent(GLTFLoaderState).registerComponent(GLTFModel);
     this.loaded = [];
   }
 
@@ -37,11 +38,16 @@ export class GLTFLoaderSystem extends System {
           }
         }
       });
-
+      /*
       this.world
         .createEntity()
         .addComponent(GLTFModel, { value: gltf })
         .addObject3DComponent(gltf.scene, component.append && entity);
+*/
+
+      entity
+        .addComponent(GLTFModel, { value: gltf })
+        .addObject3DComponent(gltf.scene, component.parent);
 
       if (component.onLoaded) {
         component.onLoaded(gltf.scene, gltf);

@@ -1,9 +1,6 @@
-export class Parent {
-  constructor() {
-    this.value = null;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.value = null;
-  }
-}
+export class Parent extends Component {}
+Parent.schema = {
+  value: { default: null, type: Types.Object }
+};

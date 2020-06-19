@@ -7,6 +7,9 @@ import {
 
 export class InputSystem extends System {
   init() {
+    //!!!!!!!!!!!!!
+    this.world.registerComponent(InputState);
+
     let entity = this.world.createEntity().addComponent(InputState);
     this.inputStateComponent = entity.getMutableComponent(InputState);
   }

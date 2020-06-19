@@ -74,8 +74,11 @@ export class TransformSystem extends System {
       let object = entity.getObject3D();
 
       object.position.copy(position);
-    }
 
+      // Link them
+      entity.getComponent(Position).value = object.position;
+    }
+/*
     for (let i = 0; i < positions.changed.length; i++) {
       let entity = positions.changed[i];
       let position = entity.getComponent(Position).value;
@@ -83,7 +86,7 @@ export class TransformSystem extends System {
 
       object.position.copy(position);
     }
-
+*/
     // Scale
     let scales = this.queries.scales;
     for (let i = 0; i < scales.added.length; i++) {

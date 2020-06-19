@@ -38,7 +38,10 @@
     "rollup-plugin-terser": "^5.1.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3.9.0",
+    "ecsy": "^0.2.6",
+    "three": "^0.116.1",
+    "troika-3d-text": "^0.17.0"
   },
   "peerDependencies": {
     "ecsy": "^0.2.6",

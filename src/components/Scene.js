@@ -1,2 +1,5 @@
-import { TagComponent } from "ecsy";
-export class Scene extends TagComponent {}
+import { Component, Types } from "ecsy";
+export class Scene extends Component {}
+Scene.schema = {
+  value: { default: null, type: Types.Object }
+};

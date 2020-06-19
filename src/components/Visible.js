@@ -1,9 +1,6 @@
-export class Visible {
-  constructor() {
-    this.reset();
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.value = false;
-  }
-}
+export class Visible extends Component {}
+Visible.schema = {
+  value: { default: true, type: Types.Boolean }
+};

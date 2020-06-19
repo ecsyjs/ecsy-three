@@ -12,6 +12,25 @@ Object.keys(pkg.peerDependencies).forEach(dep => {
 });
 
 export default [
+  //
+  {
+    input: "src/index.js",
+    plugins: [json({ exclude: ["node_modules/**"] })],
+    output: [
+      {
+        format: "umd",
+        name: "ECSY",
+        noConflict: true,
+        file: "build/ecsy.js",
+        indent: "\t"
+      },
+      {
+        format: "es",
+        file: "build/ecsy.module.js",
+        indent: "\t"
+      }
+    ]
+  },
   // Module unpkg
   {
     input: "src/index.js",
