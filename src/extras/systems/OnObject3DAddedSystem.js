@@ -4,7 +4,7 @@ import { Object3DComponent } from "../../core/Object3DComponent.js";
 
 export class OnObject3DAddedSystem extends System {
   execute() {
-    const entities = this.queries.entities.results;
+    const entities = this.queries.entities.added;
 
     for (let i = 0; i < entities.length; i++) {
       const entity = entities[i];
