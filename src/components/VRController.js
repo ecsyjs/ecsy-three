@@ -1,25 +1,20 @@
-export class VRController {
-  constructor() {
-    this.id = 0;
-    this.controller = null;
-  }
-  reset() {}
-}
+import { Component, Types } from "ecsy";
 
-export class VRControllerBasicBehaviour {
-  constructor() {
-    this.reset();
-  }
+export class VRController extends Component {}
+VRController.schema = {
+  id: { default: 0, type: Types.Number },
+  controller: { default: null, type: Types.Object }
+};
 
-  reset() {
-    this.select = null;
-    this.selectstart = null;
-    this.selectend = null;
+export class VRControllerBasicBehaviour extends Component {}
+VRControllerBasicBehaviour.schema = {
+  select: { default: null, type: Types.Object },
+  selectstart: { default: null, type: Types.Object },
+  selectend: { default: null, type: Types.Object },
 
-    this.connected = null;
+  connected: { default: null, type: Types.Object },
 
-    this.squeeze = null;
-    this.squeezestart = null;
-    this.squeezeend = null;
-  }
-}
+  squeeze: { default: null, type: Types.Object },
+  squeezestart: { default: null, type: Types.Object },
+  squeezeend: { default: null, type: Types.Object }
+};

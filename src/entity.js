@@ -27,13 +27,14 @@ export class ECSYThreeEntity extends _Entity {
     if (this.hasComponent(Object3DComponent)) {
       const obj = this.getObject3D();
       obj.traverse(o => {
-        this._entityManager.removeEntity(o.entity, forceImmediate);
+        if (o.entity) {
+          this._entityManager.removeEntity(o.entity, forceImmediate);
+        }
         o.entity = null;
       });
       obj.parent && obj.parent.remove(obj);
-    } else {
-      this._entityManager.removeEntity(this, forceImmediate);
     }
+    this._entityManager.removeEntity(this, forceImmediate);
   }
 
   getObject3D() {

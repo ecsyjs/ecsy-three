@@ -1,9 +1,6 @@
-export class ParentObject3D {
-  constructor() {
-    this.value = null;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.value = null;
-  }
-}
+export class ParentObject3D extends Component {}
+ParentObject3D.schema = {
+  value: { default: null, type: Types.Object },
+};

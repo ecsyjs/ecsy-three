@@ -1,11 +1,9 @@
 import * as THREE from "three";
+import { Component } from "ecsy";
+import * as ThreeTypes from "../Types.js";
 
-export class Scale {
-  constructor() {
-    this.value = new THREE.Vector3();
-  }
-
-  reset() {
-    this.value.set(0, 0, 0);
-  }
-}
+export class Scale extends Component {}
+Scale.schema = {
+  // @fixme
+  value: { default: new THREE.Vector3(), type: ThreeTypes.Vector3Type }
+};

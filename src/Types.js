@@ -8,4 +8,8 @@ export const Vector3Type = createType({
   clone: cloneClonable
 });
 
+export const ThreeTypes = {
+  Vector3Type
+};
+
 export { Types } from "ecsy";

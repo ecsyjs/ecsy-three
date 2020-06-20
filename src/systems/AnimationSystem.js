@@ -1,20 +1,26 @@
-import { System } from "ecsy";
+import { System, Component, Types } from "ecsy";
 import * as THREE from "three";
 import { Play, Stop, GLTFModel, Animation } from "../components/index.js";
+import { AnimationMixer } from "three";
 
-class AnimationMixerComponent {
-  constructor() {}
-  reset() {}
-}
+class AnimationMixerComponent extends Component {}
+AnimationMixerComponent.schema = {
+  value: { default: 0, type: Types.Number }
+};
 
-class AnimationActionsComponent {
-  constructor() {
-    this.animations = [];
-  }
-  reset() {}
-}
+class AnimationActionsComponent extends Component {}
+AnimationActionsComponent.schema = {
+  animations: { default: [], type: Types.Array },
+  duration: { default: 0, type: Types.Number }
+};
 
 export class AnimationSystem extends System {
+  init() {
+    this.world
+      .registerComponent(AnimationMixerComponent)
+      .registerComponent(AnimationActionsComponent);
+  }
+
   execute(delta) {
     this.queries.entities.added.forEach(entity => {
       let gltf = entity.getComponent(GLTFModel).value;

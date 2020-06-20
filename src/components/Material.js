@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { Component, Types } from "ecsy";
 
 export const SIDES = {
   front: 0,
@@ -24,40 +25,21 @@ export const VERTEX_COLORS = {
   vertex: 2
 };
 
-export class Material {
-  constructor() {
-    this.color = 0xff0000;
-    this.alphaTest = 0;
-    this.depthTest = true;
-    this.depthWrite = true;
-    this.flatShading = false;
-    this.npot = false;
-    this.offset = new THREE.Vector2();
-    this.opacity = 1.0;
-    this.repeat = new THREE.Vector2(1, 1);
-    this.shader = SHADERS.standard;
-    this.side = SIDES.front;
-    this.transparent = false;
-    this.vertexColors = VERTEX_COLORS.none;
-    this.visible = true;
-    this.blending = BLENDING.normal;
-  }
-
-  reset() {
-    this.color = 0xff0000;
-    this.alphaTest = 0;
-    this.depthTest = true;
-    this.depthWrite = true;
-    this.flatShading = false;
-    this.npot = false;
-    this.offset.set(0, 0);
-    this.opacity = 1.0;
-    this.repeat.set(1, 1);
-    this.shader = SHADERS.standard;
-    this.side = SIDES.front;
-    this.transparent = false;
-    this.vertexColors = VERTEX_COLORS.none;
-    this.visible = true;
-    this.blending = BLENDING.normal;
-  }
-}
+export class Material extends Component {}
+Material.schema = {
+  color: { default: 0xff0000, type: Types.Number },
+  alphaTest: { default: 0, type: Types.Number },
+  depthTest: { default: true, type: Types.Boolean },
+  depthWrite: { default: true, type: Types.Boolean },
+  flatShading: { default: false, type: Types.Boolean },
+  npot: { default: false, type: Types.Boolean },
+  offset: { default: new THREE.Vector2(), type: Types.Object },
+  opacity: { default: 1.0, type: Types.Number },
+  repeat: { default: new THREE.Vector2(1, 1), type: Types.Object },
+  shader: { default: SHADERS.standard, type: Types.Number },
+  side: { default: SIDES.front, type: Types.Number },
+  transparent: { default: false, type: Types.Number },
+  vertexColors: { default: VERTEX_COLORS.none, type: Types.Number },
+  visible: { default: true, type: Types.Number },
+  blending: { default: BLENDING.normal, type: Types.Number }
+};

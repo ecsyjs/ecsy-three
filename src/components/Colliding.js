@@ -1,10 +1,7 @@
-export class Colliding {
-  constructor() {
-    this.collidingWith = [];
-    this.collidingFrame = 0;
-  }
-  reset() {
-    this.collidingWith.length = 0;
-    this.collidingFrame = 0;
-  }
-}
+import { Component, Types } from "ecsy";
+
+export class Colliding extends Component {}
+Colliding.schema = {
+  collidingWith: { default: [], type: Types.Array },
+  collidingFrame: { default: 0, type: Types.Number }
+};

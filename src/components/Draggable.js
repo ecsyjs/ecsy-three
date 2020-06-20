@@ -1,9 +1,6 @@
-export class Draggable {
-  constructor() {
-    this.reset();
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.value = false;
-  }
-}
+export class Draggable extends Component {}
+Draggable.schema = {
+  value: { default: false, type: Types.Boolean }
+};

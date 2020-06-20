@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
+import { TransformSystem } from "./systems/TransformSystem.js";
 import { UpdateAspectOnResizeSystem } from "./systems/UpdateAspectOnResizeSystem.js";
 import {
   WebGLRenderer,
@@ -26,7 +27,8 @@ export function initialize(world = new ECSYThreeWorld(), options) {
 
   world
     .registerSystem(UpdateAspectOnResizeSystem)
-    .registerSystem(WebGLRendererSystem)
+    .registerSystem(TransformSystem)
+    .registerSystem(WebGLRendererSystem);
 
   world
     .registerComponent(WebGLRenderer)
@@ -34,15 +36,12 @@ export function initialize(world = new ECSYThreeWorld(), options) {
     .registerComponent(Active)
     .registerComponent(Object3DComponent)
     .registerComponent(RenderPass)
-//    .registerComponent(Transform)
     .registerComponent(Camera)
     // Tags
     .registerComponent(SceneTagComponent)
     .registerComponent(CameraTagComponent)
     .registerComponent(MeshTagComponent)
-
-    .registerComponent(UpdateAspectOnResizeTag)
-
+    .registerComponent(UpdateAspectOnResizeTag);
 
   const DEFAULT_OPTIONS = {
     vr: false,

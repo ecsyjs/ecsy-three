@@ -1,14 +1,12 @@
-export class RigidBody {
-  constructor() {
-    this.reset();
-  }
-  reset() {
-    this.object = null;
-    this.weight = 0;
-    this.restitution = 1;
-    this.friction = 1;
-    this.linearDamping = 0;
-    this.angularDamping = 0;
-    this.linearVelocity = { x: 0, y: 0, z: 0 };
-  }
-}
+import { Component, Types } from "ecsy";
+
+export class RigidBody extends Component {}
+RigidBody.schema = {
+  object: { default: null, type: Types.Object },
+  weight: { default: 0, type: Types.Number },
+  restitution: { default: 1, type: Types.Number },
+  friction: { default: 1, type: Types.Number },
+  linearDamping: { default: 0, type: Types.Number },
+  angularDamping: { default: 0, type: Types.Number },
+  linearVelocity: { default: { x: 0, y: 0, z: 0 }, type: Types.Object }
+};

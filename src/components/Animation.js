@@ -1,11 +1,7 @@
-export class Animation {
-  constructor() {
-    this.animations = [];
-    this.duration = -1;
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.animations.length = 0;
-    this.duration = -1;
-  }
-}
+export class Animation extends Component {}
+Animation.schema = {
+  animations: { default: [], type: Types.Array },
+  duration: { default: -1, type: Types.Number }
+};

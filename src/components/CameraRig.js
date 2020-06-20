@@ -1,11 +1,8 @@
-export class CameraRig {
-  constructor() {
-    this.reset();
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.leftHand = null;
-    this.rightHand = null;
-    this.camera = null;
-  }
-}
+export class CameraRig extends Component {}
+CameraRig.schema = {
+  leftHand: { default: null, type: Types.Object },
+  rightHand: { default: null, type: Types.Object },
+  camera: { default: null, type: Types.Object }
+};

@@ -1,9 +1,9 @@
-export class Geometry {
-  constructor() {
-    this.primitive = "box";
-  }
+import { Component, Types } from "ecsy";
 
-  reset() {
-    this.primitive = "box";
-  }
-}
+export class Geometry extends Component {}
+Geometry.schema = {
+  primitive: { default: "box", type: Types.String },
+  width: { default: 0, type: Types.Number },
+  height: { default: 0, type: Types.Number },
+  depth: { default: 0, type: Types.Number }
+};

@@ -1,8 +1,3 @@
-export class CollisionStop {
-  constructor() {
-    this.collidingWith = [];
-  }
-  reset() {
-    this.collidingWith.length = 0;
-  }
-}
+import { TagComponent } from "ecsy";
+
+export class CollisionStop extends TagComponent {}
