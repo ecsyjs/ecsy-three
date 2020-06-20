@@ -18,7 +18,6 @@ export {
 } from "./extras/systems/WebGLRendererSystem.js";
 export { TransformSystem } from "./extras/systems/TransformSystem.js";
 export { UpdateAspectOnResizeSystem } from "./extras/systems/UpdateAspectOnResizeSystem.js";
-export { TextGeometrySystem } from "./extras/systems/TextGeometrySystem.js";
 export { VRControllerSystem } from "./extras/systems/VRControllerSystem.js";
 export { AnimationSystem } from "./extras/systems/AnimationSystem.js";
 export { InputSystem } from "./extras/systems/InputSystem.js";

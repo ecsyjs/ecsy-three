@@ -1,6 +1,6 @@
 import { Component, Types, _Entity, TagComponent, World, createType, copyCopyable, cloneClonable, System, Not, SystemStateComponent } from 'https://unpkg.com/ecsy@0.2.6/build/ecsy.module.js';
 export { Types } from 'https://unpkg.com/ecsy@0.2.6/build/ecsy.module.js';
-import { Vector3, Vector2, WebGLRenderer as WebGLRenderer$1, Clock, Scene as Scene$1, PerspectiveCamera, BoxBufferGeometry, IcosahedronBufferGeometry, TorusBufferGeometry, MeshLambertMaterial, Mesh, Group, MeshBasicMaterial, Texture, ImageLoader, FontLoader, TextGeometry as TextGeometry$1, MeshStandardMaterial, AnimationMixer, LoopOnce, Object3D, PositionalAudio, AudioListener, AudioLoader } from 'https://unpkg.com/three@0.117.1/build/three.module.js';
+import { Vector3, WebGLRenderer as WebGLRenderer$1, Clock, Scene as Scene$1, PerspectiveCamera, BoxBufferGeometry, IcosahedronBufferGeometry, TorusBufferGeometry, MeshLambertMaterial, Mesh, Group, MeshBasicMaterial, Texture, ImageLoader, AnimationMixer, LoopOnce, Object3D, PositionalAudio, AudioListener, AudioLoader } from 'https://unpkg.com/three@0.117.1/build/three.module.js';
 import { VRButton } from 'https://unpkg.com/three@0.117.1/examples/jsm/webxr/VRButton.js';
 import { ARButton } from 'https://unpkg.com/three@0.117.1/examples/jsm/webxr/ARButton.js';
 import { GLTFLoader as GLTFLoader$1 } from 'https://unpkg.com/three@0.117.1/examples/jsm/loaders/GLTFLoader.js';
@@ -142,41 +142,6 @@ Draggable.schema = {
 
 class Dragging extends TagComponent {}
 
-class Environment extends Component {}
-Environment.schema = {
-  active: { default: false, type: Types.Boolean },
-  preset: { default: "default", type: Types.String },
-  seed: { default: 1, type: Types.Number },
-  skyType: { default: "atmosphere", type: Types.String },
-  skyColor: { default: "", type: Types.String },
-  horizonColor: { default: "", type: Types.String },
-  lighting: { default: "distant", type: Types.String },
-  shadow: { default: false, type: Types.Boolean },
-  shadowSize: { default: 10, type: Types.Number },
-  lightPosition: { default: { x: 0, y: 1, z: -0.2 }, type: Types.Number },
-  fog: { default: 0, type: Types.Number },
-
-  flatShading: { default: false, type: Types.Boolean },
-  playArea: { default: 1, type: Types.Number },
-
-  ground: { default: "flat", type: Types.String },
-  groundYScale: { default: 3, type: Types.Number },
-  groundTexture: { default: "none", type: Types.String },
-  groundColor: { default: "#553e35", type: Types.String },
-  groundColor2: { default: "#694439", type: Types.String },
-
-  dressing: { default: "none", type: Types.String },
-  dressingAmount: { default: 10, type: Types.Number },
-  dressingColor: { default: "#795449", type: Types.String },
-  dressingScale: { default: 5, type: Types.Number },
-  dressingVariance: { default: { x: 1, y: 1, z: 1 }, type: Types.Object },
-  dressingUniformScale: { default: true, type: Types.Boolean },
-  dressingOnPlayArea: { default: 0, type: Types.Number },
-
-  grid: { default: "none", type: Types.String },
-  gridColor: { default: "#ccc", type: Types.String }
-};
-
 class Geometry extends Component {}
 Geometry.schema = {
   primitive: { default: "box", type: Types.String },
@@ -210,49 +175,6 @@ InputState.schema = {
   keyboard: { default: {}, type: Types.Object },
   mouse: { default: {}, type: Types.Object },
   gamepads: { default: {}, type: Types.Object }
-};
-
-const SIDES = {
-  front: 0,
-  back: 1,
-  double: 2
-};
-
-const SHADERS = {
-  standard: 0,
-  flat: 1
-};
-
-const BLENDING = {
-  normal: 0,
-  additive: 1,
-  subtractive: 2,
-  multiply: 3
-};
-
-const VERTEX_COLORS = {
-  none: 0,
-  face: 1,
-  vertex: 2
-};
-
-class Material extends Component {}
-Material.schema = {
-  color: { default: 0xff0000, type: Types.Number },
-  alphaTest: { default: 0, type: Types.Number },
-  depthTest: { default: true, type: Types.Boolean },
-  depthWrite: { default: true, type: Types.Boolean },
-  flatShading: { default: false, type: Types.Boolean },
-  npot: { default: false, type: Types.Boolean },
-  offset: { default: new Vector2(), type: Types.Object },
-  opacity: { default: 1.0, type: Types.Number },
-  repeat: { default: new Vector2(1, 1), type: Types.Object },
-  shader: { default: SHADERS.standard, type: Types.Number },
-  side: { default: SIDES.front, type: Types.Number },
-  transparent: { default: false, type: Types.Number },
-  vertexColors: { default: VERTEX_COLORS.none, type: Types.Number },
-  visible: { default: true, type: Types.Number },
-  blending: { default: BLENDING.normal, type: Types.Number }
 };
 
 class Parent extends Component {}
@@ -317,11 +239,6 @@ Shape.schema = {
   radius: { default: 0, type: Types.Number }
 };
 
-class Sky extends Component {}
-Sky.schema = {
-  attribute: { default: 0, type: Types.Number }
-};
-
 class SkyBox extends Component {}
 SkyBox.schema = {
   texture: { default: null, type: Types.Object },
@@ -352,12 +269,6 @@ Text.schema = {
   overflowWrap: { default: "normal", type: Types.String }, // ['normal', 'break-word']
   whiteSpace: { default: "normal", type: Types.String }, // ['normal', 'nowrap']
   opacity: { default: 1, type: Types.Number }
-};
-
-// @fixme remove
-class TextGeometry extends Component {}
-TextGeometry.schema = {
-  attribute: { default: 0, type: Types.Number },
 };
 
 class Transform extends Component {}
@@ -1126,79 +1037,6 @@ SDFTextSystem.queries = {
   }
 };
 
-class TextGeometrySystem extends System {
-  init() {
-    this.initialized = false;
-    var loader = new FontLoader();
-    this.font = null;
-    /*
-    loader.load("/assets/fonts/helvetiker_regular.typeface.json", font => {
-      this.font = font;
-      this.initialized = true;
-    });
-    */
-  }
-
-  execute() {
-    if (!this.font) return;
-
-    var changed = this.queries.entities.changed;
-    changed.forEach(entity => {
-      var textComponent = entity.getComponent(TextGeometry);
-      var geometry = new TextGeometry$1(textComponent.text, {
-        font: this.font,
-        size: 1,
-        height: 0.1,
-        curveSegments: 3,
-        bevelEnabled: true,
-        bevelThickness: 0.03,
-        bevelSize: 0.03,
-        bevelOffset: 0,
-        bevelSegments: 3
-      });
-      entity.getObject3D().geometry = geometry;
-    });
-
-    var added = this.queries.entities.added;
-    added.forEach(entity => {
-      var textComponent = entity.getComponent(TextGeometry);
-      var geometry = new TextGeometry$1(textComponent.text, {
-        font: this.font,
-        size: 1,
-        height: 0.1,
-        curveSegments: 3,
-        bevelEnabled: true,
-        bevelThickness: 0.03,
-        bevelSize: 0.03,
-        bevelOffset: 0,
-        bevelSegments: 3
-      });
-
-      var color = Math.random() * 0xffffff;
-      color = 0xffffff;
-      var material = new MeshStandardMaterial({
-        color: color,
-        roughness: 0.7,
-        metalness: 0.0
-      });
-
-      var mesh = new Mesh(geometry, material);
-
-      entity.addComponent(Object3DComponent, { value: mesh });
-    });
-  }
-}
-
-TextGeometrySystem.queries = {
-  entities: {
-    components: [TextGeometry],
-    listen: {
-      added: true,
-      changed: true
-    }
-  }
-};
-
 var controllerModelFactory = new XRControllerModelFactory();
 
 class VRControllerSystem extends System {
@@ -1491,4 +1329,4 @@ SoundSystem.queries = {
   }
 };
 
-export { Active, Animation, AnimationSystem, Camera, CameraRig, CameraTagComponent, Colliding, CollisionStart, CollisionStop, ControllerConnected, Draggable, Dragging, ECSYThreeWorld, Environment, GLTFLoader, GLTFLoaderSystem, GLTFModel, Geometry, GeometrySystem, InputState, InputSystem, Material, MeshTagComponent, Object3DComponent, Parent, ParentObject3D, Play, Position, RenderPass, RigidBody, Rotation, SDFTextSystem, Scale, Scene, SceneTagComponent, Shape, Sky, SkyBox, SkyBoxSystem, Sound, SoundSystem, Stop, Text, TextGeometry, TextGeometrySystem, ThreeTypes, Transform, TransformSystem, UpdateAspectOnResizeSystem, UpdateAspectOnResizeTag, VRController, VRControllerBasicBehaviour, VRControllerSystem, Vector3Type, VisibilitySystem, Visible, WebGLRenderer, WebGLRendererContext, WebGLRendererSystem, initialize };
+export { Active, Animation, AnimationSystem, Camera, CameraRig, CameraTagComponent, Colliding, CollisionStart, CollisionStop, ControllerConnected, Draggable, Dragging, ECSYThreeWorld, GLTFLoader, GLTFLoaderSystem, GLTFModel, Geometry, GeometrySystem, InputState, InputSystem, MeshTagComponent, Object3DComponent, Parent, ParentObject3D, Play, Position, RenderPass, RigidBody, Rotation, SDFTextSystem, Scale, Scene, SceneTagComponent, Shape, SkyBox, SkyBoxSystem, Sound, SoundSystem, Stop, Text, ThreeTypes, Transform, TransformSystem, UpdateAspectOnResizeSystem, UpdateAspectOnResizeTag, VRController, VRControllerBasicBehaviour, VRControllerSystem, Vector3Type, VisibilitySystem, Visible, WebGLRenderer, WebGLRendererContext, WebGLRendererSystem, initialize };
