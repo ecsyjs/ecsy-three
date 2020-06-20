@@ -2,12 +2,13 @@ import * as THREE from "three";
 import { System } from "ecsy";
 import {
   Geometry,
-  Object3DComponent,
   Transform,
   //  Element,
   //  Draggable,
   Parent
 } from "../components/index.js";
+
+import { Object3DComponent } from "../../core/Object3DComponent.js";
 
 /**
  * Create a Mesh based on the [Geometry] component and attach it to the entity using a [Object3D] component
@@ -56,7 +57,7 @@ export class GeometrySystem extends System {
       var color =
         component.primitive === "torus" ? 0x999900 : Math.random() * 0xffffff;
 
-        /*
+      /*
         if (entity.hasComponent(Material)) {
 
         } else {

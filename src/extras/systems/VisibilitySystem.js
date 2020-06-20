@@ -1,5 +1,6 @@
 import { System } from "ecsy";
-import { Visible, Object3DComponent } from "../components/index.js";
+import { Visible } from "../components/index.js";
+import { Object3DComponent } from "../../core/Object3DComponent.js";
 
 export class VisibilitySystem extends System {
   processVisibility(entities) {

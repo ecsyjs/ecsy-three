@@ -1,12 +1,13 @@
 import * as THREE from "three";
 import { System } from "ecsy";
 import {
-  WebGLRendererContext,
   VRControllerBasicBehaviour,
   VRController,
-  ControllerConnected,
-  Object3DComponent
-} from "../index.js";
+  ControllerConnected
+} from "../components/index.js";
+import { WebGLRendererContext } from "./WebGLRendererSystem.js";
+
+import { Object3DComponent } from "../../core/Object3DComponent.js";
 import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerModelFactory.js";
 
 var controllerModelFactory = new XRControllerModelFactory();

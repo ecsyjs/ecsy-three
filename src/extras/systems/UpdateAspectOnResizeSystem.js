@@ -1,9 +1,10 @@
 import { System } from "ecsy";
+import { UpdateAspectOnResizeTag } from "../components/index.js";
+
 import {
   CameraTagComponent,
-  UpdateAspectOnResizeTag,
   Object3DComponent
-} from "../components/index.js";
+} from "../../core/components.js";
 
 export class UpdateAspectOnResizeSystem extends System {
   init() {

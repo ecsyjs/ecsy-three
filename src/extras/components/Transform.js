@@ -1,5 +1,5 @@
 import { Component } from "ecsy";
-import * as ThreeTypes from "../Types.js";
+import * as ThreeTypes from "../../core/Types.js";
 import * as THREE from "three";
 
 export class Transform extends Component {}

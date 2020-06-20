@@ -1,10 +1,6 @@
 import { Component, Types, System, Not } from "ecsy";
-import {
-  RenderPass,
-  CameraTagComponent,
-  Active,
-  WebGLRenderer
-} from "../components/index.js";
+import { RenderPass, Active, WebGLRenderer } from "../components/index.js";
+import { CameraTagComponent } from "../../core/components.js";
 import * as THREE from "three";
 import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
 import { ARButton } from "three/examples/jsm/webxr/ARButton.js";

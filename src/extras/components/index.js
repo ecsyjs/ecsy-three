@@ -13,7 +13,6 @@ export { GLTFLoader } from "./GLTFLoader.js";
 export { GLTFModel } from "./GLTFModel.js";
 export { InputState } from "./InputState.js";
 export { Material } from "./Material.js";
-export { Object3DComponent } from "./Object3DComponent.js";
 export { Parent } from "./Parent.js";
 export { ParentObject3D } from "./ParentObject3D.js";
 export { Play } from "./Play.js";
@@ -35,4 +34,6 @@ export { Visible } from "./Visible.js";
 export { VRController, VRControllerBasicBehaviour } from "./VRController.js";
 export { WebGLRenderer } from "./WebGLRenderer.js";
 export { ControllerConnected } from "./ControllerConnected.js";
-export * from "./Object3DTags.js";
+
+import { TagComponent } from "ecsy";
+export class UpdateAspectOnResizeTag extends TagComponent {}

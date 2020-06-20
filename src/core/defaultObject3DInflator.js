@@ -2,7 +2,7 @@ import {
   MeshTagComponent,
   SceneTagComponent,
   CameraTagComponent
-} from "./components/index.js";
+} from "./Object3DTags.js";
 
 export const defaultObject3DInflator = {
   inflate: (entity, obj) => {

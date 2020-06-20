@@ -8,15 +8,17 @@ import {
   Scene,
   Active,
   RenderPass,
-  Object3DComponent,
   Camera,
-  SceneTagComponent,
-  CameraTagComponent,
-  MeshTagComponent,
   UpdateAspectOnResizeTag
 } from "./components/index.js";
+import {
+  Object3DComponent,
+  SceneTagComponent,
+  CameraTagComponent,
+  MeshTagComponent
+} from "../core/components.js";
 
-import { ECSYThreeWorld } from "./world.js";
+import { ECSYThreeWorld } from "../core/world.js";
 
 export function initialize(world = new ECSYThreeWorld(), options) {
   if (!(world instanceof ECSYThreeWorld)) {

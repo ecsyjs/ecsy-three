@@ -1,5 +1,7 @@
 import { System, Not } from "ecsy";
-import { SkyBox, Object3DComponent } from "../components/index.js";
+import { SkyBox } from "../components/index.js";
+import { Object3DComponent } from "../../core/Object3DComponent.js";
+
 import * as THREE from "three";
 
 export class SkyBoxSystem extends System {

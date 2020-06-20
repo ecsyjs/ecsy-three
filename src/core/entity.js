@@ -1,5 +1,5 @@
 import { _Entity } from "ecsy";
-import { Object3DComponent } from "./components/index.js";
+import { Object3DComponent } from "./Object3DComponent.js";
 
 export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {

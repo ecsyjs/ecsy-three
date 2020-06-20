@@ -4,9 +4,9 @@ import {
   Transform,
   Position,
   Scale,
-  Parent,
-  Object3DComponent
+  Parent
 } from "../components/index.js";
+import { Object3DComponent } from "../../core/components.js";
 
 export class TransformSystem extends System {
   execute() {
@@ -78,7 +78,7 @@ export class TransformSystem extends System {
       // Link them
       entity.getComponent(Position).value = object.position;
     }
-/*
+    /*
     for (let i = 0; i < positions.changed.length; i++) {
       let entity = positions.changed[i];
       let position = entity.getComponent(Position).value;
