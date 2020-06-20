@@ -22,3 +22,4 @@ export { VRControllerSystem } from "./extras/systems/VRControllerSystem.js";
 export { AnimationSystem } from "./extras/systems/AnimationSystem.js";
 export { InputSystem } from "./extras/systems/InputSystem.js";
 export { SoundSystem } from "./extras/systems/SoundSystem.js";
+export { OnObject3DAddedSystem } from "./extras/systems/OnObject3DAddedSystem.js";

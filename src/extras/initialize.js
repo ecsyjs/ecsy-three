@@ -3,13 +3,16 @@ import * as THREE from "three";
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
 import { TransformSystem } from "./systems/TransformSystem.js";
 import { UpdateAspectOnResizeSystem } from "./systems/UpdateAspectOnResizeSystem.js";
+import { OnObject3DAddedSystem } from "./systems/OnObject3DAddedSystem.js";
+
 import {
   WebGLRenderer,
   Scene,
   Active,
   RenderPass,
   Camera,
-  UpdateAspectOnResizeTag
+  UpdateAspectOnResizeTag,
+  OnObject3DAdded
 } from "./components/index.js";
 import {
   Object3DComponent,
@@ -30,9 +33,11 @@ export function initialize(world = new ECSYThreeWorld(), options) {
   world
     .registerSystem(UpdateAspectOnResizeSystem)
     .registerSystem(TransformSystem)
+    .registerSystem(OnObject3DAddedSystem)
     .registerSystem(WebGLRendererSystem);
 
   world
+    .registerComponent(OnObject3DAdded)
     .registerComponent(WebGLRenderer)
     .registerComponent(Scene)
     .registerComponent(Active)

@@ -30,6 +30,7 @@ export { Visible } from "./Visible.js";
 export { VRController, VRControllerBasicBehaviour } from "./VRController.js";
 export { WebGLRenderer } from "./WebGLRenderer.js";
 export { ControllerConnected } from "./ControllerConnected.js";
+export { OnObject3DAdded } from "./OnObject3DAdded.js";
 
 import { TagComponent } from "ecsy";
 export class UpdateAspectOnResizeTag extends TagComponent {}
