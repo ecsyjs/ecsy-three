@@ -11,6 +11,8 @@ import {
   Active,
   RenderPass,
   Camera,
+  CameraRig,
+  Parent,
   UpdateAspectOnResizeTag,
   OnObject3DAdded
 } from "./components/index.js";
@@ -41,6 +43,8 @@ export function initialize(world = new ECSYThreeWorld(), options) {
     .registerComponent(WebGLRenderer)
     .registerComponent(Scene)
     .registerComponent(Active)
+    .registerComponent(CameraRig)
+    .registerComponent(Parent)
     .registerComponent(Object3DComponent)
     .registerComponent(RenderPass)
     .registerComponent(Camera)
@@ -83,15 +87,13 @@ export function initialize(world = new ECSYThreeWorld(), options) {
   // camera rig & controllers
   var camera = null,
     cameraRig = null;
-
-  // if (options.ar || options.vr) {
-  //   cameraRig = world
-  //     .createEntity()
-  //     .addComponent(CameraRig)
-  //     .addComponent(Parent, { value: scene });
-  // }
-
-  {
+  if (options.ar || options.vr) {
+    cameraRig = world
+      .createEntity()
+      .addComponent(CameraRig)
+      .addComponent(Parent, { value: scene })
+      .addComponent(Active);
+  } else {
     camera = world
       .createEntity()
       .addComponent(Camera)

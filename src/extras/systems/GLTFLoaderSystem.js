@@ -2,6 +2,7 @@ import { GLTFLoader as GLTFLoaderThree } from "three/examples/jsm/loaders/GLTFLo
 import { System, SystemStateComponent, Not } from "ecsy";
 import { GLTFModel } from "../components/GLTFModel.js";
 import { GLTFLoader } from "../components/GLTFLoader.js";
+import { Object3DComponent } from "../../core/components.js";
 
 // @todo Use parameter and loader manager
 var loader = new GLTFLoaderThree(); //.setPath("/assets/models/");
@@ -44,10 +45,15 @@ export class GLTFLoaderSystem extends System {
         .addComponent(GLTFModel, { value: gltf })
         .addObject3DComponent(gltf.scene, component.append && entity);
 */
-
-      entity
-        .addComponent(GLTFModel, { value: gltf })
-        .addObject3DComponent(gltf.scene, component.parent);
+      if (entity.hasComponent(Object3DComponent)) {
+        if (component.append) {
+          entity.getObject3D().add(gltf.scene);
+        }
+      } else {
+        entity
+          .addComponent(GLTFModel, { value: gltf })
+          .addObject3DComponent(gltf.scene, component.parent);
+      }
 
       if (component.onLoaded) {
         component.onLoaded(gltf.scene, gltf);

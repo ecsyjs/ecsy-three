@@ -13,6 +13,7 @@ VRControllerBasicBehaviour.schema = {
   selectend: { default: null, type: Types.Object },
 
   connected: { default: null, type: Types.Object },
+  disconnected: { default: null, type: Types.Object },
 
   squeeze: { default: null, type: Types.Object },
   squeezestart: { default: null, type: Types.Object },

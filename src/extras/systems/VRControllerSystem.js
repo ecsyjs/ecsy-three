@@ -13,6 +13,13 @@ import { XRControllerModelFactory } from "three/examples/jsm/webxr/XRControllerM
 var controllerModelFactory = new XRControllerModelFactory();
 
 export class VRControllerSystem extends System {
+  init() {
+    this.world
+      .registerComponent(VRController)
+      .registerComponent(VRControllerBasicBehaviour)
+      .registerComponent(ControllerConnected);
+  }
+
   execute() {
     let renderer = this.queries.rendererContext.results[0].getComponent(
       WebGLRendererContext
@@ -52,7 +59,9 @@ export class VRControllerSystem extends System {
       controllerGrip.add(
         controllerModelFactory.createControllerModel(controllerGrip)
       );
+      controllerGrip.name = "model";
       group.add(controllerGrip);
+
       /*
       let geometry = new THREE.BufferGeometry();
       geometry.setAttribute(
