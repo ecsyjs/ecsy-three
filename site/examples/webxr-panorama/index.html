@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>ecsy-three webvr - panorama</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<link type="text/css" rel="stylesheet" href="../common/main.css">
+</head>
+<body>
+	<script type="module">
+		import {
+			ECSYThreeWorld,
+			initialize,
+			// Components
+			Parent,
+			WebGLRendererContext,
+			SkyBox,
+			Object3DComponent,
+			// Systems
+			SkyBoxSystem
+		} from '../../build/ecsy-three.module-unpkg.js';
+
+		var world;
+
+		init();
+		animate();
+
+		function init() {
+
+			world = new ECSYThreeWorld();
+
+			let data = initialize(world, {vr: true});
+
+			let {scene, renderer} = data.entities;
+
+			world.registerSystem(SkyBoxSystem);
+
+			///
+			var skybox = world.createEntity().addComponent(SkyBox, {
+				textureUrl: "./assets/sun_temple_stripe_stereo.jpg",
+				type: "cubemap-stereo"
+			}).addComponent(Parent, { value: scene });
+
+			world.execute();
+		}
+
+		// @todo Replace this with something simpler / ~auto scheduler
+		function animate() {
+			world.execute();
+			requestAnimationFrame(animate);
+		}
+	</script>
+</body>
+</html>
