@@ -2,9 +2,8 @@
   "name": "ecsy-three",
   "version": "0.0.4",
   "description": "ECSY three.js bindings",
-  "main": "build/ecsy-three.js",
-  "jsnext:main": "build/ecsy-three.module.js",
-  "module": "src/index.js",
+  "main": "build/ecsy-three.umd.js",
+  "module": "src/core/index.js",
   "scripts": {
     "build": "rollup -c",
     "dev": "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:server'",

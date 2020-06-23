@@ -14,7 +14,7 @@ Object.keys(pkg.peerDependencies).forEach(dep => {
 export default [
   // Module unpkg
   {
-    input: "src/index.js",
+    input: "src/core/index.js",
     plugins: [
       alias({
         entries: [
@@ -51,7 +51,7 @@ export default [
 
   // Module
   {
-    input: "src/index.js",
+    input: "src/core/index.js",
     plugins: [json({ exclude: ["node_modules/**"] })],
     external: id => {
       return id.startsWith("three") || id === "ecsy";
