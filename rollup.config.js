@@ -1,6 +1,6 @@
 import json from "@rollup/plugin-json";
 import resolve from "@rollup/plugin-node-resolve";
-import alias from "@rollup/plugin-alias";
+import { terser } from "rollup-plugin-terser";
 import * as pkg from "./package.json";
 const { execSync } = require("child_process");
 
@@ -12,109 +12,95 @@ Object.keys(pkg.peerDependencies).forEach(dep => {
 });
 
 export default [
-  // Module unpkg
+  // Core
   {
-    input: "src/core/index.js",
-    plugins: [
-      alias({
-        entries: [
-          {
-            find: /troika-3d-text\/(.*)/,
-            replacement: `https://unpkg.com/troika-3d-text@${deps["troika-3d-text"]}/$1?module`
-          },
-          {
-            find: /three$/,
-            replacement: `https://unpkg.com/three@${deps["three"]}/build/three.module.js`
-          },
-          {
-            find: /three\/(.*)/,
-            replacement: `https://unpkg.com/three@${deps["three"]}/$1`
-          },
-          {
-            find: "ecsy",
-            replacement: `https://unpkg.com/ecsy@${deps["ecsy"]}/build/ecsy.module.js`
-          }
-        ]
-      })
-    ],
-    external: id => {
-      return id.startsWith("https://unpkg.com/");
-    },
+    input: "index.js",
+    external: ["three", "ecsy"],
+    plugins: [json({ exclude: ["node_modules/**"] })],
     output: [
+      // UMD externals are loaded from globals
+      {
+        format: "umd",
+        file: "build/ecsy-three.js",
+        name: "ECSYTHREE",
+        noConflict: true,
+        indent: "\t",
+        globals: {
+          three: "THREE",
+          ecsy: "ECSY"
+        }
+      },
+      {
+        format: "umd",
+        file: "build/ecsy-three.min.js",
+        name: "ECSYTHREE",
+        noConflict: true,
+        indent: "\t",
+        globals: {
+          three: "THREE",
+          ecsy: "ECSY"
+        },
+        sourcemap: true,
+        plugins: [terser()]
+      },
+
+      // ESModule externals are loaded from unpkg
       {
         format: "es",
-        file: "build/ecsy-three.module-unpkg.js",
-        indent: "\t"
+        file: "build/ecsy-three.module.js",
+        indent: "\t",
+        paths: {
+          three: `https://unpkg.com/three@${deps["three"]}/build/three.module.js`,
+          ecsy: `https://unpkg.com/ecsy@${deps["ecsy"]}/build/ecsy.module.js`
+        }
+      },
+      {
+        format: "es",
+        file: "build/ecsy-three.module.min.js",
+        indent: "\t",
+        paths: {
+          three: `https://unpkg.com/three@${deps["three"]}/build/three.module.js`,
+          ecsy: `https://unpkg.com/ecsy@${deps["ecsy"]}/build/ecsy.module.js`
+        },
+        sourcemap: true,
+        plugins: [terser()]
       }
     ]
   },
 
-  // Module
+  // All
   {
-    input: "src/core/index.js",
-    plugins: [json({ exclude: ["node_modules/**"] })],
-    external: id => {
-      return id.startsWith("three") || id === "ecsy";
-    },
+    input: "all.js",
+    plugins: [json(), resolve()],
     output: [
       {
         format: "es",
-        file: "build/ecsy-three.module.js",
+        file: "build/ecsy-three-all.module.js",
         indent: "\t"
-      }
-    ]
-  },
-  // Module with everything included
-  {
-    input: "src/index-bundled.js",
-    plugins: [
-      json({ exclude: ["node_modules/**"] }),
-      resolve(),
-      alias({
-        entries: [
-          {
-            find: /troika-3d-text\/(.*)/,
-            replacement: `https://unpkg.com/troika-3d-text@${deps["troika-3d-text"]}/$1?module`
-          },
-          {
-            find: /three$/,
-            replacement: `https://unpkg.com/three@${deps["three"]}/build/three.module.js`
-          },
-          {
-            find: /three\/(.*)/,
-            replacement: `https://unpkg.com/three@${deps["three"]}/$1`
-          },
-          {
-            find: "ecsy",
-            replacement: `https://unpkg.com/ecsy@${deps["ecsy"]}/build/ecsy.module.js`
-          }
-        ]
-      })
-    ],
-    external: id => {
-      return id.startsWith("https://unpkg.com/");
-    },
-    output: [
+      },
       {
         format: "es",
-        file: "build/ecsy-three.module.all.js",
-        indent: "\t"
-      }
-    ]
-  }
-  /*
-  {
-    input: "src/index.js",
-    plugins: [json({ exclude: ["node_modules/**"] })],
-    output: [
+        file: "build/ecsy-three-all.module.min.js",
+        indent: "\t",
+        sourcemap: true,
+        plugins: [terser()]
+      },
       {
         format: "umd",
-        name: "ECSY",
+        name: "ECSYTHREE",
         noConflict: true,
-        file: "build/ecsy-three.umd.js",
+        file: "build/ecsy-three-all.js",
         indent: "\t"
+      },
+      {
+        format: "umd",
+        name: "ECSYTHREE",
+        noConflict: true,
+        file: "build/ecsy-three-all.min.js",
+        indent: "\t",
+        sourcemap: true,
+        plugins: [terser()]
       }
     ]
   }
-  */
 ];
