@@ -2,11 +2,23 @@
   "name": "ecsy-three",
   "version": "0.0.4",
   "description": "ECSY three.js bindings",
-  "main": "./lib/index.js",
+  "type": "module",
+  "main": "./cjs/index.js",
   "module": "./index.js",
+  "exports": {
+    ".": {
+      "require": "./cjs/index.js",
+      "import": "./index.js"
+    },
+    "./extras": {
+      "require": "./cjs/extras.js",
+      "import": "./extras.js"
+    }
+  },
   "scripts": {
-    "build": "rollup -c",
-    "build:cjs": "rimraf lib && babel src -d lib",
+    "build": "npm run build:bundles && npm run build:cjs",
+    "build:bundles": "rollup -c",
+    "build:cjs": "rimraf cjs && babel src -d cjs",
     "dev": "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:server'",
     "dev:server": "http-server -c-1 -p 9090 --cors",
     "start": "npm run dev",
