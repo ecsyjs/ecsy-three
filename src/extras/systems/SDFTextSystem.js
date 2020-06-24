@@ -1,4 +1,3 @@
-import * as THREE from "three";
 import { System } from "ecsy";
 import { TextMesh } from "troika-3d-text/dist/textmesh-standalone.esm.js";
 import { Text } from "../components/index.js";
