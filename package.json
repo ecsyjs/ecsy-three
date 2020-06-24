@@ -8,30 +8,36 @@
   "exports": {
     ".": {
       "require": "./cjs/index.js",
-      "import": "./index.js"
+      "import": "./src/index.js"
     },
     "./extras": {
       "require": "./cjs/extras.js",
-      "import": "./extras.js"
+      "import": "./src/extras.js"
     }
   },
+  "files": [
+    "index.js",
+    "extras.js",
+    "/src",
+    "/cjs"
+  ],
   "scripts": {
-    "build": "npm run build:bundles && npm run build:cjs",
-    "build:bundles": "rollup -c",
+    "start": "snowpack dev",
+    "build": "npm run build:docs && npm run build:site && npm run build:cjs",
+    "build:docs": "rimraf site/docs/README.md site/docs/api && cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
+    "build:site": "rimraf build && snowpack build",
     "build:cjs": "rimraf cjs && babel src -d cjs",
-    "dev": "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:server'",
-    "dev:server": "http-server -c-1 -p 9090 --cors",
-    "start": "npm run dev",
     "lint": "eslint src",
-    "deploy": "gh-pages -d dist"
+    "deploy": "np",
+    "gh-pages": "gh-pages --dist=./build --dotfiles=true",
+    "prepublishOnly": "npm run build",
+    "postdeploy": "npm run gh-pages"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.3",
     "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-export-namespace-from": "^7.10.1",
     "@babel/plugin-transform-modules-commonjs": "^7.10.1",
-    "@rollup/plugin-json": "^4.0.2",
-    "@rollup/plugin-node-resolve": "^6.1.0",
     "babel-eslint": "^10.0.3",
     "babel-preset-es2015": "^6.24.1",
     "concurrently": "^5.0.0",
@@ -46,10 +52,12 @@
     "rimraf": "^3.0.2",
     "rollup": "^1.27.13",
     "rollup-plugin-terser": "^6.1.0",
+    "snowpack": "^2.5.4",
+    "snowpack-plugin-import-map": "^1.0.0",
     "three": "^0.116.1",
     "troika-3d-text": "^0.17.0",
-    "typedoc": "^0.17.7",
-    "typedoc-plugin-markdown": "^2.3.1",
+    "typedoc": "^0.15.8",
+    "typedoc-plugin-markdown": "^2.2.16",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {

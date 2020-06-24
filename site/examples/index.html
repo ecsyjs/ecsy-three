@@ -96,8 +96,8 @@
       const repoUrl = "https://github.com/MozillaReality/ecsy-three/blob/master/site/examples/";
 
       let examples = [
-        {name: "Spinning Cube", url: "spinning-cube/index.html"},
-        {name: "WebXR Panorama", url: "webxr-panorama/index.html"},
+        {name: "Spinning Cube", url: "/examples/spinning-cube.html"},
+        {name: "WebXR Panorama", url: "/examples/webxr-panorama.html"},
       ];
 
       let hash = window.location.hash;
@@ -131,7 +131,7 @@
         });
 
         let sourceLink = document.createElement("a");
-        sourceLink.href = repoUrl + example.url;
+        sourceLink.href = new URL(example.url, repoUrl).href;
         sourceLink.target = "_blank";
         sourceLink.innerHTML = "(source)";
 

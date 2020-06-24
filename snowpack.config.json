@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "mount:site": "mount site --to /",
+    "mount:src": "mount src --to /src"
+  }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ecsy-three webvr - panorama</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <link type="text/css" rel="stylesheet" href="./assets/main.css" />
+    <script type="module" src="//jspm.dev/es-module-shims"></script>
+    <script type="importmap-shim" src="/web_modules/import-map.json"></script>
+  </head>
+  <body>
+    <script type="module-shim">
+      import { ECSYThreeWorld} from "/src/index.js";
+      import {
+        initialize,
+        Parent,
+        WebGLRendererContext,
+        SkyBox,
+        SkyBoxSystem,
+      } from "/src/extras/index.js";
+
+      var world;
+
+      init();
+      animate();
+
+      function init() {
+        world = new ECSYThreeWorld();
+
+        let data = initialize(world, { vr: true });
+
+        let { scene, renderer } = data.entities;
+
+				world.registerSystem(SkyBoxSystem);
+				world.registerComponent(SkyBox);
+
+        ///
+        var skybox = world
+          .createEntity()
+          .addComponent(SkyBox, {
+            textureUrl: "./assets/sun_temple_stripe_stereo.jpg",
+            type: "cubemap-stereo",
+          })
+          .addComponent(Parent, { value: scene });
+
+        world.execute();
+      }
+
+      // @todo Replace this with something simpler / ~auto scheduler
+      function animate() {
+        world.execute();
+        requestAnimationFrame(animate);
+      }
+    </script>
+  </body>
+</html>
