@@ -1,7 +1,6 @@
 import { System, Component, Types } from "ecsy";
 import * as THREE from "three";
 import { Play, Stop, GLTFModel, Animation } from "../components/index.js";
-import { AnimationMixer } from "three";
 
 class AnimationMixerComponent extends Component {}
 AnimationMixerComponent.schema = {
