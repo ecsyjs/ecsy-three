@@ -69,7 +69,7 @@
     "type": "git",
     "url": "git+https://github.com/mozillareality/ecsy-three.git"
   },
-  "author": "Fernando Serrano <fernandojsg@gmail.com> (http://fernandojsg.com)",
+  "author": "Mozilla Reality <mr-internal@mozilla.com> (https://mixedreality.mozilla.org)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mozillareality/ecsy-three/issues"
