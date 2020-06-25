@@ -1,4 +1,4 @@
-window.docsifyTocBackPlugin = function(hook) {
+function docsifyTocBackPlugin(hook) {
   hook.doneEach(function() {
     const isApiPage = location.hash.split("?")[0].includes("/api/");
     let backLink = document.querySelector(".back-link");
@@ -18,4 +18,9 @@ window.docsifyTocBackPlugin = function(hook) {
 
     backLink.href = "#/";
   });
-};
+}
+
+window.$docsify.plugins = [].concat(
+  docsifyTocBackPlugin,
+  window.$docsify.plugins
+);

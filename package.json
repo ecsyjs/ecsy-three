@@ -27,7 +27,7 @@
     "build:docs": "rimraf site/docs/README.md site/docs/api && cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
     "build:site": "rimraf build && snowpack build",
     "build:cjs": "rimraf cjs && babel src -d cjs",
-    "lint": "eslint src",
+    "lint": "eslint src site/examples",
     "deploy": "np",
     "gh-pages": "gh-pages --dist=./build --dotfiles=true",
     "prepublishOnly": "npm run build",

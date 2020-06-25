@@ -11,6 +11,20 @@
     />
     <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      window.$docsify = {
+        name: "ECSY Three",
+        loadSidebar: true,
+        auto2top: true,
+        homepage: "./README.md",
+        relativePath: true,
+        search: {
+          paths: "auto",
+          depth: 3
+        },
+        plugins: []
+      };
+    </script>
   </head>
   <body>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-77033033-25"></script>
@@ -22,9 +36,7 @@
       gtag('config', 'UA-77033033-25');
     </script>
     <div id="app"></div>
-    <script src="docsify-toc-cleanup-plugin.js"></script>
     <script src="docsify-toc-back-plugin.js"></script>
-    <script src="docsify-config.js"></script>
     <script src="//unpkg.com/docsify/lib/docsify.js"></script>
     <script src="//unpkg.com/docsify/lib/plugins/search.js"></script>
   </body>
