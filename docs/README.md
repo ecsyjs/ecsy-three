@@ -65,7 +65,7 @@ RandomColorSystem.queries = {
 };
 ```
 
-Right now, there are inflators defined for `Scene`, `Mesh`, and `Camera`. Additional object3d classes can be added by setting `world.object3DInflator` to your own object3DInflator. You can find the `defaultObject3DInflator` [here](https://github.com/MozillaReality/ecsy-three/tree/master/src/core/Object3DInflator.js).
+Right now, there are inflators defined for `Scene`, `Mesh`, and `Camera`. Additional object3d classes can be added by setting `world.object3DInflator` to your own object3DInflator. You can find the `defaultObject3DInflator` [here](https://github.com/MozillaReality/ecsy-three/blob/dev/src/core/defaultObject3DInflator.js).
 
 If you want to remove an Object3D from an entity, you can call `entity.removeObject3DComponent()` which will remove the object3D from the entity and detach it from its current parent.
 
