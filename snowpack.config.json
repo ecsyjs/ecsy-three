@@ -1,0 +1,8 @@
+{
+  "install": ["ecsy"],
+  "scripts": {
+    "run:ts,tsx": "tsc --noEmit",
+    "mount:site": "mount site --to /",
+    "mount:src": "mount src --to /src"
+  }
+}

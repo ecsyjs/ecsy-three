@@ -1,3 +1,10 @@
+# Generated files
+cjs
+build
+site/build/
+site/docs/README.md
+site/docs/api/
+
 # Logs
 .DS_Store
 logs
