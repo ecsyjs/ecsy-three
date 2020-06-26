@@ -1,5 +1,5 @@
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import * as THREE from "/web_modules/three.js";
+import {System} from "/web_modules/ecsy.js";
 import {Geometry, Transform, Parent} from "../components/index.js";
 import {Object3DComponent as Object3DComponent2} from "../../core/Object3DComponent.js";
 export class GeometrySystem extends System {

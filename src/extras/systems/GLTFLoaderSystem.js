@@ -1,5 +1,5 @@
-import {GLTFLoader as GLTFLoaderThree} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three/examples/jsm/loaders/GLTFLoader.js";
-import {System, SystemStateComponent, Not} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {GLTFLoader as GLTFLoaderThree} from "/web_modules/three/examples/jsm/loaders/GLTFLoader.js";
+import {System, SystemStateComponent, Not} from "/web_modules/ecsy.js";
 import {GLTFModel as GLTFModel2} from "../components/GLTFModel.js";
 import {GLTFLoader as GLTFLoader3} from "../components/GLTFLoader.js";
 import {Object3DComponent} from "../../core/components.js";

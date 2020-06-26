@@ -1,7 +1,7 @@
-import {Component, System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {Component, System} from "/web_modules/ecsy.js";
 import {ECSYThreeWorld, Object3DComponent, Types} from "/src/index.js";
 import {initialize, GLTFLoader, GLTFLoaderSystem} from "/src/extras/index.js";
-import {AmbientLight, Mesh, BoxBufferGeometry, MeshBasicMaterial, TextureLoader} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
+import {AmbientLight, Mesh, BoxBufferGeometry, MeshBasicMaterial, TextureLoader} from "/web_modules/three.js";
 class Rotating extends Component {
 }
 Rotating.schema = {

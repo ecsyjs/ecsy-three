@@ -1,5 +1,5 @@
-import {System, Component, Types} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
+import {System, Component, Types} from "/web_modules/ecsy.js";
+import * as THREE from "/web_modules/three.js";
 import {Play, Stop, GLTFModel, Animation} from "../components/index.js";
 class AnimationMixerComponent extends Component {
 }

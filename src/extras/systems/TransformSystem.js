@@ -1,4 +1,4 @@
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {System} from "/web_modules/ecsy.js";
 import {ParentObject3D, Transform, Position, Scale, Parent} from "../components/index.js";
 import {Object3DComponent} from "../../core/components.js";
 export class TransformSystem extends System {

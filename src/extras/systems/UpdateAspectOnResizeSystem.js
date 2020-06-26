@@ -1,4 +1,4 @@
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {System} from "/web_modules/ecsy.js";
 import {UpdateAspectOnResizeTag} from "../components/index.js";
 import {CameraTagComponent, Object3DComponent} from "../../core/components.js";
 export class UpdateAspectOnResizeSystem extends System {

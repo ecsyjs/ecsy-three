@@ -31,6 +31,6 @@ export {VRController, VRControllerBasicBehaviour} from "./VRController.js";
 export {WebGLRenderer} from "./WebGLRenderer.js";
 export {ControllerConnected} from "./ControllerConnected.js";
 export {OnObject3DAdded} from "./OnObject3DAdded.js";
-import {TagComponent} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {TagComponent} from "/web_modules/ecsy.js";
 export class UpdateAspectOnResizeTag extends TagComponent {
 }

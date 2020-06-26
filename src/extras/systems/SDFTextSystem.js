@@ -1,5 +1,5 @@
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
-import {TextMesh} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/troika-3d-text/dist/textmesh-standalone.esm.js";
+import {System} from "/web_modules/ecsy.js";
+import {TextMesh} from "/web_modules/troika-3d-text/dist/textmesh-standalone.esm.js";
 import {Text} from "../components/index.js";
 import {Object3DComponent as Object3DComponent2} from "../../core/Object3DComponent.js";
 const anchorMapping = {

@@ -1,4 +1,4 @@
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {System} from "/web_modules/ecsy.js";
 import {OnObject3DAdded as OnObject3DAdded2} from "../components/OnObject3DAdded.js";
 import {Object3DComponent as Object3DComponent2} from "../../core/Object3DComponent.js";
 export class OnObject3DAddedSystem extends System {

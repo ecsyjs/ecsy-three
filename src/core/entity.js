@@ -1,4 +1,4 @@
-import {_Entity} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {_Entity} from "/web_modules/ecsy.js";
 import {Object3DComponent as Object3DComponent2} from "./Object3DComponent.js";
 export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {

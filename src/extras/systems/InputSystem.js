@@ -1,4 +1,4 @@
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {System} from "/web_modules/ecsy.js";
 import {VRControllerBasicBehaviour, VRController, InputState} from "../components/index.js";
 export class InputSystem extends System {
   init() {

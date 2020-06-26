@@ -1,4 +1,4 @@
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
+import * as THREE from "/web_modules/three.js";
 import {WebGLRendererSystem as WebGLRendererSystem2} from "./systems/WebGLRendererSystem.js";
 import {TransformSystem as TransformSystem2} from "./systems/TransformSystem.js";
 import {UpdateAspectOnResizeSystem as UpdateAspectOnResizeSystem2} from "./systems/UpdateAspectOnResizeSystem.js";

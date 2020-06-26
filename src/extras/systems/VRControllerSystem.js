@@ -1,9 +1,9 @@
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import * as THREE from "/web_modules/three.js";
+import {System} from "/web_modules/ecsy.js";
 import {VRControllerBasicBehaviour, VRController, ControllerConnected} from "../components/index.js";
 import {WebGLRendererContext} from "./WebGLRendererSystem.js";
 import {Object3DComponent as Object3DComponent2} from "../../core/Object3DComponent.js";
-import {XRControllerModelFactory as XRControllerModelFactory2} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three/examples/jsm/webxr/XRControllerModelFactory.js";
+import {XRControllerModelFactory as XRControllerModelFactory2} from "/web_modules/three/examples/jsm/webxr/XRControllerModelFactory.js";
 var controllerModelFactory = new XRControllerModelFactory2();
 export class VRControllerSystem extends System {
   init() {

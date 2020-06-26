@@ -1,4 +1,4 @@
-import {Component, Types} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {Component, Types} from "/web_modules/ecsy.js";
 export class Object3DComponent extends Component {
 }
 Object3DComponent.schema = {

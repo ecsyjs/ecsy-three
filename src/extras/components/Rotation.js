@@ -1,5 +1,5 @@
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
-import {Component} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import * as THREE from "/web_modules/three.js";
+import {Component} from "/web_modules/ecsy.js";
 import * as ThreeTypes from "../../core/Types.js";
 export class Rotation extends Component {
 }

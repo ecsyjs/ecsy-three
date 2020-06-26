@@ -1,9 +1,9 @@
-import {Component, Types, System, Not} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {Component, Types, System, Not} from "/web_modules/ecsy.js";
 import {RenderPass, Active, WebGLRenderer} from "../components/index.js";
 import {CameraTagComponent} from "../../core/components.js";
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
-import {VRButton as VRButton2} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three/examples/jsm/webxr/VRButton.js";
-import {ARButton as ARButton2} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three/examples/jsm/webxr/ARButton.js";
+import * as THREE from "/web_modules/three.js";
+import {VRButton as VRButton2} from "/web_modules/three/examples/jsm/webxr/VRButton.js";
+import {ARButton as ARButton2} from "/web_modules/three/examples/jsm/webxr/ARButton.js";
 export class WebGLRendererContext extends Component {
 }
 WebGLRendererContext.schema = {

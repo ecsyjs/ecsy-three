@@ -1,7 +1,7 @@
-import {System, Not} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
+import {System, Not} from "/web_modules/ecsy.js";
 import {SkyBox} from "../components/index.js";
 import {Object3DComponent as Object3DComponent2} from "../../core/Object3DComponent.js";
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
+import * as THREE from "/web_modules/three.js";
 export class SkyBoxSystem extends System {
   execute() {
     let entities = this.queries.entities.results;

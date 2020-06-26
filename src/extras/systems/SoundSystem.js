@@ -1,5 +1,5 @@
-import {System} from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/ecsy.js";
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
+import {System} from "/web_modules/ecsy.js";
+import * as THREE from "/web_modules/three.js";
 import {Sound} from "../components/index.js";
 import PositionalAudioPolyphonic2 from "../lib/PositionalAudioPolyphonic.js";
 export class SoundSystem extends System {

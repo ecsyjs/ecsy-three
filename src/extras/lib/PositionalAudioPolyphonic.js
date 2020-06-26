@@ -1,4 +1,4 @@
-import * as THREE from "https:/github.com/mozillareality/ecsy-three#readme/web_modules/three.js";
+import * as THREE from "/web_modules/three.js";
 export default class PositionalAudioPolyphonic extends THREE.Object3D {
   constructor(listener, poolSize) {
     super();
