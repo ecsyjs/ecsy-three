@@ -46,7 +46,6 @@ function init() {
 
   // Initialize the default sets of entities and systems
   let data = initialize(world);
-  console.log(data);
 
   world.registerComponent(Rotating).registerComponent(GLTFLoader);
   world.registerSystem(GLTFLoaderSystem);

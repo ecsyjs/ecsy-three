@@ -1,181 +1,80 @@
 # ecsy-three
 
-We created ecsy-three to facilitate developing applications using ECSY and three.js. It is a set of components, systems, and helpers that will (eventually) include a large number of reusable components for the most commonly used patterns when developing 3D applications.
+We created ecsy-three to facilitate developing applications using [ECSY](https://ecsy.io) and [three.js](https://threejs.org). It is a set of components and systems for interacting with ThreeJS from ECSY. Right now, we have a core API design that we are iterating on and we hope to build higher level abstractions against.
 
-# example tutorial
+# Getting Started
 
-(WARNING: DOCUMENTATION OUTDATED)
-We are going to create a simple example of a textured cube rotating on the screen [(see it in action)](https://mixedreality.mozilla.org/ecsy-three/examples/webgl_geometry_cube.html)
+If you aren't familiar with the ECSY API, you should read the [ECSY Documentation](https://ecsy.io/docs) first.
 
-We start by importing the required modules from three.js and ECSY
+## ECSY Three Core
+
+The core API for ecsy-three is just a few additional concepts on top of ECSY.
+
+First, you must create an instance of `ECSYThreeWorld` instead of `World`.
+
 ```javascript
-import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-import { Component, System, World } from 'https://unpkg.com/ecsy/build/ecsy.module.js';
+import { ECSYThreeWorld } from "ecsy-three";
+
+const world = new ECSYThreeWorld();
 ```
 
-Now we import some components and systems exported by `ecsy-three`:
+`ECSYThreeWorld` registers a custom `ECSYThreeEntity` class with some helper methods for working with ThreeJS.
+
+You can add any `Object3D` to an `ECSYThreeEntity` using `addObject3DComponent(object3D, parentEntity)`
+
 ```javascript
-import {
-  initialize,
-  // Components
-  Parent,
-  Camera,
-  Transform,
-  Object3D,
-  // Systems
-  WebGLRendererSystem
-} from '../build/ecsy-three.module-unpkg.js';
+import { Scene, Mesh, BoxBufferGeometry, MeshBasicMaterial, TextureLoader } from "three";
+
+const scene = world
+  .createEntity()
+  .addObject3DComponent(new Scene()); // scene is the root Object3d and has no parent
+
+const geometry = new BoxBufferGeometry(20, 20, 20);
+
+const material = new MeshBasicMaterial({
+  map: new TextureLoader().load("./textures/crate.gif")
+});
+
+const mesh = new Mesh(geometry, material);
+
+const box = world
+  .createEntity()
+  .addObject3DComponent(mesh, scene); // mesh is parented to the scene entity
 ```
 
-Let's create a component to tag the objects that will rotate:
-```javascript
-class Rotating extends Component {}
-```
+`addObject3DComponent()` will add the `Object3DComponent` as well as a series of `TagComponent`s using the world's `object3DInflator`. When adding a `Scene` object3d to an entity, it will also add the `SceneTagComponent`. For the `Mesh` object3d, a `MeshTagComponent` will be added. These tag components can be used in `System` queries to get instances of certain object3ds. You can then use `entity.getObject3D()` to get the object3d for that entity.
 
-The following system will query for the entities that has a `Rotating` and a `Transform` components and will update the `rotation` from the `Transform` component to rotate the object:
 ```javascript
-class RotationSystem extends System {
+import { MeshTagComponent, Object3DComponent } from "ecsy-three";
+import { System } from "ecsy";
+
+class RandomColorSystem extends System {
   execute(delta) {
     this.queries.entities.results.forEach(entity => {
-      var rotation = entity.getMutableComponent(Transform).rotation;
-      rotation.x += 0.5 * delta;
-      rotation.y += 0.1 * delta;
+      // This will always return a Mesh since we are querying for the MeshTagComponent
+      const mesh = entity.getObject3D();
+      mesh.material.color.setHex(Math.random() * 0xffffff);
     });
   }
 }
 
-RotationSystem.queries = {
+RandomColorSystem.queries = {
   entities: {
-    components: [Rotating, Transform]
+    components: [MeshTagComponent, Object3DComponent]
   }
 };
 ```
 
-Now let's create a new world and register our custom system:
-```javascript
-// Create a new world to hold all our entities and systems
-world = new World();
+Right now, there are inflators defined for `Scene`, `Mesh`, and `Camera`. Additional object3d classes can be added by setting `world.object3DInflator` to your own object3DInflator. You can find the `defaultObject3DInflator` [here](https://github.com/MozillaReality/ecsy-three/tree/master/src/core/Object3DInflator.js).
 
-// Register our custom sytem
-world.registerSystem(RotationSystem);
-```
+If you want to remove an Object3D from an entity, you can call `entity.removeObject3DComponent()` which will remove the object3D from the entity and detach it from its current parent.
 
-By calling `initialize()` we will initialize the default three.js systems and it will create also a set of commonly used entities in all three.js applications as `scene`, `camera` and `renderer`:
-```javascript
-// Initialize the default sets of entities and systems
-let data = initialize(world);
-```
+Finally, if you want to get the entity for a give object3d you can use `object3D.entity`. This property is added to the object3D when calling `entity.addObject3DComponent` and removed when calling `entity.removeObject3DComponent()`.
 
-We can easily grab the initialized entities:
-```javascript
-let {scene, renderer, camera} = data.entities;
-```
+That is essentially all there is to the ecsy-three core API at this time. With just these few additional components you can write most ThreeJS code against ECSY.
 
-Let's modify the camera position:
-```javascript
-// Modify the position for the default camera
-let transform = camera.getMutableComponent(Transform);
-transform.position.z = 40;
-```
+# ECSY Three Extras
 
-Now we are going to create a simple `three.js` textured cube:
-```
-// Create a three.js textured box
-var texture = new THREE.TextureLoader().load( 'textures/crate.gif' );
-var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
-var material = new THREE.MeshBasicMaterial( { map: texture } );
-mesh = new THREE.Mesh( geometry, material );
-```
+The core API is pretty minimal, but we want to eventually provide components and systems that encapsulate common behavior and patterns. The [extras folder](https://github.com/MozillaReality/ecsy-three/tree/master/src/extras) contains our own experiments to create these components and systems. These are likely to change so we won't be documenting them right away, but you are free to pull ideas from them or use them in your projects.
 
-We will include the cube into the `ECSY` world by creating and entity and adding the following components to it:
-```javascript
-// Create an entity to handle our rotating box
-var rotatingBox = world.createEntity()
-  .addComponent(Object3D, { value: mesh })
-  .addComponent(Transform)
-  .addComponent(Parent, { value: scene })
-  .addComponent(Rotating);
-```
-
-And we are ready to go, let's the fun begin!
-```
-world.execute();
-```
-
-# example full code
-```javascript
-import * as THREE from 'https://unpkg.com/three/build/three.module.js';
-import { Component, System, World } from 'https://unpkg.com/ecsy/build/ecsy.module.js';
-
-class Rotating extends Component {}
-
-class RotationSystem extends System {
-  execute(delta) {
-    this.queries.entities.results.forEach(entity => {
-      var rotation = entity.getMutableComponent(Transform).rotation;
-      rotation.x += 0.5 * delta;
-      rotation.y += 0.1 * delta;
-    });
-  }
-}
-
-RotationSystem.queries = {
-  entities: {
-    components: [Rotating, Transform]
-  }
-};
-
-import {
-  initialize,
-  // Components
-  Parent,
-  Camera,
-  Transform,
-  Object3D,
-  // Systems
-  WebGLRendererSystem
-} from '../build/ecsy-three.module-unpkg.js';
-
-var world, scene, camera, mesh, renderer;
-
-init();
-
-function init() {
-
-  // Create a new world to hold all our entities and systems
-  world = new World();
-
-  // Register our custom sytem
-  world.registerSystem(RotationSystem);
-
-  // Initialize the default sets of entities and systems
-  let data = initialize(world);
-
-  // Grab the initialized entities
-  let {scene, renderer, camera} = data.entities;
-
-  // Modify the position for the default camera
-  let transform = camera.getMutableComponent(Transform);
-  transform.position.z = 40;
-
-  // Create a three.js textured box
-  var texture = new THREE.TextureLoader().load( 'textures/crate.gif' );
-  var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
-  var material = new THREE.MeshBasicMaterial( { map: texture } );
-  mesh = new THREE.Mesh( geometry, material );
-
-  // Create an entity to handle our rotating box
-  var rotatingBox = world.createEntity()
-    .addComponent(Object3D, { value: mesh })
-    .addComponent(Transform)
-    .addComponent(Parent, { value: scene })
-    .addComponent(Rotating);
-
-  // Let's begin
-  world.execute();
-}
-```
-
-# examples
-
-Find more info on the examples folder: https://github.com/MozillaReality/ecsy-three/tree/master/examples
+We should make it clear, we don't know if these patterns are any good yet. We'd like to hear from community and iterate on these ideas with your input before moving them into the core library. Some components will not fit in the core and for those we encourage you to go build libraries and work together to find common patterns. We hope to hear from you in the GitHub issues and in our Discord! Good luck and have fun building!
