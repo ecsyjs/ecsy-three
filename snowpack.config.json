@@ -1,5 +1,8 @@
 {
   "install": ["ecsy"],
+  "buildOptions": {
+    "baseUrl": "/"
+  },
   "scripts": {
     "run:ts,tsx": "tsc --noEmit",
     "mount:site": "mount site --to /",
