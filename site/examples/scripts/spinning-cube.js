@@ -5,14 +5,16 @@ import {
   // Components
   GLTFLoader,
   // Systems
-  GLTFLoaderSystem
+  GLTFLoaderSystem,
+  Position
 } from "/src/extras/index.js";
 import {
   AmbientLight,
   Mesh,
   BoxBufferGeometry,
   MeshBasicMaterial,
-  TextureLoader
+  TextureLoader,
+  Vector3
 } from "three";
 
 class Rotating extends Component {}
@@ -47,7 +49,11 @@ function init() {
   // Initialize the default sets of entities and systems
   let data = initialize(world);
 
-  world.registerComponent(Rotating).registerComponent(GLTFLoader);
+  world
+    .registerComponent(Position)
+    .registerComponent(Rotating)
+    .registerComponent(GLTFLoader);
+
   world.registerSystem(GLTFLoaderSystem);
   // Register our custom sytem
   world.registerSystem(RotationSystem);
@@ -79,6 +85,7 @@ function init() {
 
   world
     .createEntity()
+    .addComponent(Position, { value: new Vector3(-2, 0, 0) })
     .addComponent(Rotating)
     .addObject3DComponent(
       new Mesh(
@@ -92,6 +99,7 @@ function init() {
 
   world
     .createEntity()
+    .addComponent(Position, { value: new Vector3(2, 0, 0) })
     .addComponent(Rotating, { speed: -2 })
     .addComponent(GLTFLoader, {
       url: "./models/Duck.glb",
