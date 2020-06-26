@@ -1,7 +1,7 @@
 import {Component, System} from "/web_modules/ecsy.js";
 import {ECSYThreeWorld, Object3DComponent, Types} from "/src/index.js";
-import {initialize, GLTFLoader, GLTFLoaderSystem} from "/src/extras/index.js";
-import {AmbientLight, Mesh, BoxBufferGeometry, MeshBasicMaterial, TextureLoader} from "/web_modules/three.js";
+import {initialize, GLTFLoader, GLTFLoaderSystem, Position} from "/src/extras/index.js";
+import {AmbientLight, Mesh, BoxBufferGeometry, MeshBasicMaterial, TextureLoader, Vector3} from "/web_modules/three.js";
 class Rotating extends Component {
 }
 Rotating.schema = {
@@ -29,7 +29,7 @@ init();
 function init() {
   world = new ECSYThreeWorld();
   let data = initialize(world);
-  world.registerComponent(Rotating).registerComponent(GLTFLoader);
+  world.registerComponent(Position).registerComponent(Rotating).registerComponent(GLTFLoader);
   world.registerSystem(GLTFLoaderSystem);
   world.registerSystem(RotationSystem);
   let {scene, camera} = data.entities;
@@ -40,10 +40,14 @@ function init() {
     map: new TextureLoader().load("./textures/crate.gif")
   })), scene);
   rotatingBox.remove();
-  world.createEntity().addComponent(Rotating).addObject3DComponent(new Mesh(new BoxBufferGeometry(1, 1, 1), new MeshBasicMaterial({
+  world.createEntity().addComponent(Position, {
+    value: new Vector3(-2, 0, 0)
+  }).addComponent(Rotating).addObject3DComponent(new Mesh(new BoxBufferGeometry(1, 1, 1), new MeshBasicMaterial({
     map: new TextureLoader().load("./textures/crate.gif")
   })), scene);
-  world.createEntity().addComponent(Rotating, {
+  world.createEntity().addComponent(Position, {
+    value: new Vector3(2, 0, 0)
+  }).addComponent(Rotating, {
     speed: -2
   }).addComponent(GLTFLoader, {
     url: "./models/Duck.glb",

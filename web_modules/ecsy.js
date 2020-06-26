@@ -946,43 +946,35 @@ class ComponentManager {
   }
 }
 
-const name = "ecsy";
-const version = "0.3.0";
-const description = "Entity Component System in JS";
-const main = "lib/index.js";
-const module = "src/index.js";
-const types = "src/index.d.ts";
-const scripts = {
-  build: "npm run clean && rollup -c && npm run docs && npm run build:cjs",
-  "build:cjs": "rimraf lib && babel src -d lib",
-  docs: "cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
-  "dev:docs": "nodemon -e ts -x 'npm run docs' -w src",
-  dev: "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:docs' 'npm run dev:server'",
-  "dev:server": "http-server -c-1 -p 8080 --cors ./site",
-  lint: "eslint src test site/examples",
-  start: "npm run dev",
-  deploy: "np",
-  clean: "rimraf lib build site/build site/docs/README.md site/docs/api site/benchmarks.module.js",
-  prepublishOnly: "npm run build",
-  postdeploy: "npm run gh-pages",
-  "gh-pages": "gh-pages --dist=./site --dotfiles=true",
-  benchmarks: "node -r esm --expose-gc benchmarks/index.js",
-  test: "ava",
-  travis: "npm run lint && npm run test && npm run build",
-  "watch:test": "ava --watch"
+const _from = "ecsy@0.3.0";
+const _id = "ecsy@0.3.0";
+const _inBundle = false;
+const _integrity = "sha512-dTY3vDJX6hdEVx9xqCphhunF+4ULT+gtezMEnwhhJq9T6WHOZvaWApnYEqYK/5ftyVcRHsvMlVExREjFDPho3w==";
+const _location = "/ecsy";
+const _phantomChildren = {
 };
-const repository = {
-  type: "git",
-  url: "git+https://github.com/MozillaReality/ecsy.git"
+const _requested = {
+  type: "version",
+  registry: true,
+  raw: "ecsy@0.3.0",
+  name: "ecsy",
+  escapedName: "ecsy",
+  rawSpec: "0.3.0",
+  saveSpec: null,
+  fetchSpec: "0.3.0"
 };
-const keywords = [
-  "ecs",
-  "entity component system"
+const _requiredBy = [
+  "#DEV:/",
+  "#USER"
 ];
-const author = "Mozilla Reality <mr-internal@mozilla.com> (https://mixedreality.mozilla.org)";
-const license = "MIT";
-const bugs = {
-  url: "https://github.com/MozillaReality/ecsy/issues"
+const _resolved = "https://registry.npmjs.org/ecsy/-/ecsy-0.3.0.tgz";
+const _shasum = "eb072e9d6a2f3cc4623c9e77b67d1f6a20e016e9";
+const _spec = "ecsy@0.3.0";
+const _where = "/Users/robertlong/workspace/ecsy-three";
+const author = {
+  name: "Mozilla Reality",
+  email: "mr-internal@mozilla.com",
+  url: "https://mixedreality.mozilla.org"
 };
 const ava = {
   files: [
@@ -992,12 +984,12 @@ const ava = {
     "esm"
   ]
 };
-const files = [
-  "build",
-  "lib",
-  "src"
-];
-const homepage = "https://github.com/MozillaReality/ecsy#readme";
+const bugs = {
+  url: "https://github.com/MozillaReality/ecsy/issues"
+};
+const bundleDependencies = false;
+const deprecated = false;
+const description = "Entity Component System in JS";
 const devDependencies = {
   "@babel/cli": "^7.10.1",
   "@babel/core": "^7.10.2",
@@ -1026,29 +1018,76 @@ const devDependencies = {
   "typedoc-plugin-markdown": "^2.2.16",
   typescript: "^3.7.5"
 };
-const _resolved = "https://registry.npmjs.org/ecsy/-/ecsy-0.3.0.tgz";
-const _integrity = "sha512-dTY3vDJX6hdEVx9xqCphhunF+4ULT+gtezMEnwhhJq9T6WHOZvaWApnYEqYK/5ftyVcRHsvMlVExREjFDPho3w==";
-const _from = "ecsy@0.3.0";
+const files = [
+  "build",
+  "lib",
+  "src"
+];
+const homepage = "https://github.com/MozillaReality/ecsy#readme";
+const keywords = [
+  "ecs",
+  "entity component system"
+];
+const license = "MIT";
+const main = "lib/index.js";
+const module = "src/index.js";
+const name = "ecsy";
+const repository = {
+  type: "git",
+  url: "git+https://github.com/MozillaReality/ecsy.git"
+};
+const scripts = {
+  benchmarks: "node -r esm --expose-gc benchmarks/index.js",
+  build: "npm run clean && rollup -c && npm run docs && npm run build:cjs",
+  "build:cjs": "rimraf lib && babel src -d lib",
+  clean: "rimraf lib build site/build site/docs/README.md site/docs/api site/benchmarks.module.js",
+  deploy: "np",
+  dev: "concurrently --names 'ROLLUP,DOCS,HTTP' -c 'bgBlue.bold,bgYellow.bold,bgGreen.bold' 'rollup -c -w -m inline' 'npm run dev:docs' 'npm run dev:server'",
+  "dev:docs": "nodemon -e ts -x 'npm run docs' -w src",
+  "dev:server": "http-server -c-1 -p 8080 --cors ./site",
+  docs: "cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
+  "gh-pages": "gh-pages --dist=./site --dotfiles=true",
+  lint: "eslint src test site/examples",
+  postdeploy: "npm run gh-pages",
+  prepublishOnly: "npm run build",
+  start: "npm run dev",
+  test: "ava",
+  travis: "npm run lint && npm run test && npm run build",
+  "watch:test": "ava --watch"
+};
+const types = "src/index.d.ts";
+const version = "0.3.0";
 var pjson = {
-  name: name,
-  version: version,
-  description: description,
-  main: main,
-  module: module,
-  types: types,
-  scripts: scripts,
-  repository: repository,
-  keywords: keywords,
+  _from: _from,
+  _id: _id,
+  _inBundle: _inBundle,
+  _integrity: _integrity,
+  _location: _location,
+  _phantomChildren: _phantomChildren,
+  _requested: _requested,
+  _requiredBy: _requiredBy,
+  _resolved: _resolved,
+  _shasum: _shasum,
+  _spec: _spec,
+  _where: _where,
   author: author,
-  license: license,
-  bugs: bugs,
   ava: ava,
+  bugs: bugs,
+  bundleDependencies: bundleDependencies,
+  deprecated: deprecated,
+  description: description,
+  devDependencies: devDependencies,
   files: files,
   homepage: homepage,
-  devDependencies: devDependencies,
-  _resolved: _resolved,
-  _integrity: _integrity,
-  _from: _from
+  keywords: keywords,
+  license: license,
+  main: main,
+  module: module,
+  name: name,
+  repository: repository,
+  scripts: scripts,
+  types: types,
+  version: version
 };
 
 const Version = pjson.version;
