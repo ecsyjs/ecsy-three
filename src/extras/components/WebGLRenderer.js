@@ -8,5 +8,5 @@ WebGLRenderer.schema = {
   antialias: { default: true, type: Types.Boolean },
   handleResize: { default: true, type: Types.Boolean },
   shadowMap: { default: true, type: Types.Boolean },
-  animationLoop: { default: null, type: Types.Object }
+  animationLoop: { default: null, type: Types.Ref }
 };
