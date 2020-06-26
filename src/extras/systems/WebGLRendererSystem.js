@@ -7,7 +7,7 @@ import { ARButton } from "three/examples/jsm/webxr/ARButton.js";
 
 export class WebGLRendererContext extends Component {}
 WebGLRendererContext.schema = {
-  value: { default: null, type: Types.Object }
+  value: { default: null, type: Types.Ref }
 };
 
 export class WebGLRendererSystem extends System {

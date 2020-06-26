@@ -4,7 +4,7 @@
   "description": "ECSY three.js bindings",
   "type": "module",
   "main": "./cjs/index.js",
-  "module": "./index.js",
+  "module": "./src/index.js",
   "exports": {
     ".": {
       "require": "./cjs/index.js",
@@ -21,10 +21,11 @@
     "/src",
     "/cjs"
   ],
+  "types": "src/index.d.ts",
   "scripts": {
     "start": "snowpack dev",
     "build": "npm run build:docs && npm run build:site && npm run build:cjs",
-    "build:docs": "rimraf site/docs/README.md site/docs/api && cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown  --theme site/docs/theme --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
+    "build:docs": "rimraf site/docs/README.md site/docs/api && cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
     "build:site": "rimraf build && snowpack build",
     "build:cjs": "rimraf cjs && babel src -d cjs",
     "lint": "eslint src site/examples",
@@ -41,7 +42,7 @@
     "babel-eslint": "^10.0.3",
     "babel-preset-es2015": "^6.24.1",
     "concurrently": "^5.0.0",
-    "ecsy": "git+https://github.com/MozillaReality/ecsy.git",
+    "ecsy": "^0.3.0",
     "eslint": "^6.7.1",
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-prettier": "^3.1.1",

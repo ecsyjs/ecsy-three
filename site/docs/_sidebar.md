@@ -1,7 +1,8 @@
-- [Getting started](/manual/Getting-started)
+- [Getting Started](/#Getting-Started)
 - API Reference
   - [ECSYThreeWorld](/api/classes/ECSYThreeWorld)
   - [ECSYThreeEntity](/api/classes/ECSYThreeEntity)
   - [Object3DComponent](/api/classes/Object3DComponent)
   - [SceneTagComponent](/api/classes/SceneTagComponent)
   - [MeshTagComponent](/api/classes/MeshTagComponent)
+  - [CameraTagComponent](/api/classes/MeshTagComponent)
