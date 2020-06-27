@@ -6,6 +6,8 @@ We created ecsy-three to facilitate developing applications using [ECSY](https:/
 
 If you aren't familiar with the ECSY API, you should read the [ECSY Documentation](https://ecsy.io/docs) first.
 
+[View Demo on Glitch](https://glitch.com/~ecsy-three-spinning-cube)
+
 ## ECSY Three Core
 
 The core API for ecsy-three is just a few additional concepts on top of ECSY.
