@@ -1,6 +1,6 @@
 {
   "name": "ecsy-three",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "ECSY three.js bindings",
   "type": "module",
   "main": "./cjs/index.js",
