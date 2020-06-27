@@ -11,8 +11,8 @@
       "import": "./src/index.js"
     },
     "./extras": {
-      "require": "./cjs/extras.js",
-      "import": "./src/extras.js"
+      "require": "./cjs/extras/index.js",
+      "import": "./src/extras/index.js"
     }
   },
   "files": [
