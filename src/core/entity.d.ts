@@ -6,7 +6,7 @@ export interface ECSYThreeObject3D {
 }
 
 export class ECSYThreeEntity extends _Entity {
-  addObject3DComponent(obj: Object3D, parentEntity: Entity): this
+  addObject3DComponent(obj: Object3D, parentEntity?: Entity): this
   removeObject3DComponent(unparent: boolean): void
   remove(forceImmediate: boolean): void
   getObject3D<T extends Object3D>(): T & ECSYThreeObject3D
