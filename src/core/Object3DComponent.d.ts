@@ -2,9 +2,9 @@ import { Component, RefPropType } from "ecsy";
 import { Object3D } from "three";
 
 export class Object3DComponent extends Component<Object3DComponent> {
-  value: Object3D | null;
+  value?: Object3D;
 
   static schema: {
-    value: { default: null, type: RefPropType<Object3D> }
+    value: { type: RefPropType<Object3D> }
   };
 }
