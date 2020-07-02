@@ -38,6 +38,7 @@ export class ECSYThreeEntity extends _Entity {
   }
 
   getObject3D() {
-    return this.getComponent(Object3DComponent).value;
+    const component = this.getComponent(Object3DComponent);
+    return component && component.value;
   }
 }
