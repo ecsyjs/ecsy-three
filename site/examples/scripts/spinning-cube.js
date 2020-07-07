@@ -97,6 +97,7 @@ function init() {
       scene
     );
 
+  /* Snowpack not working properly with binary requests
   world
     .createEntity()
     .addComponent(Position, { value: new Vector3(2, 0, 0) })
@@ -105,6 +106,7 @@ function init() {
       url: "./models/Duck.glb",
       parent: scene
     });
+  */
 
   // Let's begin
   world.execute();
