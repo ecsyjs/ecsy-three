@@ -97,16 +97,15 @@ function init() {
       scene
     );
 
-  /* Snowpack not working properly with binary requests
   world
     .createEntity()
     .addComponent(Position, { value: new Vector3(2, 0, 0) })
     .addComponent(Rotating, { speed: -2 })
     .addComponent(GLTFLoader, {
-      url: "./models/Duck.glb",
+      url:
+        "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF-Binary/Duck.glb",
       parent: scene
     });
-  */
 
   // Let's begin
   world.execute();
