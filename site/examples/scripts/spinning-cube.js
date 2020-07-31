@@ -1,20 +1,10 @@
-import { Component, System } from "ecsy";
-import { ECSYThreeWorld, Object3DComponent, Types } from "/src/index.js";
+import { Component, System, Types } from "ecsy";
+import { initialize, Object3DComponent } from "/src/index.js";
 import {
-  initialize,
-  // Components
-  GLTFLoader,
-  // Systems
-  GLTFLoaderSystem,
-  Position
-} from "/src/extras/index.js";
-import {
-  AmbientLight,
   Mesh,
   BoxBufferGeometry,
   MeshBasicMaterial,
-  TextureLoader,
-  Vector3
+  TextureLoader
 } from "three";
 
 class Rotating extends Component {}
@@ -38,75 +28,26 @@ RotationSystem.queries = {
   }
 };
 
-var world;
+// Initialize the default sets of entities and systems
+const { world, sceneEntity, camera } = initialize();
 
-init();
+world
+  .registerComponent(Rotating)
 
-function init() {
-  // Create a new world to hold all our entities and systems
-  world = new ECSYThreeWorld();
+world
+  .registerSystem(RotationSystem);
 
-  // Initialize the default sets of entities and systems
-  let data = initialize(world);
+// Modify the position for the default camera
+camera.position.z = 2;
 
-  world
-    .registerComponent(Position)
-    .registerComponent(Rotating)
-    .registerComponent(GLTFLoader);
+const mesh = new Mesh(
+  new BoxBufferGeometry(),
+  new MeshBasicMaterial({
+    map: new TextureLoader().load("./textures/crate.gif")
+  })
+);
 
-  world.registerSystem(GLTFLoaderSystem);
-  // Register our custom sytem
-  world.registerSystem(RotationSystem);
-
-  // Grab the initialized entities
-  let { scene, camera } = data.entities;
-
-  // Modify the position for the default camera
-  let camera3d = camera.getObject3D();
-  camera3d.position.z = 5;
-
-  world.createEntity().addObject3DComponent(new AmbientLight(), scene);
-
-  // Create an entity to handle our rotating box
-  var rotatingBox = world
-    .createEntity()
-    .addComponent(Rotating)
-    .addObject3DComponent(
-      new Mesh(
-        new BoxBufferGeometry(20, 20, 20),
-        new MeshBasicMaterial({
-          map: new TextureLoader().load("./textures/crate.gif")
-        })
-      ),
-      scene
-    );
-  rotatingBox.remove();
-  // rotatingBox should no longer be in the world or the threejs sceen
-
-  world
-    .createEntity()
-    .addComponent(Position, { value: new Vector3(-2, 0, 0) })
-    .addComponent(Rotating)
-    .addObject3DComponent(
-      new Mesh(
-        new BoxBufferGeometry(1, 1, 1),
-        new MeshBasicMaterial({
-          map: new TextureLoader().load("./textures/crate.gif")
-        })
-      ),
-      scene
-    );
-
-  world
-    .createEntity()
-    .addComponent(Position, { value: new Vector3(2, 0, 0) })
-    .addComponent(Rotating, { speed: -2 })
-    .addComponent(GLTFLoader, {
-      url:
-        "https://cdn.jsdelivr.net/gh/KhronosGroup/glTF-Sample-Models/2.0/Duck/glTF-Binary/Duck.glb",
-      parent: scene
-    });
-
-  // Let's begin
-  world.execute();
-}
+world
+  .createEntity()
+  .addComponent(Rotating)
+  .addObject3DComponent(mesh, sceneEntity);  

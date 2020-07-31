@@ -1,7 +1,7 @@
-// CORE
-// export { initialize as initializeCore } from "./src/core/initialize.js";
-export { ECSYThreeWorld } from "./core/world.js";
-export * from "./core/Types.js";
-export * from "./core/components.js";
-export { defaultObject3DInflator } from "./core/defaultObject3DInflator.js";
-export { ECSYThreeSystem } from "./core/system.js";
+export { ECSYThreeWorld } from "./world.js";
+export { ECSYThreeSystem } from "./system.js";
+export { defaultObject3DInflator } from "./defaultObject3DInflator.js";
+export * as ThreeTypes from "./types/index.js";
+export * from "./components/index.js";
+export * from "./systems/index.js";
+export { initialize } from "./initialize.js";
