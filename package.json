@@ -9,15 +9,10 @@
     ".": {
       "require": "./cjs/index.js",
       "import": "./src/index.js"
-    },
-    "./extras": {
-      "require": "./cjs/extras/index.js",
-      "import": "./src/extras/index.js"
     }
   },
   "files": [
     "index.js",
-    "extras.js",
     "/src",
     "/cjs"
   ],
