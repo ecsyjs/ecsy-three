@@ -1,7 +1,6 @@
 import { ECSYThreeWorld } from "./world.js";
 import { WebGLRendererSystem } from "./systems/WebGLRendererSystem.js";
 import { WebGLRendererComponent } from "./components/WebGLRendererComponent.js";
-import { SceneTagComponent, CameraTagComponent } from "./components/Object3DTags.js";
 import { PerspectiveCamera, Scene, WebGLRenderer, Clock } from "three";
 
 export function initialize(world, options = {}) {

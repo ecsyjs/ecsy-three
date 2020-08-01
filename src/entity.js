@@ -5,7 +5,7 @@ export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {
     obj.entity = this;
     this.addComponent(Object3DComponent, { value: obj });
-    this._entityManager.world.object3DInflator.inflate(this, obj);
+    this._entityManager.world.inflateObject3D(this, obj);
     if (parentEntity && parentEntity.hasComponent(Object3DComponent)) {
       parentEntity.getObject3D().add(obj);
     }
@@ -19,7 +19,15 @@ export class ECSYThreeEntity extends _Entity {
       obj.parent && obj.parent.remove(obj);
     }
     this.removeComponent(Object3DComponent);
-    this._entityManager.world.object3DInflator.deflate(this, obj);
+    
+    for (let i = this._ComponentTypes.length - 1; i >= 0; i--) {
+      const Component = this._ComponentTypes[i];
+
+      if (Component.isThreeTagComponent) {
+        this.removeComponent(Component);
+      }
+    }
+
     obj.entity = null;
   }
 
