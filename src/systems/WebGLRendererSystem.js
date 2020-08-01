@@ -1,12 +1,7 @@
 import { System } from "ecsy";
-import { PerspectiveCamera } from "three";
 import { WebGLRendererComponent } from "../components/WebGLRendererComponent";
 
 export class WebGLRendererSystem extends System {
-  static queries = {
-    renderers: { components: [WebGLRendererComponent] },
-  };
-
   onResize() {
     this.needsResize = true;
   }
@@ -31,8 +26,7 @@ export class WebGLRendererSystem extends System {
       const scene = component.scene.getObject3D();
       const renderer = component.renderer;
 
-      if (this.needsResize) 
-      {
+      if (this.needsResize) {
         const canvas = renderer.domElement;
 
         const curPixelRatio = renderer.getPixelRatio();
@@ -40,14 +34,14 @@ export class WebGLRendererSystem extends System {
         if (curPixelRatio !== window.devicePixelRatio) {
           renderer.setPixelRatio(window.devicePixelRatio);
         }
-  
+
         const width = canvas.clientWidth;
         const height = canvas.clientHeight;
-        
+
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
         renderer.setSize(width, height, false);
-        
+
         this.needsResize = false;
       }
 
@@ -55,3 +49,7 @@ export class WebGLRendererSystem extends System {
     }
   }
 }
+
+WebGLRendererSystem.queries = {
+  renderers: { components: [WebGLRendererComponent] },
+};
