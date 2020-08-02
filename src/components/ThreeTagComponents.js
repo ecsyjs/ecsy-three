@@ -18,45 +18,45 @@ export class AudioListenerTagComponent extends ThreeTagComponent {
 export class PositionalAudioTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
     // PositionalAudio doesn't have a type or isPositionalAudio property.
-    return object.type === "Audio" && object.panner !== undefined; 
+    return object.type === "Audio" && object.panner !== undefined;
   }
 }
 
 // cameras
 export class ArrayCameraTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isArrayCamera; 
+    return object.isArrayCamera;
   }
 }
 
 export class CameraTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isCamera; 
+    return object.isCamera;
   }
 }
 
 export class CubeCameraTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.type === "CubeCamera"; 
+    return object.type === "CubeCamera";
   }
 }
 
 export class OrthographicCameraTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isOrthographicCamera; 
+    return object.isOrthographicCamera;
   }
 }
 
 export class PerspectiveCameraTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isPerspectiveCamera; 
+    return object.isPerspectiveCamera;
   }
 }
 
 // extras/objects
 export class ImmediateRenderObjectTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isImmediateRenderObject; 
+    return object.isImmediateRenderObject;
   }
 }
 
@@ -68,133 +68,133 @@ export class ImmediateRenderObjectTagComponent extends ThreeTagComponent {
 // lights
 export class AmbientLightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isAmbientLight; 
+    return object.isAmbientLight;
   }
 }
 
 export class AmbientLightProbeTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isAmbientLightProbe; 
+    return object.isAmbientLightProbe;
   }
 }
 
 export class DirectionalLightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isDirectionalLight; 
+    return object.isDirectionalLight;
   }
 }
 
 export class HemisphereLightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isHemisphereLight; 
+    return object.isHemisphereLight;
   }
 }
 
 export class HemisphereLightProbeTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isHemisphereLightProbe; 
+    return object.isHemisphereLightProbe;
   }
 }
 
 export class LightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isLight; 
+    return object.isLight;
   }
 }
 
 export class LightProbeTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isLightProbe; 
+    return object.isLightProbe;
   }
 }
 
 export class PointLightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isPointLight; 
+    return object.isPointLight;
   }
 }
 
 export class RectAreaLightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isRectAreaLight; 
+    return object.isRectAreaLight;
   }
 }
 
 export class SpotLightTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isSpotLight; 
+    return object.isSpotLight;
   }
 }
 
 // objects
 export class BoneTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isBone; 
+    return object.isBone;
   }
 }
 
 export class GroupTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isGroup; 
+    return object.isGroup;
   }
 }
 
 export class InstancedMeshTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isInstancedMesh; 
+    return object.isInstancedMesh;
   }
 }
 
 export class LODTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isLOD; 
+    return object.isLOD;
   }
 }
 
 export class LineTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isLine; 
+    return object.isLine;
   }
 }
 
 export class LineLoopTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isLineLoop; 
+    return object.isLineLoop;
   }
 }
 
 export class LineSegmentsTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isLineSegments; 
+    return object.isLineSegments;
   }
 }
 
 export class MeshTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isMesh; 
+    return object.isMesh;
   }
 }
 export class PointsTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isPoints; 
+    return object.isPoints;
   }
 }
 
 export class SkinnedMeshTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isSkinnedMesh; 
+    return object.isSkinnedMesh;
   }
 }
 
 export class SpriteTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isSprite; 
+    return object.isSprite;
   }
 }
 
 // scenes
 export class SceneTagComponent extends ThreeTagComponent {
   static matchesObject3D(object) {
-    return object.isScene; 
+    return object.isScene;
   }
 }

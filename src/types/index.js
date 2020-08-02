@@ -51,7 +51,10 @@ export const Quaternion = defineClonableType("Quaternion", _Quaternion);
 export const Ray = defineClonableType("Ray", _Ray);
 export const Sphere = defineClonableType("Sphere", _Sphere);
 export const Spherical = defineClonableType("Spherical", _Spherical);
-export const SphericalHarmonics3 = defineClonableType("SphericalHarmonics3", _SphericalHarmonics3);
+export const SphericalHarmonics3 = defineClonableType(
+  "SphericalHarmonics3",
+  _SphericalHarmonics3
+);
 export const Triangle = defineClonableType("Triangle", _Triangle);
 export const Vector2 = defineClonableType("Vector2", _Vector2);
 export const Vector3 = defineClonableType("Vector3", _Vector3);

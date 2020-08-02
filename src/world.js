@@ -9,7 +9,7 @@ export class ECSYThreeWorld extends World {
       Object.assign(
         {
           entityClass: ECSYThreeEntity,
-          registerThreeTagComponents: true
+          registerThreeTagComponents: true,
         },
         options
       )
@@ -20,8 +20,8 @@ export class ECSYThreeWorld extends World {
     if (this.options.registerThreeTagComponents) {
       this.registerComponent(Object3DComponent);
 
-      Object.values(ThreeTagComponents).forEach(Component => {
-        this.registerComponent(Component)
+      Object.values(ThreeTagComponents).forEach((Component) => {
+        this.registerComponent(Component);
       });
     }
   }
@@ -37,7 +37,7 @@ export class ECSYThreeWorld extends World {
   inflateObject3DComponents(entity, object3D) {
     for (let i = 0; i < this.threeTagComponents.length; i++) {
       const ThreeTagComponent = this.threeTagComponents[i];
-      
+
       if (ThreeTagComponent.matchesObject3D(object3D)) {
         entity.addComponent(ThreeTagComponent);
       }

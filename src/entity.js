@@ -19,7 +19,7 @@ export class ECSYThreeEntity extends _Entity {
       obj.parent && obj.parent.remove(obj);
     }
     this.removeComponent(Object3DComponent);
-    
+
     for (let i = this._ComponentTypes.length - 1; i >= 0; i--) {
       const Component = this._ComponentTypes[i];
 
@@ -34,7 +34,7 @@ export class ECSYThreeEntity extends _Entity {
   remove(forceImmediate) {
     if (this.hasComponent(Object3DComponent)) {
       const obj = this.getObject3D();
-      obj.traverse(o => {
+      obj.traverse((o) => {
         if (o.entity) {
           this._entityManager.removeEntity(o.entity, forceImmediate);
         }
