@@ -1,4 +1,4 @@
-# ecsy-three
+CONFLICT (modify/delete): src/components/ThreeTagComponents.js deleted in HEAD and modified in b43c28c... Fix .js imports. Version b43c28c... Fix .js imports of src/components/ThreeTagComponents.js left in tree.# ecsy-three
 
 We created ecsy-three to facilitate developing applications using [ECSY](https://ecsy.io) and [three.js](https://threejs.org). It is a set of components and systems for interacting with ThreeJS from ECSY. Right now, we have a core API design that we are iterating on and we hope to build higher level abstractions against.
 
@@ -74,9 +74,3 @@ If you want to remove an Object3D from an entity, you can call `entity.removeObj
 Finally, if you want to get the entity for a give object3d you can use `object3D.entity`. This property is added to the object3D when calling `entity.addObject3DComponent` and removed when calling `entity.removeObject3DComponent()`.
 
 That is essentially all there is to the ecsy-three core API at this time. With just these few additional components you can write most ThreeJS code against ECSY.
-
-# ECSY Three Extras
-
-The core API is pretty minimal, but we want to eventually provide components and systems that encapsulate common behavior and patterns. The [extras folder](https://github.com/MozillaReality/ecsy-three/tree/master/src/extras) contains our own experiments to create these components and systems. These are likely to change so we won't be documenting them right away, but you are free to pull ideas from them or use them in your projects.
-
-We should make it clear, we don't know if these patterns are any good yet. We'd like to hear from community and iterate on these ideas with your input before moving them into the core library. Some components will not fit in the core and for those we encourage you to go build libraries and work together to find common patterns. We hope to hear from you in the GitHub issues and in our Discord! Good luck and have fun building!
