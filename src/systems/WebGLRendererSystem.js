@@ -1,5 +1,5 @@
 import { System } from "ecsy";
-import { WebGLRendererComponent } from "../components/WebGLRendererComponent";
+import { WebGLRendererComponent } from "../components/WebGLRendererComponent.js";
 
 export class WebGLRendererSystem extends System {
   onResize() {
