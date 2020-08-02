@@ -34,7 +34,7 @@ export class ECSYThreeWorld extends World {
     return super.registerComponent(Component, objectPool);
   }
 
-  inflateObject3D(entity, object3D) {
+  inflateObject3DComponents(entity, object3D) {
     for (let i = 0; i < this.threeTagComponents.length; i++) {
       const ThreeTagComponent = this.threeTagComponents[i];
       
@@ -42,5 +42,7 @@ export class ECSYThreeWorld extends World {
         entity.addComponent(ThreeTagComponent);
       }
     }
+
+    return entity;
   }
 }

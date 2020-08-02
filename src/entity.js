@@ -5,7 +5,7 @@ export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {
     obj.entity = this;
     this.addComponent(Object3DComponent, { value: obj });
-    this._entityManager.world.inflateObject3D(this, obj);
+    this._entityManager.world.inflateObject3DComponents(this, obj);
     if (parentEntity && parentEntity.hasComponent(Object3DComponent)) {
       parentEntity.getObject3D().add(obj);
     }
