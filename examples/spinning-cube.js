@@ -1,5 +1,5 @@
 import { Component, System, Types } from "ecsy";
-import { initialize, Object3DComponent } from "/src/index.js";
+import { initialize, Object3DComponent } from "ecsy-three";
 import {
   Mesh,
   BoxBufferGeometry,

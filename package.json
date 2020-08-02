@@ -2,7 +2,6 @@
   "name": "ecsy-three",
   "version": "0.0.6",
   "description": "ECSY three.js bindings",
-  "type": "module",
   "main": "./cjs/index.js",
   "module": "./src/index.js",
   "exports": {
@@ -18,10 +17,10 @@
   ],
   "types": "src/index.d.ts",
   "scripts": {
-    "start": "snowpack dev",
+    "start": "webpack-dev-server --mode development",
     "build": "npm run build:docs && npm run build:site && npm run build:cjs",
     "build:docs": "rimraf site/docs/README.md site/docs/api && cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
-    "build:site": "rimraf build && snowpack build",
+    "build:site": "webpack --mode production",
     "build:cjs": "rimraf cjs && babel src -d cjs",
     "lint": "eslint src site/examples",
     "deploy": "np",
@@ -46,14 +45,13 @@
     "np": "^6.2.4",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
-    "rollup": "^1.27.13",
-    "rollup-plugin-terser": "^6.1.0",
-    "snowpack": "^2.5.4",
-    "snowpack-plugin-import-map": "^1.0.0",
-    "three": "^0.116.1",
-    "typedoc": "^0.15.8",
-    "typedoc-plugin-markdown": "^2.2.16",
-    "typescript": "^3.9.5"
+    "three": "^0.119.1",
+    "typedoc": "^0.17.8",
+    "typedoc-plugin-markdown": "^2.4.0",
+    "typescript": "^3.9.7",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "peerDependencies": {
     "ecsy": "*",
