@@ -1,7 +1,6 @@
 # Generated files
 cjs
-build
-site/build/
+site/examples/scripts/
 site/docs/README.md
 site/docs/api/
 
