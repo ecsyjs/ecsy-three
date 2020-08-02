@@ -26,7 +26,7 @@ export class ECSYThreeEntity extends _Entity {
   remove(forceImmediate) {
     if (this.hasComponent(Object3DComponent)) {
       const obj = this.getObject3D();
-      obj.traverse(o => {
+      obj.traverse((o) => {
         if (o.entity) {
           this._entityManager.removeEntity(o.entity, forceImmediate);
         }

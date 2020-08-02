@@ -11,5 +11,5 @@
     "prettier/prettier": "error",
     "no-console": "off"
   },
-  "extends": ["prettier", "eslint:recommended"]
+  "extends": ["eslint:recommended", "prettier"]
 }
