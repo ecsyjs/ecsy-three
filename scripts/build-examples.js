@@ -12,6 +12,16 @@ async function buildExample(example) {
   const packagePath = path.join(example.srcPath, "package.json");
 
   if (fs.existsSync(packagePath)) {
+    const { stdout, stderr } = await exec("npm install", { cwd: example.srcPath });
+
+    if (stderr) {
+      console.error(`${example.name}: ${stderr}`);
+    }
+
+    if (stdout) {
+      console.log(stdout);
+    }
+
     const packageText = await readFile(packagePath);
     const package = JSON.parse(packageText);
 
@@ -19,7 +29,7 @@ async function buildExample(example) {
       const { stdout, stderr } = await exec("npm run build", { cwd: example.srcPath });
 
       if (stderr) {
-        console.error(`${example-name}: ${stderr}`);
+        console.error(`${example.name}: ${stderr}`);
       }
 
       if (stdout) {

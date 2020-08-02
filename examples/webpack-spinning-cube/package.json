@@ -14,11 +14,12 @@
     "css-loader": "^4.2.0",
     "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.3.0",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "ecsy": "^0.3.2",
-    "ecsy-three": "file://../../",
+    "ecsy-three": "^0.0.6",
     "three": "^0.119.1"
   }
 }

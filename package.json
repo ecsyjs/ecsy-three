@@ -20,12 +20,14 @@
     "start": "http-server site",
     "build": "npm run build:docs && npm run build:examples && npm run build:cjs",
     "build:docs": "rimraf site/docs/README.md site/docs/api && cp README.md site/docs/README.md && rimraf site/docs/api/_sidebar.md; typedoc --readme none --mode file --excludeExternals --plugin typedoc-plugin-markdown --hideSources --hideBreadcrumbs --out site/docs/api/ --includeDeclarations --includes 'src/**/*.d.ts' src; touch site/docs/api/_sidebar.md",
+    "install:examples": "node ./scripts/install-examples.js",
     "build:examples": "node ./scripts/build-examples.js",
+    "link:examples": "node ./scripts/link-examples.js",
     "build:cjs": "rimraf cjs && babel src -d cjs",
     "lint": "eslint src examples",
     "deploy": "np",
     "gh-pages": "gh-pages --dist=./site --dotfiles=true",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run install:examples && npm run build",
     "postdeploy": "npm run gh-pages"
   },
   "devDependencies": {
