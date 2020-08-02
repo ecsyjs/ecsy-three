@@ -1,0 +1,24 @@
+{
+  "name": "ecsy-example-webpack-spinning-cube",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build": "webpack --mode production",
+    "deploy": "gh-pages -d public"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.0",
+    "gh-pages": "^3.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "style-loader": "^1.2.1"
+  },
+  "dependencies": {
+    "ecsy": "^0.3.2",
+    "ecsy-three": "file://../../",
+    "three": "^0.119.1"
+  }
+}
