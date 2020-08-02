@@ -1,4 +1,4 @@
-import { ThreeTagComponent } from "./ThreeTagComponent";
+import { ThreeTagComponent } from "./ThreeTagComponent.js";
 
 // Tag components for every Object3D in the three.js core library
 
