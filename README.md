@@ -44,7 +44,7 @@ const box = world
   .addObject3DComponent(mesh, scene); // mesh is parented to the scene entity
 ```
 
-`addObject3DComponent()` will add the `Object3DComponent` as well as a series of `ThreeTagComponent`s. For example, when adding a `Scene` object3d to an entity, it will also add the `SceneTagComponent`. For the `Mesh` object3d, a `MeshTagComponent` will be added. These tag components can be used in `System` queries to get instances of certain object3ds. You can then use `entity.getObject3D()` to get the object3d for that entity.
+`addObject3DComponent()` will add the `Object3DComponent` as well as a series of `TagComponent`s. For example, when adding a `Scene` object3d to an entity, it will also add the `SceneTagComponent`. For the `Mesh` object3d, a `MeshTagComponent` will be added. These tag components can be used in `System` queries to get instances of certain object3ds. You can then use `entity.getObject3D()` to get the object3d for that entity.
 
 ```javascript
 import { MeshTagComponent, Object3DComponent } from "ecsy-three";
@@ -67,22 +67,7 @@ RandomColorSystem.queries = {
 };
 ```
 
-There are `ThreeTagComponent`s defined for all of the `Object3D` classes in the core three.js library (excluding helpers). If you want to add `ThreeTagComponent`s for another `Object3D` class, register a new `ThreeTagComponent` and implement the `matchesObject3D(object3D)` function.
-
-```javascript
-import { ThreeTagComponent } from "ecsy-three";
-import { Sky } from "three/examples/jsm/objects/Sky";
-
-class SkyTagComponent extends ThreeTagComponent {
-  static matchesObject3D(object3D) {
-    return object3D instanceof Sky;
-  }
-}
-
-world.registerComponent(SkyTagComponent);
-```
-
-If you want to remove an Object3D from an entity, you can call `entity.removeObject3DComponent()` which will remove the object3D from the entity and detach it from its current parent as well as removing any `ThreeTagComponent`s.
+If you want to remove an Object3D from an entity, you can call `entity.removeObject3DComponent()` which will remove the object3D from the entity and detach it from its current parent as well as removing any object3d `TagComponent`s.
 
 Finally, if you want to get the entity for a give object3d you can use `object3D.entity`. This property is added to the object3D when calling `entity.addObject3DComponent` and removed when calling `entity.removeObject3DComponent()`.
 
