@@ -48,3 +48,14 @@ canvas {
 	user-select: none;
 	z-index: 2 !important; /* TODO Solve this in HTML */
 }
+
+html, body {
+	margin: 0;
+}
+
+canvas {
+	background-color: black;
+	display: block;
+	width: 100vw;
+	height: 100vh;
+}
