@@ -1,36 +1,38 @@
 
-# Class: Object3DComponent
+# Class: WebGLRendererComponent
 
 ## Hierarchy
 
-* Component‹[Object3DComponent](object3dcomponent.md)›
+* Component‹[WebGLRendererComponent](webglrenderercomponent.md)›
 
-  ↳ **Object3DComponent**
+  ↳ **WebGLRendererComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](object3dcomponent.md#constructor)
+* [constructor](webglrenderercomponent.md#constructor)
 
 ### Properties
 
-* [value](object3dcomponent.md#optional-value)
-* [isComponent](object3dcomponent.md#static-iscomponent)
-* [schema](object3dcomponent.md#static-schema)
+* [camera](webglrenderercomponent.md#camera)
+* [renderer](webglrenderercomponent.md#renderer)
+* [scene](webglrenderercomponent.md#scene)
+* [isComponent](webglrenderercomponent.md#static-iscomponent)
+* [schema](webglrenderercomponent.md#static-schema)
 
 ### Methods
 
-* [clone](object3dcomponent.md#clone)
-* [copy](object3dcomponent.md#copy)
-* [dispose](object3dcomponent.md#dispose)
-* [reset](object3dcomponent.md#reset)
+* [clone](webglrenderercomponent.md#clone)
+* [copy](webglrenderercomponent.md#copy)
+* [dispose](webglrenderercomponent.md#dispose)
+* [reset](webglrenderercomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new Object3DComponent**(`props?`: Partial‹Omit‹[Object3DComponent](object3dcomponent.md), keyof Component<any>›› | false): *[Object3DComponent](object3dcomponent.md)*
+\+ **new WebGLRendererComponent**(`props?`: Partial‹Omit‹[WebGLRendererComponent](webglrenderercomponent.md), keyof Component<any>›› | false): *[WebGLRendererComponent](webglrenderercomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -38,15 +40,27 @@
 
 Name | Type |
 ------ | ------ |
-`props?` | Partial‹Omit‹[Object3DComponent](object3dcomponent.md), keyof Component<any>›› &#124; false |
+`props?` | Partial‹Omit‹[WebGLRendererComponent](webglrenderercomponent.md), keyof Component<any>›› &#124; false |
 
-**Returns:** *[Object3DComponent](object3dcomponent.md)*
+**Returns:** *[WebGLRendererComponent](webglrenderercomponent.md)*
 
 ## Properties
 
-### `Optional` value
+###  camera
 
-• **value**? : *Object3D*
+• **camera**: *[ECSYThreeEntity](ecsythreeentity.md)*
+
+___
+
+###  renderer
+
+• **renderer**: *WebGLRenderer*
+
+___
+
+###  scene
+
+• **scene**: *[ECSYThreeEntity](ecsythreeentity.md)*
 
 ___
 
@@ -66,7 +80,15 @@ ___
 
 #### Type declaration:
 
-* **value**(): *object*
+* **camera**(): *object*
+
+  * **type**: *RefPropType‹Camera›*
+
+* **renderer**(): *object*
+
+  * **type**: *RefPropType‹WebGLRenderer›*
+
+* **scene**(): *object*
 
   * **type**: *RefPropType‹Object3D›*
 

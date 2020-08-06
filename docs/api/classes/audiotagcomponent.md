@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: AudioTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **AudioTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](audiotagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](audiotagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](audiotagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](audiotagcomponent.md#static-istagcomponent)
+* [schema](audiotagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](audiotagcomponent.md#clone)
+* [copy](audiotagcomponent.md#copy)
+* [dispose](audiotagcomponent.md#dispose)
+* [reset](audiotagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new AudioTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[AudioTagComponent](audiotagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[AudioTagComponent](audiotagcomponent.md)*
 
 ## Properties
 

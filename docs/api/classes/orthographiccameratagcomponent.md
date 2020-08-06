@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: OrthographicCameraTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **OrthographicCameraTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](orthographiccameratagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](orthographiccameratagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](orthographiccameratagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](orthographiccameratagcomponent.md#static-istagcomponent)
+* [schema](orthographiccameratagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](orthographiccameratagcomponent.md#clone)
+* [copy](orthographiccameratagcomponent.md#copy)
+* [dispose](orthographiccameratagcomponent.md#dispose)
+* [reset](orthographiccameratagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new OrthographicCameraTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[OrthographicCameraTagComponent](orthographiccameratagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[OrthographicCameraTagComponent](orthographiccameratagcomponent.md)*
 
 ## Properties
 

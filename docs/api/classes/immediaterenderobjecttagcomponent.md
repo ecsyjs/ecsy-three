@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: ImmediateRenderObjectTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **ImmediateRenderObjectTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](immediaterenderobjecttagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](immediaterenderobjecttagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](immediaterenderobjecttagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](immediaterenderobjecttagcomponent.md#static-istagcomponent)
+* [schema](immediaterenderobjecttagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](immediaterenderobjecttagcomponent.md#clone)
+* [copy](immediaterenderobjecttagcomponent.md#copy)
+* [dispose](immediaterenderobjecttagcomponent.md#dispose)
+* [reset](immediaterenderobjecttagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new ImmediateRenderObjectTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[ImmediateRenderObjectTagComponent](immediaterenderobjecttagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[ImmediateRenderObjectTagComponent](immediaterenderobjecttagcomponent.md)*
 
 ## Properties
 

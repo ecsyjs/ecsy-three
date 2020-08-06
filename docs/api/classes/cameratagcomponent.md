@@ -16,6 +16,7 @@
 ### Properties
 
 * [isComponent](cameratagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](cameratagcomponent.md#static-isobject3dtagcomponent)
 * [isTagComponent](cameratagcomponent.md#static-istagcomponent)
 * [schema](cameratagcomponent.md#static-schema)
 
@@ -30,15 +31,15 @@
 
 ###  constructor
 
-\+ **new CameraTagComponent**(`props?`: ComponentProps‹undefined›): *[CameraTagComponent](cameratagcomponent.md)*
+\+ **new CameraTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[CameraTagComponent](cameratagcomponent.md)*
 
-*Inherited from void*
+*Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
 **Parameters:**
 
 Name | Type |
 ------ | ------ |
-`props?` | ComponentProps‹undefined› |
+`props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
 **Returns:** *[CameraTagComponent](cameratagcomponent.md)*
 
@@ -48,7 +49,13 @@ Name | Type |
 
 ▪ **isComponent**: *true*
 
-*Inherited from void*
+*Inherited from [Object3DComponent](object3dcomponent.md).[isComponent](object3dcomponent.md#static-iscomponent)*
+
+___
+
+### `Static` isObject3DTagComponent
+
+▪ **isObject3DTagComponent**: *boolean* = true
 
 ___
 
@@ -56,7 +63,7 @@ ___
 
 ▪ **isTagComponent**: *true*
 
-*Inherited from void*
+*Inherited from [AudioTagComponent](audiotagcomponent.md).[isTagComponent](audiotagcomponent.md#static-istagcomponent)*
 
 ___
 
@@ -64,7 +71,7 @@ ___
 
 ▪ **schema**: *ComponentSchema*
 
-*Inherited from void*
+*Inherited from [AudioTagComponent](audiotagcomponent.md).[schema](audiotagcomponent.md#static-schema)*
 
 ## Methods
 
@@ -72,7 +79,7 @@ ___
 
 ▸ **clone**(): *this*
 
-*Inherited from void*
+*Inherited from [Object3DComponent](object3dcomponent.md).[clone](object3dcomponent.md#clone)*
 
 **Returns:** *this*
 
@@ -82,7 +89,7 @@ ___
 
 ▸ **copy**(`source`: this): *this*
 
-*Inherited from void*
+*Inherited from [Object3DComponent](object3dcomponent.md).[copy](object3dcomponent.md#copy)*
 
 **Parameters:**
 
@@ -98,7 +105,7 @@ ___
 
 ▸ **dispose**(): *void*
 
-*Inherited from void*
+*Inherited from [Object3DComponent](object3dcomponent.md).[dispose](object3dcomponent.md#dispose)*
 
 **Returns:** *void*
 
@@ -108,6 +115,6 @@ ___
 
 ▸ **reset**(): *void*
 
-*Inherited from void*
+*Inherited from [Object3DComponent](object3dcomponent.md).[reset](object3dcomponent.md#reset)*
 
 **Returns:** *void*

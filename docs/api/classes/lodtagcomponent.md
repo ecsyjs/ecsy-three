@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: LODTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **LODTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](lodtagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](lodtagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](lodtagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](lodtagcomponent.md#static-istagcomponent)
+* [schema](lodtagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](lodtagcomponent.md#clone)
+* [copy](lodtagcomponent.md#copy)
+* [dispose](lodtagcomponent.md#dispose)
+* [reset](lodtagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new LODTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[LODTagComponent](lodtagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[LODTagComponent](lodtagcomponent.md)*
 
 ## Properties
 

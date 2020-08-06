@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: BoneTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **BoneTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](bonetagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](bonetagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](bonetagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](bonetagcomponent.md#static-istagcomponent)
+* [schema](bonetagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](bonetagcomponent.md#clone)
+* [copy](bonetagcomponent.md#copy)
+* [dispose](bonetagcomponent.md#dispose)
+* [reset](bonetagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new BoneTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[BoneTagComponent](bonetagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[BoneTagComponent](bonetagcomponent.md)*
 
 ## Properties
 

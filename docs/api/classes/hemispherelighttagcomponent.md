@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: HemisphereLightTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **HemisphereLightTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](hemispherelighttagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](hemispherelighttagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](hemispherelighttagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](hemispherelighttagcomponent.md#static-istagcomponent)
+* [schema](hemispherelighttagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](hemispherelighttagcomponent.md#clone)
+* [copy](hemispherelighttagcomponent.md#copy)
+* [dispose](hemispherelighttagcomponent.md#dispose)
+* [reset](hemispherelighttagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new HemisphereLightTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[HemisphereLightTagComponent](hemispherelighttagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[HemisphereLightTagComponent](hemispherelighttagcomponent.md)*
 
 ## Properties
 

@@ -16,7 +16,6 @@
 ### Properties
 
 * [enabled](ecsythreeworld.md#enabled)
-* [object3DInflator](ecsythreeworld.md#object3dinflator)
 
 ### Methods
 
@@ -36,7 +35,7 @@
 
 \+ **new ECSYThreeWorld**(`options?`: WorldOptions): *[ECSYThreeWorld](ecsythreeworld.md)*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[constructor](ecsythreeworld.md#constructor)*
 
 Create a new World.
 
@@ -54,15 +53,9 @@ Name | Type |
 
 • **enabled**: *boolean*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[enabled](ecsythreeworld.md#enabled)*
 
 Whether the world tick should execute.
-
-___
-
-###  object3DInflator
-
-• **object3DInflator**: *[Object3DInflator](../interfaces/object3dinflator.md)*
 
 ## Methods
 
@@ -84,9 +77,9 @@ ___
 
 ###  execute
 
-▸ **execute**(`delta`: number, `time`: number): *void*
+▸ **execute**(`delta?`: number, `time?`: number): *void*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[execute](ecsythreeworld.md#execute)*
 
 Update the systems per frame.
 
@@ -94,8 +87,8 @@ Update the systems per frame.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`delta` | number | Delta time since the last call |
-`time` | number | Elapsed time  |
+`delta?` | number | Delta time since the last call |
+`time?` | number | Elapsed time  |
 
 **Returns:** *void*
 
@@ -103,7 +96,7 @@ ___
 
 ###  getSystem
 
-▸ **getSystem**<**S**>(`System`: SystemConstructor‹S›): *[ECSYThreeSystem](ecsythreesystem.md)*
+▸ **getSystem**‹**S**›(`System`: SystemConstructor‹S›): *S*
 
 *Overrides void*
 
@@ -117,7 +110,7 @@ Name | Type |
 ------ | ------ |
 `System` | SystemConstructor‹S› |
 
-**Returns:** *[ECSYThreeSystem](ecsythreesystem.md)*
+**Returns:** *S*
 
 ___
 
@@ -135,7 +128,7 @@ ___
 
 ▸ **play**(): *void*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[play](ecsythreeworld.md#play)*
 
 Resume execution of this world.
 
@@ -145,9 +138,9 @@ ___
 
 ###  registerComponent
 
-▸ **registerComponent**<**C**>(`Component`: ComponentConstructor‹any, C›, `objectPool?`: ObjectPool‹C› | false): *this*
+▸ **registerComponent**‹**C**›(`Component`: ComponentConstructor‹C›, `objectPool?`: ObjectPool‹C› | false): *this*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[registerComponent](ecsythreeworld.md#registercomponent)*
 
 Register a component.
 
@@ -159,7 +152,7 @@ Register a component.
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`Component` | ComponentConstructor‹any, C› | Type of component to register  |
+`Component` | ComponentConstructor‹C› | Type of component to register  |
 `objectPool?` | ObjectPool‹C› &#124; false | - |
 
 **Returns:** *this*
@@ -170,7 +163,7 @@ ___
 
 ▸ **registerSystem**(`System`: SystemConstructor‹any›, `attributes?`: object): *this*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[registerSystem](ecsythreeworld.md#registersystem)*
 
 Register a system.
 
@@ -189,7 +182,7 @@ ___
 
 ▸ **stop**(): *void*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[stop](ecsythreeworld.md#stop)*
 
 Stop execution of this world.
 
@@ -201,7 +194,7 @@ ___
 
 ▸ **unregisterSystem**(`System`: SystemConstructor‹any›): *this*
 
-*Inherited from void*
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[unregisterSystem](ecsythreeworld.md#unregistersystem)*
 
 Unregister a system.
 

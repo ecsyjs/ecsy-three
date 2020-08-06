@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: SpotLightTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **SpotLightTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](spotlighttagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](spotlighttagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](spotlighttagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](spotlighttagcomponent.md#static-istagcomponent)
+* [schema](spotlighttagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](spotlighttagcomponent.md#clone)
+* [copy](spotlighttagcomponent.md#copy)
+* [dispose](spotlighttagcomponent.md#dispose)
+* [reset](spotlighttagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new SpotLightTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[SpotLightTagComponent](spotlighttagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[SpotLightTagComponent](spotlighttagcomponent.md)*
 
 ## Properties
 

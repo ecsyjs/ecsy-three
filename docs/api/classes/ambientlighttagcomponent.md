@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: AmbientLightTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **AmbientLightTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](ambientlighttagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](ambientlighttagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](ambientlighttagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](ambientlighttagcomponent.md#static-istagcomponent)
+* [schema](ambientlighttagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](ambientlighttagcomponent.md#clone)
+* [copy](ambientlighttagcomponent.md#copy)
+* [dispose](ambientlighttagcomponent.md#dispose)
+* [reset](ambientlighttagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new AmbientLightTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[AmbientLightTagComponent](ambientlighttagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[AmbientLightTagComponent](ambientlighttagcomponent.md)*
 
 ## Properties
 

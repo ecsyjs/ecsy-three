@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: LightProbeTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **LightProbeTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](lightprobetagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](lightprobetagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](lightprobetagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](lightprobetagcomponent.md#static-istagcomponent)
+* [schema](lightprobetagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](lightprobetagcomponent.md#clone)
+* [copy](lightprobetagcomponent.md#copy)
+* [dispose](lightprobetagcomponent.md#dispose)
+* [reset](lightprobetagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new LightProbeTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[LightProbeTagComponent](lightprobetagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[LightProbeTagComponent](lightprobetagcomponent.md)*
 
 ## Properties
 

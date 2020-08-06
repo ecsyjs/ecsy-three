@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: PointsTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **PointsTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](pointstagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](pointstagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](pointstagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](pointstagcomponent.md#static-istagcomponent)
+* [schema](pointstagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](pointstagcomponent.md#clone)
+* [copy](pointstagcomponent.md#copy)
+* [dispose](pointstagcomponent.md#dispose)
+* [reset](pointstagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new PointsTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[PointsTagComponent](pointstagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[PointsTagComponent](pointstagcomponent.md)*
 
 ## Properties
 

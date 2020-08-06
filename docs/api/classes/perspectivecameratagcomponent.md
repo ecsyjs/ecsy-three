@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: PerspectiveCameraTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **PerspectiveCameraTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](perspectivecameratagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](perspectivecameratagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](perspectivecameratagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](perspectivecameratagcomponent.md#static-istagcomponent)
+* [schema](perspectivecameratagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](perspectivecameratagcomponent.md#clone)
+* [copy](perspectivecameratagcomponent.md#copy)
+* [dispose](perspectivecameratagcomponent.md#dispose)
+* [reset](perspectivecameratagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new PerspectiveCameraTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[PerspectiveCameraTagComponent](perspectivecameratagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[PerspectiveCameraTagComponent](perspectivecameratagcomponent.md)*
 
 ## Properties
 

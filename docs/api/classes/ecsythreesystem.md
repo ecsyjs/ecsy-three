@@ -5,6 +5,8 @@
 
 * System
 
+* System
+
   ↳ **ECSYThreeSystem**
 
 ## Index
@@ -33,7 +35,18 @@
 
 \+ **new ECSYThreeSystem**(`world`: [ECSYThreeWorld](ecsythreeworld.md), `attributes?`: Attributes): *[ECSYThreeSystem](ecsythreesystem.md)*
 
-*Overrides void*
+*Overrides [WebGLRendererSystem](webglrenderersystem.md).[constructor](webglrenderersystem.md#constructor)*
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`world` | [ECSYThreeWorld](ecsythreeworld.md) |
+`attributes?` | Attributes |
+
+**Returns:** *[ECSYThreeSystem](ecsythreesystem.md)*
+
+\+ **new ECSYThreeSystem**(`world`: [ECSYThreeWorld](ecsythreeworld.md), `attributes?`: Attributes): *[ECSYThreeSystem](ecsythreesystem.md)*
 
 **Parameters:**
 
@@ -50,7 +63,9 @@ Name | Type |
 
 • **enabled**: *boolean*
 
-*Inherited from void*
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[enabled](ecsythreesystem.md#enabled)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[enabled](ecsythreesystem.md#enabled)*
 
 Whether the system will execute during the world tick.
 
@@ -60,7 +75,7 @@ ___
 
 • **queries**: *object*
 
-*Overrides void*
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[queries](ecsythreesystem.md#static-queries)*
 
 #### Type declaration:
 
@@ -80,7 +95,7 @@ ___
 
 • **world**: *[ECSYThreeWorld](ecsythreeworld.md)*
 
-*Overrides void*
+*Overrides [WebGLRendererSystem](webglrenderersystem.md).[world](webglrenderersystem.md#world)*
 
 ___
 
@@ -88,7 +103,9 @@ ___
 
 ▪ **isSystem**: *true*
 
-*Inherited from void*
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[isSystem](ecsythreesystem.md#static-issystem)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[isSystem](ecsythreesystem.md#static-issystem)*
 
 ___
 
@@ -96,7 +113,9 @@ ___
 
 ▪ **queries**: *object*
 
-*Inherited from void*
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[queries](ecsythreesystem.md#static-queries)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[queries](ecsythreesystem.md#static-queries)*
 
 Defines what Components the System will query for.
 This needs to be user defined.
@@ -105,7 +124,7 @@ This needs to be user defined.
 
 * \[ **queryName**: *string*\]: object
 
-* **components**: *ComponentConstructor‹any, any› | NotComponent‹any, any›[]*
+* **components**: *(ComponentConstructor‹any› | NotComponent‹any›)[]*
 
 * **listen**(): *object*
 
@@ -121,7 +140,9 @@ This needs to be user defined.
 
 ▸ **execute**(`delta`: number, `time`: number): *void*
 
-*Inherited from void*
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[execute](ecsythreesystem.md#abstract-execute)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[execute](ecsythreesystem.md#abstract-execute)*
 
 This function is called for each run of world.
 All of the `queries` defined on the class are available here.
@@ -141,7 +162,9 @@ ___
 
 ▸ **play**(): *void*
 
-*Inherited from void*
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[play](ecsythreesystem.md#play)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[play](ecsythreesystem.md#play)*
 
 Resume execution of this system.
 
@@ -153,7 +176,9 @@ ___
 
 ▸ **stop**(): *void*
 
-*Inherited from void*
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[stop](ecsythreesystem.md#stop)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[stop](ecsythreesystem.md#stop)*
 
 Stop execution of this system.
 

@@ -1,37 +1,37 @@
 
-# Class: MeshTagComponent
+# Class: CubeCameraTagComponent
 
 ## Hierarchy
 
 * TagComponent
 
-  ↳ **MeshTagComponent**
+  ↳ **CubeCameraTagComponent**
 
 ## Index
 
 ### Constructors
 
-* [constructor](meshtagcomponent.md#constructor)
+* [constructor](cubecameratagcomponent.md#constructor)
 
 ### Properties
 
-* [isComponent](meshtagcomponent.md#static-iscomponent)
-* [isObject3DTagComponent](meshtagcomponent.md#static-isobject3dtagcomponent)
-* [isTagComponent](meshtagcomponent.md#static-istagcomponent)
-* [schema](meshtagcomponent.md#static-schema)
+* [isComponent](cubecameratagcomponent.md#static-iscomponent)
+* [isObject3DTagComponent](cubecameratagcomponent.md#static-isobject3dtagcomponent)
+* [isTagComponent](cubecameratagcomponent.md#static-istagcomponent)
+* [schema](cubecameratagcomponent.md#static-schema)
 
 ### Methods
 
-* [clone](meshtagcomponent.md#clone)
-* [copy](meshtagcomponent.md#copy)
-* [dispose](meshtagcomponent.md#dispose)
-* [reset](meshtagcomponent.md#reset)
+* [clone](cubecameratagcomponent.md#clone)
+* [copy](cubecameratagcomponent.md#copy)
+* [dispose](cubecameratagcomponent.md#dispose)
+* [reset](cubecameratagcomponent.md#reset)
 
 ## Constructors
 
 ###  constructor
 
-\+ **new MeshTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[MeshTagComponent](meshtagcomponent.md)*
+\+ **new CubeCameraTagComponent**(`props?`: Partial‹Omit‹object, keyof Component<any>›› | false): *[CubeCameraTagComponent](cubecameratagcomponent.md)*
 
 *Inherited from [Object3DComponent](object3dcomponent.md).[constructor](object3dcomponent.md#constructor)*
 
@@ -41,7 +41,7 @@ Name | Type |
 ------ | ------ |
 `props?` | Partial‹Omit‹object, keyof Component<any>›› &#124; false |
 
-**Returns:** *[MeshTagComponent](meshtagcomponent.md)*
+**Returns:** *[CubeCameraTagComponent](cubecameratagcomponent.md)*
 
 ## Properties
 
