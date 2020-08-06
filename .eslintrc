@@ -6,8 +6,9 @@
     "node": true,
     "mocha": true
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "import"],
   "rules": {
+    "import/extensions": [2, "always"],
     "prettier/prettier": "error",
     "no-console": "off"
   },

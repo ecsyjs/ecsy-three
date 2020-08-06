@@ -32,7 +32,7 @@ import {
   SkinnedMeshTagComponent,
   SpriteTagComponent,
   SceneTagComponent,
-} from "./components/Object3DTagComponents";
+} from "./components/Object3DTagComponents.js";
 
 export class ECSYThreeEntity extends _Entity {
   addObject3DComponent(obj, parentEntity) {
