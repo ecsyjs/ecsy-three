@@ -24,7 +24,7 @@
     "build:cjs": "rimraf cjs && babel src -d cjs",
     "lint": "eslint src examples",
     "deploy": "np",
-    "gh-pages": "gh-pages --dist=./build --dotfiles=true",
+    "gh-pages": "gh-pages --dist=./site --dotfiles=true",
     "prepublishOnly": "npm run build",
     "postdeploy": "npm run gh-pages"
   },
