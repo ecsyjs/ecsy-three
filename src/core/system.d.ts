@@ -1,6 +1,6 @@
 import { System, Attributes } from "ecsy";
-import { ECSYThreeWorld } from "./world";
-import { ECSYThreeEntity } from "./entity";
+import { ECSYThreeWorld } from "../world.js";
+import { ECSYThreeEntity } from "../entity.js";
 
 export abstract class ECSYThreeSystem extends System {
   constructor(world: ECSYThreeWorld, attributes?: Attributes);
