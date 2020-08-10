@@ -153,7 +153,9 @@ export class ECSYThreeEntity extends _Entity {
       });
       obj.parent && obj.parent.remove(obj);
     }
-    this._entityManager.removeEntity(this, forceImmediate);
+    else {
+      this._entityManager.removeEntity(this, forceImmediate);
+    }
   }
 
   getObject3D() {
