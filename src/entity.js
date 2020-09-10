@@ -142,6 +142,14 @@ export class ECSYThreeEntity extends _Entity {
     obj.entity = null;
   }
 
+  removeAllComponents(forceImmediate) {
+    if (this.hasComponent(Object3DComponent)) {
+      this.removeObject3DComponent();
+    }
+
+    return super.removeAllComponents(forceImmediate);
+  }
+
   remove(forceImmediate) {
     if (this.hasComponent(Object3DComponent)) {
       const obj = this.getObject3D();
@@ -152,8 +160,7 @@ export class ECSYThreeEntity extends _Entity {
         o.entity = null;
       });
       obj.parent && obj.parent.remove(obj);
-    }
-    else {
+    } else {
       this._entityManager.removeEntity(this, forceImmediate);
     }
   }
