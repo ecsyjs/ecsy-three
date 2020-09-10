@@ -1,5 +1,9 @@
 
-# Class: ECSYThreeWorld
+# Class: ECSYThreeWorld ‹**EntityType**›
+
+## Type parameters
+
+▪ **EntityType**: *Entity*
 
 ## Hierarchy
 
@@ -23,6 +27,7 @@
 * [execute](ecsythreeworld.md#execute)
 * [getSystem](ecsythreeworld.md#getsystem)
 * [getSystems](ecsythreeworld.md#getsystems)
+* [hasRegisteredComponent](ecsythreeworld.md#hasregisteredcomponent)
 * [play](ecsythreeworld.md#play)
 * [registerComponent](ecsythreeworld.md#registercomponent)
 * [registerSystem](ecsythreeworld.md#registersystem)
@@ -121,6 +126,28 @@ ___
 *Overrides void*
 
 **Returns:** *Array‹[ECSYThreeSystem](ecsythreesystem.md)›*
+
+___
+
+###  hasRegisteredComponent
+
+▸ **hasRegisteredComponent**‹**C**›(`Component`: ComponentConstructor‹C›): *boolean*
+
+*Inherited from [ECSYThreeWorld](ecsythreeworld.md).[hasRegisteredComponent](ecsythreeworld.md#hasregisteredcomponent)*
+
+Evluate whether a component has been registered to this world or not.
+
+**Type parameters:**
+
+▪ **C**: *Component‹any›*
+
+**Parameters:**
+
+Name | Type | Description |
+------ | ------ | ------ |
+`Component` | ComponentConstructor‹C› | Type of component to to evaluate  |
+
+**Returns:** *boolean*
 
 ___
 

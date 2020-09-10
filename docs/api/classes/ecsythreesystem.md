@@ -1,5 +1,11 @@
 
-# Class: ECSYThreeSystem
+# Class: ECSYThreeSystem ‹**EntityType, EntityType**›
+
+## Type parameters
+
+▪ **EntityType**: *Entity*
+
+▪ **EntityType**: *Entity*
 
 ## Hierarchy
 
@@ -18,6 +24,7 @@
 ### Properties
 
 * [enabled](ecsythreesystem.md#enabled)
+* [priority](ecsythreesystem.md#readonly-priority)
 * [queries](ecsythreesystem.md#queries)
 * [world](ecsythreesystem.md#world)
 * [isSystem](ecsythreesystem.md#static-issystem)
@@ -26,6 +33,7 @@
 ### Methods
 
 * [execute](ecsythreesystem.md#abstract-execute)
+* [init](ecsythreesystem.md#init)
 * [play](ecsythreesystem.md#play)
 * [stop](ecsythreesystem.md#stop)
 
@@ -71,6 +79,18 @@ Whether the system will execute during the world tick.
 
 ___
 
+### `Readonly` priority
+
+• **priority**: *number*
+
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[priority](ecsythreesystem.md#readonly-priority)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[priority](ecsythreesystem.md#readonly-priority)*
+
+Execution priority (i.e: order) of the system.
+
+___
+
 ###  queries
 
 • **queries**: *object*
@@ -111,7 +131,7 @@ ___
 
 ### `Static` queries
 
-▪ **queries**: *object*
+▪ **queries**: *SystemQueries*
 
 *Inherited from [ECSYThreeSystem](ecsythreesystem.md).[queries](ecsythreesystem.md#static-queries)*
 
@@ -119,20 +139,6 @@ ___
 
 Defines what Components the System will query for.
 This needs to be user defined.
-
-#### Type declaration:
-
-* \[ **queryName**: *string*\]: object
-
-* **components**: *(ComponentConstructor‹any› | NotComponent‹any›)[]*
-
-* **listen**(): *object*
-
-  * **added**? : *boolean*
-
-  * **changed**? : *boolean | Component‹any›[]*
-
-  * **removed**? : *boolean*
 
 ## Methods
 
@@ -153,6 +159,26 @@ Name | Type | Description |
 ------ | ------ | ------ |
 `delta` | number | - |
 `time` | number |   |
+
+**Returns:** *void*
+
+___
+
+###  init
+
+▸ **init**(`attributes?`: Attributes): *void*
+
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[init](ecsythreesystem.md#init)*
+
+*Overrides [ECSYThreeSystem](ecsythreesystem.md).[init](ecsythreesystem.md#init)*
+
+Called when the system is added to the world.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`attributes?` | Attributes |
 
 **Returns:** *void*
 

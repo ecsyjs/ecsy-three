@@ -25,7 +25,7 @@
 * [getComponents](ecsythreeentity.md#getcomponents)
 * [getComponentsToRemove](ecsythreeentity.md#getcomponentstoremove)
 * [getMutableComponent](ecsythreeentity.md#getmutablecomponent)
-* [getObject3D](ecsythreeentity.md#optional-getobject3d)
+* [getObject3D](ecsythreeentity.md#getobject3d)
 * [getRemovedComponent](ecsythreeentity.md#getremovedcomponent)
 * [hasAllComponents](ecsythreeentity.md#hasallcomponents)
 * [hasAnyComponents](ecsythreeentity.md#hasanycomponents)
@@ -125,7 +125,7 @@ ___
 
 ###  getComponent
 
-▸ **getComponent**‹**C**›(`Component`: ComponentConstructor‹C›, `includeRemoved?`: boolean): *C*
+▸ **getComponent**‹**C**›(`Component`: ComponentConstructor‹C›, `includeRemoved?`: boolean): *Readonly‹C› | undefined*
 
 *Inherited from [ECSYThreeEntity](ecsythreeentity.md).[getComponent](ecsythreeentity.md#getcomponent)*
 
@@ -142,7 +142,7 @@ Name | Type | Description |
 `Component` | ComponentConstructor‹C› | Type of component to get |
 `includeRemoved?` | boolean | Whether a component that is staled to be removed should be also considered  |
 
-**Returns:** *C*
+**Returns:** *Readonly‹C› | undefined*
 
 ___
 
@@ -188,7 +188,7 @@ ___
 
 ###  getMutableComponent
 
-▸ **getMutableComponent**‹**C**›(`Component`: ComponentConstructor‹C›): *C*
+▸ **getMutableComponent**‹**C**›(`Component`: ComponentConstructor‹C›): *C | undefined*
 
 *Inherited from [ECSYThreeEntity](ecsythreeentity.md).[getMutableComponent](ecsythreeentity.md#getmutablecomponent)*
 
@@ -204,25 +204,25 @@ Name | Type | Description |
 ------ | ------ | ------ |
 `Component` | ComponentConstructor‹C› | Type of component to get  |
 
-**Returns:** *C*
+**Returns:** *C | undefined*
 
 ___
 
-### `Optional` getObject3D
+###  getObject3D
 
-▸ **getObject3D**‹**T**›(): *T & [ECSYThreeObject3D](../interfaces/ecsythreeobject3d.md)*
+▸ **getObject3D**‹**T**›(): *T & [ECSYThreeObject3D](../interfaces/ecsythreeobject3d.md) | undefined*
 
 **Type parameters:**
 
 ▪ **T**: *Object3D*
 
-**Returns:** *T & [ECSYThreeObject3D](../interfaces/ecsythreeobject3d.md)*
+**Returns:** *T & [ECSYThreeObject3D](../interfaces/ecsythreeobject3d.md) | undefined*
 
 ___
 
 ###  getRemovedComponent
 
-▸ **getRemovedComponent**‹**C**›(`Component`: ComponentConstructor‹C›): *C*
+▸ **getRemovedComponent**‹**C**›(`Component`: ComponentConstructor‹C›): *Readonly‹C› | undefined*
 
 *Inherited from [ECSYThreeEntity](ecsythreeentity.md).[getRemovedComponent](ecsythreeentity.md#getremovedcomponent)*
 
@@ -238,7 +238,7 @@ Name | Type |
 ------ | ------ |
 `Component` | ComponentConstructor‹C› |
 
-**Returns:** *C*
+**Returns:** *Readonly‹C› | undefined*
 
 ___
 

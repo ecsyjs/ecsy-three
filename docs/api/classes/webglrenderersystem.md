@@ -1,5 +1,9 @@
 
-# Class: WebGLRendererSystem
+# Class: WebGLRendererSystem ‹**EntityType**›
+
+## Type parameters
+
+▪ **EntityType**: *Entity*
 
 ## Hierarchy
 
@@ -17,6 +21,7 @@
 
 * [enabled](webglrenderersystem.md#enabled)
 * [needsResize](webglrenderersystem.md#needsresize)
+* [priority](webglrenderersystem.md#readonly-priority)
 * [queries](webglrenderersystem.md#queries)
 * [world](webglrenderersystem.md#world)
 * [isSystem](webglrenderersystem.md#static-issystem)
@@ -26,6 +31,7 @@
 
 * [dispose](webglrenderersystem.md#dispose)
 * [execute](webglrenderersystem.md#execute)
+* [init](webglrenderersystem.md#init)
 * [onResize](webglrenderersystem.md#onresize)
 * [play](webglrenderersystem.md#play)
 * [stop](webglrenderersystem.md#stop)
@@ -34,7 +40,7 @@
 
 ###  constructor
 
-\+ **new WebGLRendererSystem**(`world`: World, `attributes?`: Attributes): *[WebGLRendererSystem](webglrenderersystem.md)*
+\+ **new WebGLRendererSystem**(`world`: World‹EntityType›, `attributes?`: Attributes): *[WebGLRendererSystem](webglrenderersystem.md)*
 
 *Inherited from [WebGLRendererSystem](webglrenderersystem.md).[constructor](webglrenderersystem.md#constructor)*
 
@@ -42,7 +48,7 @@
 
 Name | Type |
 ------ | ------ |
-`world` | World |
+`world` | World‹EntityType› |
 `attributes?` | Attributes |
 
 **Returns:** *[WebGLRendererSystem](webglrenderersystem.md)*
@@ -65,6 +71,16 @@ ___
 
 ___
 
+### `Readonly` priority
+
+• **priority**: *number*
+
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[priority](ecsythreesystem.md#readonly-priority)*
+
+Execution priority (i.e: order) of the system.
+
+___
+
 ###  queries
 
 • **queries**: *object*
@@ -78,19 +94,19 @@ Should be used inside of execute.
 
 * \[ **queryName**: *string*\]: object
 
-* **added**? : *Entity[]*
+* **added**? : *EntityType[]*
 
-* **changed**? : *Entity[]*
+* **changed**? : *EntityType[]*
 
-* **removed**? : *Entity[]*
+* **removed**? : *EntityType[]*
 
-* **results**: *Entity[]*
+* **results**: *EntityType[]*
 
 ___
 
 ###  world
 
-• **world**: *World*
+• **world**: *World‹EntityType›*
 
 *Inherited from [WebGLRendererSystem](webglrenderersystem.md).[world](webglrenderersystem.md#world)*
 
@@ -131,6 +147,24 @@ ___
 ▸ **execute**(): *void*
 
 *Overrides [ECSYThreeSystem](ecsythreesystem.md).[execute](ecsythreesystem.md#abstract-execute)*
+
+**Returns:** *void*
+
+___
+
+###  init
+
+▸ **init**(`attributes?`: Attributes): *void*
+
+*Inherited from [ECSYThreeSystem](ecsythreesystem.md).[init](ecsythreesystem.md#init)*
+
+Called when the system is added to the world.
+
+**Parameters:**
+
+Name | Type |
+------ | ------ |
+`attributes?` | Attributes |
 
 **Returns:** *void*
 
