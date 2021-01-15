@@ -16,8 +16,9 @@ class RotationSystem extends System {
   execute(delta) {
     this.queries.entities.results.forEach((entity) => {
       var rotation = entity.getObject3D().rotation;
-      rotation.x += 0.5 * delta;
-      rotation.y += 0.1 * delta;
+      var speed = entity.getComponent(Rotating).speed
+      rotation.x += 0.5 * delta * speed;
+      rotation.y += 0.1 * delta * speed;
     });
   }
 }
@@ -47,5 +48,5 @@ const mesh = new Mesh(
 
 world
   .createEntity()
-  .addComponent(Rotating)
+  .addComponent(Rotating,{speed:0.7})
   .addObject3DComponent(mesh, sceneEntity);
