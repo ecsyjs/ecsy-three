@@ -46,7 +46,7 @@
     "np": "^6.2.4",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2",
-    "three": "^0.119.1",
+    "three": "^0.125.0",
     "typedoc": "^0.17.8",
     "typedoc-plugin-markdown": "^2.4.0",
     "typescript": "^3.9.7",
