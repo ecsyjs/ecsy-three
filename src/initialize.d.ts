@@ -7,7 +7,7 @@ export interface InitializeOptions {
   animationLoop?: Function
 }
 
-export function initialize(world: ECSYThreeWorld, options?: InitializeOptions) : {
+export function initialize(world?: ECSYThreeWorld, options?: InitializeOptions) : {
   world: ECSYThreeWorld,
   camera: PerspectiveCamera,
   scene: Scene,
